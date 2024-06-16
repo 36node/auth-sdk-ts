@@ -16,8 +16,11 @@
     "github-secret": "ts-node scripts/github-action-secret.ts"
   },
   "keywords": [],
-  "author": "",
-  "license": "UNLICENSED",
+  "author": "zzswang",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "axios": "1.6.7"
   },
