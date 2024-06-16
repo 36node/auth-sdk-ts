@@ -1,0 +1,44 @@
+{
+  "name": "@36node/auth-sdk",
+  "version": "0.1.0",
+  "description": "36node auth sdk for auth service",
+  "source": "src/index.ts",
+  "main": "dist/main.js",
+  "module": "dist/module.js",
+  "types": "dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "parcel build",
+    "gen": "ts-node ./scripts/gen.ts",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+    "github-secret": "ts-node scripts/github-action-secret.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "axios": "1.6.7"
+  },
+  "devDependencies": {
+    "@36node/openapi-ts-gen": "^0.2.9",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
+    "@parcel/core": "latest",
+    "@parcel/packager-ts": "latest",
+    "@parcel/transformer-typescript-types": "latest",
+    "@types/node": "^20.11.10",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
+    "minimist": "^1.2.8",
+    "parcel": "latest",
+    "prettier": "^2.3.2",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.1.0"
+  }
+}

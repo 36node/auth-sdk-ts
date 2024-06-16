@@ -1,0 +1,157 @@
+name: generate-sdk
+
+on:
+  workflow_dispatch:
+    inputs:
+      artifactName:
+        description: 'openapi json artifact name'
+        required: true
+      runId:
+        description: 'workflow run id which upload artifact'
+        required: true
+      version:
+        description: 'sdk version'
+        required: true
+      prNumber:
+        description: 'pull request number'
+        required: false
+      prTitle:
+        description: 'pull request title'
+        required: false
+      prHtmlUrl:
+        description: 'pull request html url'
+        required: false
+
+permissions: write-all
+
+env:
+  PACAKAGE: '@36node/auth-sdk'
+  ARTIFACT_REPO: 36node/auth
+  REPO: 36node/auth-sdk-ts
+
+jobs:
+  gen-sdk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download openapi json
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ github.event.inputs.artifactName }}
+          path: ./
+          github-token: ${{ secrets.DISPATCH_TOKEN }}
+          repository: ${{ env.ARTIFACT_REPO }}
+          run-id: ${{ github.event.inputs.runId }}
+
+      - name: genereate sdk
+        run: pnpm gen -v ${{ github.event.inputs.version }}
+
+      - name: build and publish
+        run: |
+          pnpm install
+          npm run lint --fix
+          npm run build
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git diff --quiet || HAS_CHANGES=1
+          if [ "$HAS_CHANGES" == "1" ]; then
+            git commit -a -m "chore: release ${{ github.event.inputs.version }} sdk"
+          else
+            echo "No changes detected, skipping commit."
+          fi
+          npm version ${{ github.event.inputs.version }}
+
+      - name: publish
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push changes
+        if: ${{ !github.event.inputs.prNumber }}
+        uses: ad-m/github-push-action@master
+        with:
+          branch: ${{ github.head_ref }}
+
+  notify-for-pr:
+    if: ${{ github.event.inputs.prNumber }}
+    needs: [gen-sdk]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up environment
+        run: echo "PACKAGE_NAME=$(echo $PACKAGE | cut -d'/' -f2)" >> $GITHUB_ENV
+      - name: Feishu Robot Nessage
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+            -d '
+              {
+                "msg_type": "post",
+                "content":{
+                  "post": {
+                    "zh_cn": {
+                      "title": "${{ env.PACAKAGE }}: ${{ github.event.inputs.version }} 已发布",
+                      "content": [
+                        [{
+                          "tag": "a",
+                          "text": "相关PR: ${{ github.event.inputs.prTitle }}\n",
+                          "href": "${{ github.event.inputs.prHtmlUrl }}"
+                        },{
+                          "tag": "a",
+                          "text": "前往查看",
+                          "href": "https://github.com/${{ env.REPO }}/pkgs/npm/${{ env.PACKAGE_NAME }}"
+                        }]
+                      ]
+                    }
+                  }
+                }
+              }' \
+            https://open.feishu.cn/open-apis/bot/v2/hook/${{ secrets.FEISHU_ROBOT_TOKEN }}
+
+  notify-for-release:
+    if: ${{ !github.event.inputs.prNumber }}
+    needs: [gen-sdk]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up environment
+        run: echo "PACKAGE_NAME=$(echo $PACKAGE | cut -d'/' -f2)" >> $GITHUB_ENV
+      - name: Feishu Robot Nessage
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+            -d '
+              {
+                "msg_type": "post",
+                "content":{
+                  "post": {
+                    "zh_cn": {
+                      "title": "${{ env.PACAKAGE }}: ${{ github.event.inputs.version }} 已发布",
+                      "content": [
+                        [{
+                          "tag": "a",
+                          "text": "前往查看",
+                          "href": "https://github.com/${{ env.REPO }}/pkgs/npm/${{ env.PACKAGE_NAME }}"
+                        }]
+                      ]
+                    }
+                  }
+                }
+              }' \
+            https://open.feishu.cn/open-apis/bot/v2/hook/${{ secrets.FEISHU_ROBOT_TOKEN }}
+
+            https://open.feishu.cn/open-apis/bot/v2/hook/bf919293-84aa-45a7-bd7e-d6460c667f2e
