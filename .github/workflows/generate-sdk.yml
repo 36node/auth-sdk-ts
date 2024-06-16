@@ -64,7 +64,7 @@ jobs:
       - name: genereate sdk
         run: pnpm gen -v ${{ github.event.inputs.version }}
 
-      - name: build and publish
+      - name: build
         run: |
           pnpm install
           npm run lint --fix
@@ -153,5 +153,3 @@ jobs:
                 }
               }' \
             https://open.feishu.cn/open-apis/bot/v2/hook/${{ secrets.FEISHU_ROBOT_TOKEN }}
-
-            https://open.feishu.cn/open-apis/bot/v2/hook/bf919293-84aa-45a7-bd7e-d6460c667f2e
