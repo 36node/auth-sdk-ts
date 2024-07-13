@@ -3,69 +3,24 @@
 export interface HealthCheckResult {
   message: string
 }
-export interface CreateUserDto {
-  password?: string
-  avatar?: string
-  intro?: string
-  data?: string
-  email?: string
-  language?: string
-  lastSeenAt?: string
-  lastLoginIp?: string
-  nickname?: string
-  ns: string
-  phone?: string
-  registerIp?: string
-  registerRegion?: string
-  roles?: string[]
-  super?: boolean
-  username?: string
-  dialingPrefix?: string
-}
-export enum IdentityType {
-  ID = "ID",
-}
-export type IdentityTypeType = typeof IdentityType[keyof typeof IdentityType];
-export interface Identity {
-  type?: IdentityType
-  name?: string
-  verifyAt?: string
-  verified: boolean
+export interface LoginDto {
+  login: string
+  password: string
 }
 export interface User {
   password?: string
+  hasPassword?: boolean
   avatar?: string
-  intro?: string
   data?: string
   email?: string
-  language?: string
-  lastSeenAt?: string
-  lastLoginIp?: string
-  nickname?: string
-  ns: string
-  phone?: string
-  registerIp?: string
-  registerRegion?: string
-  roles?: string[]
-  super?: boolean
-  username?: string
-  dialingPrefix?: string
-  identity?: Identity
-  id: string
-  createAt?: string
-  updateAt?: string
-  createBy?: string
-  updateBy?: string
-}
-export interface UpdateUserDto {
-  password?: string
-  avatar?: string
+  name?: string
+  identity?: string
+  identityVerifiedAt?: string
+  identityVerified?: boolean
   intro?: string
-  data?: string
-  email?: string
   language?: string
-  lastSeenAt?: string
   lastLoginIp?: string
+  lastSeenAt?: string
   nickname?: string
   ns?: string
   phone?: string
@@ -74,7 +29,121 @@ export interface UpdateUserDto {
   roles?: string[]
   super?: boolean
   username?: string
-  dialingPrefix?: string
+  id: string
+  createdAt?: string
+  updatedAt?: string
+  createdBy?: string
+  updatedBy?: string
+}
+export interface SessionWithToken {
+  acl?: SessionWithToken.Acl
+  expireAt: string
+  key: string
+  user: User
+  client?: string
+  id: string
+  createdAt?: string
+  updatedAt?: string
+  createdBy?: string
+  updatedBy?: string
+  token: string
+  tokenExpireAt: string
+}
+export namespace SessionWithToken {
+  export interface Acl {
+  }
+}
+export interface LoginByEmailDto {
+  email: string
+  key: string
+  code: string
+}
+export interface LoginByPhoneDto {
+  phone: string
+  key: string
+  code: string
+}
+export interface RegisterDto {
+  username: string
+  password: string
+  ns?: string
+}
+export interface RegisterbyPhoneDto {
+  phone: string
+  key: string
+  code: string
+  ns?: string
+}
+export interface RegisterByEmailDto {
+  email: string
+  key: string
+  code: string
+  ns?: string
+}
+export interface SignTokenDto {
+  expiresIn: string
+  acl?: SignTokenDto.Acl
+  uid: string
+}
+export namespace SignTokenDto {
+  export interface Acl {
+  }
+}
+export interface Token {
+  token: string
+  tokenExpireAt: string
+}
+export interface RefreshTokenDto {
+  key: string
+}
+export interface CreateUserDto {
+  password?: string
+  hasPassword?: boolean
+  avatar?: string
+  data?: string
+  email?: string
+  name?: string
+  identity?: string
+  identityVerifiedAt?: string
+  identityVerified?: boolean
+  intro?: string
+  language?: string
+  nickname?: string
+  ns?: string
+  phone?: string
+  registerRegion?: string
+  roles?: string[]
+  super?: boolean
+  username?: string
+}
+export interface UpdateUserDto {
+  hasPassword?: boolean
+  avatar?: string
+  data?: string
+  email?: string
+  name?: string
+  identity?: string
+  identityVerifiedAt?: string
+  identityVerified?: boolean
+  intro?: string
+  language?: string
+  lastLoginIp?: string
+  lastSeenAt?: string
+  nickname?: string
+  ns?: string
+  phone?: string
+  registerIp?: string
+  registerRegion?: string
+  roles?: string[]
+  super?: boolean
+  username?: string
+}
+export interface ResetPasswordDto {
+  password?: string
+}
+export interface UpdatePasswordDto {
+  oldPassword?: string
+  newPassword: string
 }
 export interface CreateNamespaceDto {
   data?: string
@@ -82,9 +151,7 @@ export interface CreateNamespaceDto {
   labels?: string[]
   name: string
   key: string
-  parent?: string
-  registerDefaultRoles?: string[]
-  passwordRegExp?: string
+  ns?: string
 }
 export interface Namespace {
   data?: string
@@ -92,75 +159,24 @@ export interface Namespace {
   labels?: string[]
   name: string
   key: string
-  parent?: string
-  isScope: boolean
-  ns: string
-  registerDefaultRoles?: string[]
-  passwordRegExp?: string
+  ns?: string
   id: string
-  createAt?: string
-  updateAt?: string
-  createBy?: string
-  updateBy?: string
+  createdAt?: string
+  updatedAt?: string
+  createdBy?: string
+  updatedBy?: string
 }
 export interface UpdateNamespaceDto {
   data?: string
   desc?: string
   labels?: string[]
   name?: string
-  registerDefaultRoles?: string[]
-  passwordRegExp?: string
-}
-export enum CaptchaPurpose {
-  REGISTER = "REGISTER",
-  LOGIN = "LOGIN",
-  RESET_PASSWORD = "RESET_PASSWORD",
-  UPDATE_PHONE = "UPDATE_PHONE",
-  UPDATE_EMAIL = "UPDATE_EMAIL",
-}
-export type CaptchaPurposeType = typeof CaptchaPurpose[keyof typeof CaptchaPurpose];
-export interface CreateCaptchaBySmsDto {
-  purpose: CaptchaPurpose
-  phone: string
-  dialingPrefix: string
-  scope: string
-}
-export interface CaptchaBySmsResult {
-  purpose: CaptchaPurpose
-  phone: string
-  scope: string
-  dialingPrefix?: string
-  expireAt: string
-}
-export interface CreateCaptchaByEmailDto {
-  purpose: CaptchaPurpose
-  email: string
-  scope: string
-}
-export interface CaptchaByEmailResult {
-  purpose: CaptchaPurpose
-  email: string
-  scope: string
-  expireAt: string
-}
-export interface CreateCaptchaByPhotoDto {
-  purpose: CaptchaPurpose
-  key: string
-  scope: string
-}
-export interface CaptchaByPhotoResult {
-  purpose: CaptchaPurpose
-  capchaGifHex: string
-  scope: string
-  key: string
-  expireAt: string
 }
 export interface CreateSessionDto {
   uid: string
   acl?: CreateSessionDto.Acl
   expireAt: string
   client?: string
-  tokenExpiresIn?: string
 }
 export namespace CreateSessionDto {
   export interface Acl {
@@ -172,12 +188,11 @@ export interface Session {
   key: string
   user: User
   client?: string
-  tokenExpiresIn?: string
   id: string
-  createAt?: string
-  updateAt?: string
-  createBy?: string
-  updateBy?: string
+  createdAt?: string
+  updatedAt?: string
+  createdBy?: string
+  updatedBy?: string
 }
 export namespace Session {
   export interface Acl {
@@ -187,26 +202,76 @@ export interface UpdateSessionDto {
   acl?: UpdateSessionDto.Acl
   expireAt?: string
   client?: string
-  tokenExpiresIn?: string
   uid?: string
 }
 export namespace UpdateSessionDto {
   export interface Acl {
   }
 }
-export interface RestrictTokenDto {
-  expiresIn: string
-  acl?: RestrictTokenDto.Acl
+export interface CreateCaptchaDto {
+  code?: string
+  expireAt?: string
   key: string
-  ns?: string
 }
-export namespace RestrictTokenDto {
-  export interface Acl {
-  }
+export interface Captcha {
+  code: string
+  expireAt: string
+  key: string
+  id: string
+  createdAt?: string
+  updatedAt?: string
+  createdBy?: string
+  updatedBy?: string
 }
-export interface OnlyToken {
-  token: string
-  tokenExpireAt: string
+export interface UpdateCaptchaDto {
+  code?: string
+  expireAt?: string
+  key?: string
+}
+export interface SendEmailDto {
+  from: string
+  to: string
+  subject: string
+  content: string
+}
+export enum EmailStatus {
+  PENDING = "pending",
+  SENT = "sent",
+}
+export type EmailStatusType = typeof EmailStatus[keyof typeof EmailStatus];
+export interface CreateEmailRecordDto {
+  status: EmailStatus
+  from: string
+  to: string
+  subject: string
+  content: string
+  sentAt?: string
+}
+export interface EmailRecord {
+  status: EmailStatus
+  from: string
+  to: string
+  subject: string
+  content: string
+  sentAt?: string
+  id: string
+  createdAt?: string
+  updatedAt?: string
+  createdBy?: string
+  updatedBy?: string
+}
+export interface UpdateEmailRecordDto {
+  status?: EmailStatus
+  from?: string
+  to?: string
+  subject?: string
+  content?: string
+  sentAt?: string
+}
+export interface Industry {
+  code: string
+  name: string
+  children: Industry[]
 }
 export interface Region {
   code: string
@@ -215,155 +280,101 @@ export interface Region {
   nameEn: string
   dialingPrefix: string
 }
-export interface MyInfo {
-  password?: string
-  avatar?: string
-  intro?: string
-  data?: string
-  email?: string
-  language?: string
-  lastSeenAt?: string
-  lastLoginIp?: string
-  nickname?: string
-  ns: string
-  phone?: string
-  registerIp?: string
-  registerRegion?: string
-  roles?: string[]
-  super?: boolean
-  username?: string
-  dialingPrefix?: string
-  identity?: Identity
-  id: string
-  createAt?: string
-  updateAt?: string
-  createBy?: string
-  updateBy?: string
-  hasPassword: boolean
-}
-export interface UpdateMyInfoDto {
-  avatar?: string
-  registerRegion?: string
-  language?: string
-  nickname?: string
-  username?: string
-  intro?: string
-}
-export interface UpdateMyPasswordDto {
-  oldPassword?: string
-  newPassword: string
-}
-export interface ResetMyPasswordDto {
-  scope: string
-  code: string
-  newPassword: string
-  email?: string
-  phone?: string
-  dialingPrefix?: string
-}
-export interface RegisterUserByPhoneDto {
-  scope: string
+export interface SendSmsDto {
   phone: string
-  dialingPrefix: string
-  code: string
-  password?: string
+  sign: string
+  template: string
+  params?: SendSmsDto.Params
 }
-export interface SessionWithToken {
-  user: MyInfo
-  acl?: SessionWithToken.Acl
-  expireAt: string
-  key: string
-  client?: string
-  tokenExpiresIn?: string
-  id: string
-  createAt?: string
-  updateAt?: string
-  createBy?: string
-  updateBy?: string
-  token: string
-  tokenExpireAt: string
-}
-export namespace SessionWithToken {
-  export interface Acl {
+export namespace SendSmsDto {
+  export interface Params {
   }
 }
-export interface RegisterUserByEmailDto {
-  scope: string
-  email: string
-  code: string
-  password?: string
+export enum SmsStatus {
+  PENDING = "pending",
+  SENT = "sent",
 }
-export interface RegisterUserByUsernameDto {
-  scope: string
-  username: string
-  password: string
-}
-export interface LoginSessionDto {
-  scope: string
-  login: string
-  password: string
-}
-export interface LoginSessionByPhoneDto {
+export type SmsStatusType = typeof SmsStatus[keyof typeof SmsStatus];
+export interface CreateSmsRecordDto {
+  status: SmsStatus
   phone: string
-  code: string
-  dialingPrefix: string
-  scope: string
+  sign: string
+  template: string
+  params?: string
+  sentAt?: string
 }
-export interface LoginSessionByEmailDto {
-  email: string
-  code: string
-  scope: string
-}
-export interface UpdateMyEmailDto {
-  email: string
-  code: string
-  scope: string
-}
-export interface UpdateMyPhoneDto {
+export interface SmsRecord {
+  status: SmsStatus
   phone: string
-  code: string
-  scope: string
-  dialingPrefix: string
+  sign: string
+  template: string
+  params?: string
+  sentAt?: string
+  id: string
+  createdAt?: string
+  updatedAt?: string
+  createdBy?: string
+  updatedBy?: string
 }
-export interface LogoutSessionDto {
-  key: string
-}
-export interface RefreshSessionDto {
-  key: string
-}
-export interface VerifyIdentityDto {
-  type: IdentityType
-  name: string
-  identity: string
+export interface UpdateSmsRecordDto {
+  status?: SmsStatus
+  phone?: string
+  sign?: string
+  template?: string
+  params?: string
+  sentAt?: string
 }
 export interface HelloRequest {
+}
+export interface LoginRequest {
+  body: LoginDto
+}
+export interface LoginByEmailRequest {
+  body: LoginByEmailDto
+}
+export interface LoginByPhoneRequest {
+  body: LoginByPhoneDto
+}
+export interface RegisterRequest {
+  body: RegisterDto
+}
+export interface RegisterByPhoneRequest {
+  body: RegisterbyPhoneDto
+}
+export interface RegisterByEmailRequest {
+  body: RegisterByEmailDto
+}
+export interface SignTokenRequest {
+  body: SignTokenDto
+}
+export interface RefreshRequest {
+  body: RefreshTokenDto
 }
 export interface CreateUserRequest {
   body: CreateUserDto
 }
 export interface ListUsersRequest {
-  ns?: string[]
-  ns_scope?: string[]
   _sort?: ListUsersRequest.Sort
   id?: string[]
   name_like?: string
-  username?: string
   username_like?: string
   nickname_like?: string
+  ns?: string[]
+  ns_start?: string[]
+  username?: string
   email?: string
   phone?: string
   registerRegion?: string
   roles?: string[]
-  dialingPrefix?: string
   _limit?: number
   _offset?: number
 }
 export namespace ListUsersRequest {
   export enum Sort {
-    CREATE_AT = "createAt",
-    CREATE_AT_DESC = "-createAt",
-    UPDATE_AT = "updateAt",
-    UPDATE_AT_DESC = "-updateAt",
+    CREATED_AT = "createdAt",
+    CREATED_AT_DESC = "-createdAt",
+    UPDATED_AT = "updatedAt",
+    UPDATED_AT_DESC = "-updatedAt",
   }
   export type SortType = typeof Sort[keyof typeof Sort];
 }
@@ -377,29 +388,45 @@ export interface UpdateUserRequest {
 export interface DeleteUserRequest {
   userId: string
 }
+export interface VerifyIdentityRequest {
+  userId: string
+}
+export interface ResetPasswordRequest {
+  userId: string
+  body: ResetPasswordDto
+}
+export interface UpdatePasswordRequest {
+  userId: string
+  body: UpdatePasswordDto
+}
 export interface CreateNamespaceRequest {
   body: CreateNamespaceDto
 }
 export interface ListNamespacesRequest {
-  parent?: string[]
-  parent_scope?: string[]
+  ns?: string[]
+  ns_start?: string[]
   _sort?: ListNamespacesRequest.Sort
   name_like?: string
   labels?: string[]
+  key?: string
   _limit?: number
   _offset?: number
 }
 export namespace ListNamespacesRequest {
   export enum Sort {
-    CREATE_AT = "createAt",
-    CREATE_AT_DESC = "-createAt",
-    UPDATE_AT = "updateAt",
-    UPDATE_AT_DESC = "-updateAt",
+    CREATED_AT = "createdAt",
+    CREATED_AT_DESC = "-createdAt",
+    UPDATED_AT = "updatedAt",
+    UPDATED_AT_DESC = "-updatedAt",
+    KEY = "key",
+    KEY_DESC = "-key",
+    NAME = "name",
+    NAME_DESC = "-name",
   }
   export type SortType = typeof Sort[keyof typeof Sort];
 }
 export interface GetNamespaceRequest {
-  namespaceIdOrNs: string
+  namespaceIdOrKey: string
 }
 export interface UpdateNamespaceRequest {
   namespaceId: string
@@ -408,32 +435,6 @@ export interface UpdateNamespaceRequest {
 export interface DeleteNamespaceRequest {
   namespaceId: string
 }
-export interface ListScopesRequest {
-  parent?: string[]
-  _sort?: ListScopesRequest.Sort
-  labels?: string[]
-  _limit?: number
-  _offset?: number
-  name_like?: string
-}
-export namespace ListScopesRequest {
-  export enum Sort {
-    CREATE_AT = "createAt",
-    CREATE_AT_DESC = "-createAt",
-    UPDATE_AT = "updateAt",
-    UPDATE_AT_DESC = "-updateAt",
-  }
-  export type SortType = typeof Sort[keyof typeof Sort];
-}
-export interface CreateCaptchaBySmsRequest {
-  body: CreateCaptchaBySmsDto
-}
-export interface CreateCaptchaByEmailRequest {
-  body: CreateCaptchaByEmailDto
-}
-export interface CreateCaptchaByPhotoRequest {
-  body: CreateCaptchaByPhotoDto
-}
 export interface CreateSessionRequest {
   body: CreateSessionDto
 }
@@ -441,17 +442,16 @@ export interface ListSessionsRequest {
   _sort?: ListSessionsRequest.Sort
   key?: string
   client?: string
-  tokenExpiresIn?: string
   uid?: string
   _limit?: number
   _offset?: number
 }
 export namespace ListSessionsRequest {
   export enum Sort {
-    CREATE_AT = "createAt",
-    CREATE_AT_DESC = "-createAt",
-    UPDATE_AT = "updateAt",
-    UPDATE_AT_DESC = "-updateAt",
+    CREATED_AT = "createdAt",
+    CREATED_AT_DESC = "-createdAt",
+    UPDATED_AT = "updatedAt",
+    UPDATED_AT_DESC = "-updatedAt",
     EXPIRE_AT = "expireAt",
     EXPIRE_AT_DESC = "-expireAt",
   }
@@ -467,54 +467,116 @@ export interface UpdateSessionRequest {
 export interface DeleteSessionRequest {
   sessionId: string
 }
-export interface RestrictTokenRequest {
-  body: RestrictTokenDto
+export interface CreateCaptchaRequest {
+  body: CreateCaptchaDto
+}
+export interface ListCaptchasRequest {
+  _sort?: ListCaptchasRequest.Sort
+  code?: string
+  key?: string
+  _limit?: number
+  _offset?: number
+}
+export namespace ListCaptchasRequest {
+  export enum Sort {
+    CREATED_AT = "createdAt",
+    CREATED_AT_DESC = "-createdAt",
+    UPDATED_AT = "updatedAt",
+    UPDATED_AT_DESC = "-updatedAt",
+    EXPIRE_AT = "expireAt",
+    EXPIRE_AT_DESC = "-expireAt",
+  }
+  export type SortType = typeof Sort[keyof typeof Sort];
+}
+export interface GetCaptchaRequest {
+  captchaId: string
+}
+export interface UpdateCaptchaRequest {
+  captchaId: string
+  body: UpdateCaptchaDto
+}
+export interface DeleteCaptchaRequest {
+  captchaId: string
+}
+export interface SendEmailRequest {
+  body: SendEmailDto
+}
+export interface CreateEmailRecordRequest {
+  body: CreateEmailRecordDto
+}
+export interface ListEmailRecordsRequest {
+  status?: EmailStatus
+  _sort?: ListEmailRecordsRequest.Sort
+  createdAt_gt?: string
+  createdAt_lt?: string
+  sentAt_gt?: string
+  sentAt_lt?: string
+  from?: string
+  to?: string
+  _limit?: number
+  _offset?: number
+}
+export namespace ListEmailRecordsRequest {
+  export enum Sort {
+    CREATED_AT = "createdAt",
+    CREATED_AT_DESC = "-createdAt",
+    UPDATED_AT = "updatedAt",
+    UPDATED_AT_DESC = "-updatedAt",
+    SENT_AT = "sentAt",
+    SENT_AT_DESC = "-sentAt",
+  }
+  export type SortType = typeof Sort[keyof typeof Sort];
+}
+export interface GetEmailRecordRequest {
+  emailRecordId: string
+}
+export interface UpdateEmailRecordRequest {
+  emailRecordId: string
+  body: UpdateEmailRecordDto
+}
+export interface DeleteEmailRecordRequest {
+  emailRecordId: string
+}
+export interface ListIndustriesRequest {
 }
 export interface ListRegionsRequest {
 }
-export interface InitRequest {
+export interface SendSmsRequest {
+  body: SendSmsDto
 }
-export interface GetMyInfoRequest {
+export interface CreateSmsRecordRequest {
+  body: CreateSmsRecordDto
 }
-export interface UpdateMyInfoRequest {
-  body: UpdateMyInfoDto
+export interface ListSmsRecordsRequest {
+  status?: SmsStatus
+  _sort?: ListSmsRecordsRequest.Sort
+  createdAt_gt?: string
+  createdAt_lt?: string
+  sentAt_gt?: string
+  sentAt_lt?: string
+  phone?: string
+  sign?: string
+  _limit?: number
+  _offset?: number
 }
-export interface UpdateMyPasswordRequest {
-  body: UpdateMyPasswordDto
+export namespace ListSmsRecordsRequest {
+  export enum Sort {
+    CREATED_AT = "createdAt",
+    CREATED_AT_DESC = "-createdAt",
+    UPDATED_AT = "updatedAt",
+    UPDATED_AT_DESC = "-updatedAt",
+    SENT_AT = "sentAt",
+    SENT_AT_DESC = "-sentAt",
+  }
+  export type SortType = typeof Sort[keyof typeof Sort];
 }
-export interface ResetMyPasswordRequest {
-  body: ResetMyPasswordDto
+export interface GetSmsRecordRequest {
+  smsRecordId: string
 }
-export interface RegisterUserByPhoneRequest {
-  body: RegisterUserByPhoneDto
+export interface UpdateSmsRecordRequest {
+  smsRecordId: string
+  body: UpdateSmsRecordDto
 }
-export interface RegisterUserByEmailRequest {
-  body: RegisterUserByEmailDto
-}
-export interface RegisterRequest {
-  body: RegisterUserByUsernameDto
-}
-export interface LoginRequest {
-  body: LoginSessionDto
-}
-export interface LoginByPhoneRequest {
-  body: LoginSessionByPhoneDto
-}
-export interface LoginByEmailRequest {
-  body: LoginSessionByEmailDto
-}
-export interface UpdateMyEmailRequest {
-  body: UpdateMyEmailDto
-}
-export interface UpdateMyPhoneRequest {
-  body: UpdateMyPhoneDto
-}
-export interface LogoutRequest {
-  body: LogoutSessionDto
-}
-export interface RefreshSessionRequest {
-  body: RefreshSessionDto
-}
-export interface VerifyIdentityRequest {
-  body: VerifyIdentityDto
+export interface DeleteSmsRecordRequest {
+  smsRecordId: string
 }

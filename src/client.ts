@@ -15,14 +15,78 @@ export class CoreAPIClient {
   hello = (req: schemas.HelloRequest, config: AxiosRequestConfig = {}): Response<schemas.HealthCheckResult> => {
     return this.client.request({
       ...config,
-      url: `/auth/v1/hello`, 
+      url: `/hello`, 
       method: "get", 
+    })
+  }
+  login = (req: schemas.LoginRequest, config: AxiosRequestConfig = {}): Response<schemas.SessionWithToken> => {
+    return this.client.request({
+      ...config,
+      url: `/auth/@login`, 
+      method: "post", 
+      data: req.body,
+    })
+  }
+  loginByEmail = (req: schemas.LoginByEmailRequest, config: AxiosRequestConfig = {}): Response<schemas.SessionWithToken> => {
+    return this.client.request({
+      ...config,
+      url: `/auth/@loginByEmail`, 
+      method: "post", 
+      data: req.body,
+    })
+  }
+  loginByPhone = (req: schemas.LoginByPhoneRequest, config: AxiosRequestConfig = {}): Response<schemas.SessionWithToken> => {
+    return this.client.request({
+      ...config,
+      url: `/auth/@loginByPhone`, 
+      method: "post", 
+      data: req.body,
+    })
+  }
+  register = (req: schemas.RegisterRequest, config: AxiosRequestConfig = {}): Response<schemas.User> => {
+    return this.client.request({
+      ...config,
+      url: `/auth/@register`, 
+      method: "post", 
+      data: req.body,
+    })
+  }
+  registerByPhone = (req: schemas.RegisterByPhoneRequest, config: AxiosRequestConfig = {}): Response<schemas.User> => {
+    return this.client.request({
+      ...config,
+      url: `/auth/@registerByPhone`, 
+      method: "post", 
+      data: req.body,
+    })
+  }
+  registerByEmail = (req: schemas.RegisterByEmailRequest, config: AxiosRequestConfig = {}): Response<schemas.User> => {
+    return this.client.request({
+      ...config,
+      url: `/auth/@registerByEmail`, 
+      method: "post", 
+      data: req.body,
+    })
+  }
+  signToken = (req: schemas.SignTokenRequest, config: AxiosRequestConfig = {}): Response<schemas.Token> => {
+    return this.client.request({
+      ...config,
+      url: `/auth/@signToken`, 
+      method: "post", 
+      data: req.body,
+    })
+  }
+  refresh = (req: schemas.RefreshRequest, config: AxiosRequestConfig = {}): Response<schemas.SessionWithToken> => {
+    return this.client.request({
+      ...config,
+      url: `/auth/@refresh`, 
+      method: "post", 
+      data: req.body,
     })
   }
   createUser = (req: schemas.CreateUserRequest, config: AxiosRequestConfig = {}): Response<schemas.User> => {
     return this.client.request({
       ...config,
-      url: `/auth/v1/users`, 
+      url: `/users`, 
       method: "post", 
       data: req.body,
     })
@@ -30,16 +94,16 @@ export class CoreAPIClient {
   listUsers = (req: schemas.ListUsersRequest, config: AxiosRequestConfig = {}): Response<schemas.User[]> => {
     return this.client.request({
       ...config,
-      url: `/auth/v1/users`, 
+      url: `/users`, 
       method: "get", 
-      params: pick(req, ["ns", "ns_scope", "_sort", "id", "name_like", "username", "username_like", "nickname_like", "email", "phone", "registerRegion", "roles", "dialingPrefix", "_limit", "_offset"]),
+      params: pick(req, ["_sort", "id", "name_like", "username_like", "nickname_like", "ns", "ns_start", "username", "email", "phone", "registerRegion", "roles", "_limit", "_offset"]),
     })
   }
   getUser = (req: schemas.GetUserRequest, config: AxiosRequestConfig = {}): Response<schemas.User> => {
     checkPathParams("getUser", req, ["userId"])
     return this.client.request({
       ...config,
-      url: `/auth/v1/users/${req.userId}`, 
+      url: `/users/${req.userId}`, 
       method: "get", 
     })
   }
@@ -47,7 +111,7 @@ export class CoreAPIClient {
     checkPathParams("updateUser", req, ["userId"])
     return this.client.request({
       ...config,
-      url: `/auth/v1/users/${req.userId}`, 
+      url: `/users/${req.userId}`, 
       method: "patch", 
       data: req.body,
     })
@@ -56,14 +120,40 @@ export class CoreAPIClient {
     checkPathParams("deleteUser", req, ["userId"])
     return this.client.request({
       ...config,
-      url: `/auth/v1/users/${req.userId}`, 
+      url: `/users/${req.userId}`, 
       method: "delete", 
+    })
+  }
+  verifyIdentity = (req: schemas.VerifyIdentityRequest, config: AxiosRequestConfig = {}): Response<schemas.User> => {
+    checkPathParams("verifyIdentity", req, ["userId"])
+    return this.client.request({
+      ...config,
+      url: `/users/${req.userId}/@verifyIdentity`, 
+      method: "post", 
+    })
+  }
+  resetPassword = (req: schemas.ResetPasswordRequest, config: AxiosRequestConfig = {}): Response<void> => {
+    checkPathParams("resetPassword", req, ["userId"])
+    return this.client.request({
+      ...config,
+      url: `/users/${req.userId}/@resetPassword`, 
+      method: "post", 
+      data: req.body,
+    })
+  }
+  updatePassword = (req: schemas.UpdatePasswordRequest, config: AxiosRequestConfig = {}): Response<void> => {
+    checkPathParams("updatePassword", req, ["userId"])
+    return this.client.request({
+      ...config,
+      url: `/users/${req.userId}/@updatePassword`, 
+      method: "post", 
+      data: req.body,
     })
   }
   createNamespace = (req: schemas.CreateNamespaceRequest, config: AxiosRequestConfig = {}): Response<schemas.Namespace> => {
     return this.client.request({
       ...config,
-      url: `/auth/v1/namespaces`, 
+      url: `/namespaces`, 
       method: "post", 
       data: req.body,
     })
@@ -71,16 +161,16 @@ export class CoreAPIClient {
   listNamespaces = (req: schemas.ListNamespacesRequest, config: AxiosRequestConfig = {}): Response<schemas.Namespace[]> => {
     return this.client.request({
       ...config,
-      url: `/auth/v1/namespaces`, 
+      url: `/namespaces`, 
       method: "get", 
-      params: pick(req, ["parent", "parent_scope", "_sort", "name_like", "labels", "_limit", "_offset"]),
+      params: pick(req, ["ns", "ns_start", "_sort", "name_like", "labels", "key", "_limit", "_offset"]),
     })
   }
   getNamespace = (req: schemas.GetNamespaceRequest, config: AxiosRequestConfig = {}): Response<schemas.Namespace> => {
-    checkPathParams("getNamespace", req, ["namespaceIdOrNs"])
+    checkPathParams("getNamespace", req, ["namespaceIdOrKey"])
     return this.client.request({
       ...config,
-      url: `/auth/v1/namespaces/${req.namespaceIdOrNs}`, 
+      url: `/namespaces/${req.namespaceIdOrKey}`, 
       method: "get", 
     })
   }
@@ -88,7 +178,7 @@ export class CoreAPIClient {
     checkPathParams("updateNamespace", req, ["namespaceId"])
     return this.client.request({
       ...config,
-      url: `/auth/v1/namespaces/${req.namespaceId}`, 
+      url: `/namespaces/${req.namespaceId}`, 
       method: "patch", 
       data: req.body,
     })
@@ -97,46 +187,14 @@ export class CoreAPIClient {
     checkPathParams("deleteNamespace", req, ["namespaceId"])
     return this.client.request({
       ...config,
-      url: `/auth/v1/namespaces/${req.namespaceId}`, 
+      url: `/namespaces/${req.namespaceId}`, 
       method: "delete", 
-    })
-  }
-  listScopes = (req: schemas.ListScopesRequest, config: AxiosRequestConfig = {}): Response<schemas.Namespace[]> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/scopes`, 
-      method: "get", 
-      params: pick(req, ["parent", "_sort", "labels", "_limit", "_offset", "name_like"]),
-    })
-  }
-  createCaptchaBySms = (req: schemas.CreateCaptchaBySmsRequest, config: AxiosRequestConfig = {}): Response<schemas.CaptchaBySmsResult> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/captchas/@createCaptchaBySms`, 
-      method: "post", 
-      data: req.body,
-    })
-  }
-  createCaptchaByEmail = (req: schemas.CreateCaptchaByEmailRequest, config: AxiosRequestConfig = {}): Response<schemas.CaptchaByEmailResult> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/captchas/@createCaptchaByEmail`, 
-      method: "post", 
-      data: req.body,
-    })
-  }
-  createCaptchaByPhoto = (req: schemas.CreateCaptchaByPhotoRequest, config: AxiosRequestConfig = {}): Response<schemas.CaptchaByPhotoResult> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/captchas/@createCaptchaByPhoto`, 
-      method: "post", 
-      data: req.body,
     })
   }
   createSession = (req: schemas.CreateSessionRequest, config: AxiosRequestConfig = {}): Response<schemas.Session> => {
     return this.client.request({
       ...config,
-      url: `/auth/v1/sessions`, 
+      url: `/sessions`, 
       method: "post", 
       data: req.body,
     })
@@ -144,16 +202,16 @@ export class CoreAPIClient {
   listSessions = (req: schemas.ListSessionsRequest, config: AxiosRequestConfig = {}): Response<schemas.Session[]> => {
     return this.client.request({
       ...config,
-      url: `/auth/v1/sessions`, 
+      url: `/sessions`, 
       method: "get", 
-      params: pick(req, ["_sort", "key", "client", "tokenExpiresIn", "uid", "_limit", "_offset"]),
+      params: pick(req, ["_sort", "key", "client", "uid", "_limit", "_offset"]),
     })
   }
   getSession = (req: schemas.GetSessionRequest, config: AxiosRequestConfig = {}): Response<schemas.Session> => {
     checkPathParams("getSession", req, ["sessionId"])
     return this.client.request({
       ...config,
-      url: `/auth/v1/sessions/${req.sessionId}`, 
+      url: `/sessions/${req.sessionId}`, 
       method: "get", 
     })
   }
@@ -161,7 +219,7 @@ export class CoreAPIClient {
     checkPathParams("updateSession", req, ["sessionId"])
     return this.client.request({
       ...config,
-      url: `/auth/v1/sessions/${req.sessionId}`, 
+      url: `/sessions/${req.sessionId}`, 
       method: "patch", 
       data: req.body,
     })
@@ -170,149 +228,161 @@ export class CoreAPIClient {
     checkPathParams("deleteSession", req, ["sessionId"])
     return this.client.request({
       ...config,
-      url: `/auth/v1/sessions/${req.sessionId}`, 
+      url: `/sessions/${req.sessionId}`, 
       method: "delete", 
     })
   }
-  restrictToken = (req: schemas.RestrictTokenRequest, config: AxiosRequestConfig = {}): Response<schemas.OnlyToken> => {
+  createCaptcha = (req: schemas.CreateCaptchaRequest, config: AxiosRequestConfig = {}): Response<schemas.Captcha> => {
     return this.client.request({
       ...config,
-      url: `/auth/v1/sessions/@restrictToken`, 
+      url: `/captchas`, 
       method: "post", 
       data: req.body,
+    })
+  }
+  listCaptchas = (req: schemas.ListCaptchasRequest, config: AxiosRequestConfig = {}): Response<schemas.Captcha[]> => {
+    return this.client.request({
+      ...config,
+      url: `/captchas`, 
+      method: "get", 
+      params: pick(req, ["_sort", "code", "key", "_limit", "_offset"]),
+    })
+  }
+  getCaptcha = (req: schemas.GetCaptchaRequest, config: AxiosRequestConfig = {}): Response<schemas.Captcha> => {
+    checkPathParams("getCaptcha", req, ["captchaId"])
+    return this.client.request({
+      ...config,
+      url: `/captchas/${req.captchaId}`, 
+      method: "get", 
+    })
+  }
+  updateCaptcha = (req: schemas.UpdateCaptchaRequest, config: AxiosRequestConfig = {}): Response<schemas.Captcha> => {
+    checkPathParams("updateCaptcha", req, ["captchaId"])
+    return this.client.request({
+      ...config,
+      url: `/captchas/${req.captchaId}`, 
+      method: "patch", 
+      data: req.body,
+    })
+  }
+  deleteCaptcha = (req: schemas.DeleteCaptchaRequest, config: AxiosRequestConfig = {}): Response<void> => {
+    checkPathParams("deleteCaptcha", req, ["captchaId"])
+    return this.client.request({
+      ...config,
+      url: `/captchas/${req.captchaId}`, 
+      method: "delete", 
+    })
+  }
+  sendEmail = (req: schemas.SendEmailRequest, config: AxiosRequestConfig = {}): Response<void> => {
+    return this.client.request({
+      ...config,
+      url: `/email/@sendEmail`, 
+      method: "post", 
+      data: req.body,
+    })
+  }
+  createEmailRecord = (req: schemas.CreateEmailRecordRequest, config: AxiosRequestConfig = {}): Response<schemas.EmailRecord> => {
+    return this.client.request({
+      ...config,
+      url: `/email/records`, 
+      method: "post", 
+      data: req.body,
+    })
+  }
+  listEmailRecords = (req: schemas.ListEmailRecordsRequest, config: AxiosRequestConfig = {}): Response<schemas.EmailRecord[]> => {
+    return this.client.request({
+      ...config,
+      url: `/email/records`, 
+      method: "get", 
+      params: pick(req, ["status", "_sort", "createdAt_gt", "createdAt_lt", "sentAt_gt", "sentAt_lt", "from", "to", "_limit", "_offset"]),
+    })
+  }
+  getEmailRecord = (req: schemas.GetEmailRecordRequest, config: AxiosRequestConfig = {}): Response<schemas.EmailRecord> => {
+    checkPathParams("getEmailRecord", req, ["emailRecordId"])
+    return this.client.request({
+      ...config,
+      url: `/email/records/${req.emailRecordId}`, 
+      method: "get", 
+    })
+  }
+  updateEmailRecord = (req: schemas.UpdateEmailRecordRequest, config: AxiosRequestConfig = {}): Response<schemas.EmailRecord> => {
+    checkPathParams("updateEmailRecord", req, ["emailRecordId"])
+    return this.client.request({
+      ...config,
+      url: `/email/records/${req.emailRecordId}`, 
+      method: "patch", 
+      data: req.body,
+    })
+  }
+  deleteEmailRecord = (req: schemas.DeleteEmailRecordRequest, config: AxiosRequestConfig = {}): Response<void> => {
+    checkPathParams("deleteEmailRecord", req, ["emailRecordId"])
+    return this.client.request({
+      ...config,
+      url: `/email/records/${req.emailRecordId}`, 
+      method: "delete", 
+    })
+  }
+  listIndustries = (req: schemas.ListIndustriesRequest, config: AxiosRequestConfig = {}): Response<schemas.Industry[]> => {
+    return this.client.request({
+      ...config,
+      url: `/industries`, 
+      method: "get", 
     })
   }
   listRegions = (req: schemas.ListRegionsRequest, config: AxiosRequestConfig = {}): Response<schemas.Region[]> => {
     return this.client.request({
       ...config,
-      url: `/auth/v1/base-data/regions`, 
+      url: `/regions`, 
       method: "get", 
     })
   }
-  init = (req: schemas.InitRequest, config: AxiosRequestConfig = {}): Response<void> => {
+  sendSms = (req: schemas.SendSmsRequest, config: AxiosRequestConfig = {}): Response<void> => {
     return this.client.request({
       ...config,
-      url: `/auth/v1/init`, 
+      url: `/sms/@sendSms`, 
       method: "post", 
+      data: req.body,
     })
   }
-  getMyInfo = (req: schemas.GetMyInfoRequest, config: AxiosRequestConfig = {}): Response<schemas.MyInfo> => {
+  createSmsRecord = (req: schemas.CreateSmsRecordRequest, config: AxiosRequestConfig = {}): Response<schemas.SmsRecord> => {
     return this.client.request({
       ...config,
-      url: `/auth/v1/me/info`, 
+      url: `/sms/records`, 
+      method: "post", 
+      data: req.body,
+    })
+  }
+  listSmsRecords = (req: schemas.ListSmsRecordsRequest, config: AxiosRequestConfig = {}): Response<schemas.SmsRecord[]> => {
+    return this.client.request({
+      ...config,
+      url: `/sms/records`, 
+      method: "get", 
+      params: pick(req, ["status", "_sort", "createdAt_gt", "createdAt_lt", "sentAt_gt", "sentAt_lt", "phone", "sign", "_limit", "_offset"]),
+    })
+  }
+  getSmsRecord = (req: schemas.GetSmsRecordRequest, config: AxiosRequestConfig = {}): Response<schemas.SmsRecord> => {
+    checkPathParams("getSmsRecord", req, ["smsRecordId"])
+    return this.client.request({
+      ...config,
+      url: `/sms/records/${req.smsRecordId}`, 
       method: "get", 
     })
   }
-  updateMyInfo = (req: schemas.UpdateMyInfoRequest, config: AxiosRequestConfig = {}): Response<schemas.MyInfo> => {
+  updateSmsRecord = (req: schemas.UpdateSmsRecordRequest, config: AxiosRequestConfig = {}): Response<schemas.SmsRecord> => {
+    checkPathParams("updateSmsRecord", req, ["smsRecordId"])
     return this.client.request({
       ...config,
-      url: `/auth/v1/me/info`, 
+      url: `/sms/records/${req.smsRecordId}`, 
       method: "patch", 
       data: req.body,
     })
   }
-  updateMyPassword = (req: schemas.UpdateMyPasswordRequest, config: AxiosRequestConfig = {}): Response<schemas.MyInfo> => {
+  deleteSmsRecord = (req: schemas.DeleteSmsRecordRequest, config: AxiosRequestConfig = {}): Response<void> => {
+    checkPathParams("deleteSmsRecord", req, ["smsRecordId"])
     return this.client.request({
       ...config,
-      url: `/auth/v1/me/password`, 
-      method: "patch", 
-      data: req.body,
-    })
-  }
-  resetMyPassword = (req: schemas.ResetMyPasswordRequest, config: AxiosRequestConfig = {}): Response<schemas.MyInfo> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/me/@resetPassword`, 
-      method: "post", 
-      data: req.body,
-    })
-  }
-  registerUserByPhone = (req: schemas.RegisterUserByPhoneRequest, config: AxiosRequestConfig = {}): Response<schemas.SessionWithToken> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/me/@registerByPhone`, 
-      method: "post", 
-      data: req.body,
-    })
-  }
-  registerUserByEmail = (req: schemas.RegisterUserByEmailRequest, config: AxiosRequestConfig = {}): Response<schemas.SessionWithToken> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/me/@registerByEmail`, 
-      method: "post", 
-      data: req.body,
-    })
-  }
-  register = (req: schemas.RegisterRequest, config: AxiosRequestConfig = {}): Response<schemas.SessionWithToken> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/me/@register`, 
-      method: "post", 
-      data: req.body,
-    })
-  }
-  login = (req: schemas.LoginRequest, config: AxiosRequestConfig = {}): Response<schemas.SessionWithToken> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/me/@login`, 
-      method: "post", 
-      data: req.body,
-    })
-  }
-  loginByPhone = (req: schemas.LoginByPhoneRequest, config: AxiosRequestConfig = {}): Response<schemas.SessionWithToken> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/me/@loginByPhone`, 
-      method: "post", 
-      data: req.body,
-    })
-  }
-  loginByEmail = (req: schemas.LoginByEmailRequest, config: AxiosRequestConfig = {}): Response<schemas.SessionWithToken> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/me/@loginByEmail`, 
-      method: "post", 
-      data: req.body,
-    })
-  }
-  updateMyEmail = (req: schemas.UpdateMyEmailRequest, config: AxiosRequestConfig = {}): Response<schemas.MyInfo> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/me/email`, 
-      method: "patch", 
-      data: req.body,
-    })
-  }
-  updateMyPhone = (req: schemas.UpdateMyPhoneRequest, config: AxiosRequestConfig = {}): Response<schemas.MyInfo> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/me/phone`, 
-      method: "patch", 
-      data: req.body,
-    })
-  }
-  logout = (req: schemas.LogoutRequest, config: AxiosRequestConfig = {}): Response<void> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/me/@logout`, 
-      method: "post", 
-      data: req.body,
-    })
-  }
-  refreshSession = (req: schemas.RefreshSessionRequest, config: AxiosRequestConfig = {}): Response<schemas.SessionWithToken> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/me/@refresh`, 
-      method: "post", 
-      data: req.body,
-    })
-  }
-  verifyIdentity = (req: schemas.VerifyIdentityRequest, config: AxiosRequestConfig = {}): Response<schemas.Identity> => {
-    return this.client.request({
-      ...config,
-      url: `/auth/v1/me/@verifyIdentity`, 
-      method: "post", 
-      data: req.body,
+      url: `/sms/records/${req.smsRecordId}`, 
+      method: "delete", 
     })
   }
 }
