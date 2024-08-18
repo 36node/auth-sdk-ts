@@ -21,6 +21,10 @@ export type User = {
    */
   password?: string;
   /**
+   * 是否有密码
+   */
+  readonly hasPassword?: boolean;
+  /**
    * 头像
    */
   avatar?: string;
@@ -306,6 +310,10 @@ export type CreateUserDto = {
    */
   password?: string;
   /**
+   * 是否有密码
+   */
+  readonly hasPassword?: boolean;
+  /**
    * 头像
    */
   avatar?: string;
@@ -369,6 +377,10 @@ export type CreateUserDto = {
 };
 
 export type UpdateUserDto = {
+  /**
+   * 是否有密码
+   */
+  readonly hasPassword?: boolean;
   /**
    * 头像
    */
@@ -815,6 +827,21 @@ export type UpdateEmailRecordDto = {
   sentAt?: string;
 };
 
+export type Industry = {
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 子集
+   */
+  children: Array<Industry>;
+};
+
 export type Region = {
   /**
    * 缩写
@@ -1063,11 +1090,11 @@ export type ListUsersData = {
      */
     nickname_like?: string;
     /**
-     * ns
+     * 所属命名空间的 ns 本级查询
      */
     ns?: Array<string>;
     /**
-     * ns start
+     * 所属命名空间的前缀匹配查询
      */
     ns_start?: Array<string>;
     /**
@@ -1121,6 +1148,16 @@ export type UpdateUserResponse = User;
 
 export type UpdateUserError = unknown;
 
+export type DeleteUserData = {
+  path: {
+    userId: string;
+  };
+};
+
+export type DeleteUserResponse = void;
+
+export type DeleteUserError = unknown;
+
 export type VerifyIdentityData = {
   path: {
     userId: string;
@@ -1138,7 +1175,7 @@ export type ResetPasswordData = {
   };
 };
 
-export type ResetPasswordResponse = unknown | void;
+export type ResetPasswordResponse = void;
 
 export type ResetPasswordError = unknown;
 
@@ -1149,7 +1186,7 @@ export type UpdatePasswordData = {
   };
 };
 
-export type UpdatePasswordResponse = unknown | void;
+export type UpdatePasswordResponse = void;
 
 export type UpdatePasswordError = unknown;
 
@@ -1484,6 +1521,10 @@ export type DeleteEmailRecordData = {
 export type DeleteEmailRecordResponse = void;
 
 export type DeleteEmailRecordError = unknown;
+
+export type ListIndustriesResponse = Array<Industry>;
+
+export type ListIndustriesError = unknown;
 
 export type ListRegionsResponse = Array<Region>;
 

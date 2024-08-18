@@ -33,6 +33,11 @@ export const $User = {
       description: '密码',
       writeOnly: true,
     },
+    hasPassword: {
+      type: 'boolean',
+      description: '是否有密码',
+      readOnly: true,
+    },
     avatar: {
       type: 'string',
       description: '头像',
@@ -373,6 +378,11 @@ export const $CreateUserDto = {
       description: '密码',
       writeOnly: true,
     },
+    hasPassword: {
+      type: 'boolean',
+      description: '是否有密码',
+      readOnly: true,
+    },
     avatar: {
       type: 'string',
       description: '头像',
@@ -446,6 +456,11 @@ export const $CreateUserDto = {
 export const $UpdateUserDto = {
   type: 'object',
   properties: {
+    hasPassword: {
+      type: 'boolean',
+      description: '是否有密码',
+      readOnly: true,
+    },
     avatar: {
       type: 'string',
       description: '头像',
@@ -992,6 +1007,28 @@ export const $UpdateEmailRecordDto = {
       description: '发送时间',
     },
   },
+} as const;
+
+export const $Industry = {
+  type: 'object',
+  properties: {
+    code: {
+      type: 'string',
+      description: '编码',
+    },
+    name: {
+      type: 'string',
+      description: '名称',
+    },
+    children: {
+      description: '子集',
+      type: 'array',
+      items: {
+        $ref: '#/components/schemas/Industry',
+      },
+    },
+  },
+  required: ['code', 'name', 'children'],
 } as const;
 
 export const $Region = {

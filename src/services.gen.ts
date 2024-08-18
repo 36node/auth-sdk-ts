@@ -36,6 +36,9 @@ import type {
   DeleteSmsRecordData,
   DeleteSmsRecordError,
   DeleteSmsRecordResponse,
+  DeleteUserData,
+  DeleteUserError,
+  DeleteUserResponse,
   GetCaptchaData,
   GetCaptchaError,
   GetCaptchaResponse,
@@ -62,6 +65,8 @@ import type {
   ListEmailRecordsData,
   ListEmailRecordsError,
   ListEmailRecordsResponse,
+  ListIndustriesError,
+  ListIndustriesResponse,
   ListNamespacesData,
   ListNamespacesError,
   ListNamespacesResponse,
@@ -302,6 +307,18 @@ export const updateUser = <ThrowOnError extends boolean = false>(
 };
 
 /**
+ * Delete user
+ */
+export const deleteUser = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteUserData, ThrowOnError>
+) => {
+  return (options?.client ?? client).delete<DeleteUserResponse, DeleteUserError, ThrowOnError>({
+    ...options,
+    url: '/users/{userId}',
+  });
+};
+
+/**
  * Verify identity
  */
 export const verifyIdentity = <ThrowOnError extends boolean = false>(
@@ -405,7 +422,6 @@ export const updateNamespace = <ThrowOnError extends boolean = false>(
 
 /**
  * Delete namespace
- * Role required: NS_MANAGER
  */
 export const deleteNamespace = <ThrowOnError extends boolean = false>(
   options: Options<DeleteNamespaceData, ThrowOnError>
@@ -643,6 +659,20 @@ export const deleteEmailRecord = <ThrowOnError extends boolean = false>(
 };
 
 /**
+ * List Industries
+ */
+export const listIndustries = <ThrowOnError extends boolean = false>(
+  options?: Options<unknown, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<ListIndustriesResponse, ListIndustriesError, ThrowOnError>(
+    {
+      ...options,
+      url: '/industries',
+    }
+  );
+};
+
+/**
  * List Regions
  */
 export const listRegions = <ThrowOnError extends boolean = false>(
@@ -650,7 +680,7 @@ export const listRegions = <ThrowOnError extends boolean = false>(
 ) => {
   return (options?.client ?? client).get<ListRegionsResponse, ListRegionsError, ThrowOnError>({
     ...options,
-    url: '/region',
+    url: '/regions',
   });
 };
 
