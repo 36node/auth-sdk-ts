@@ -9,6 +9,9 @@ import type {
   CreateEmailRecordData,
   CreateEmailRecordError,
   CreateEmailRecordResponse,
+  CreateGroupData,
+  CreateGroupError,
+  CreateGroupResponse,
   CreateNamespaceData,
   CreateNamespaceError,
   CreateNamespaceResponse,
@@ -27,6 +30,9 @@ import type {
   DeleteEmailRecordData,
   DeleteEmailRecordError,
   DeleteEmailRecordResponse,
+  DeleteGroupData,
+  DeleteGroupError,
+  DeleteGroupResponse,
   DeleteNamespaceData,
   DeleteNamespaceError,
   DeleteNamespaceResponse,
@@ -45,6 +51,9 @@ import type {
   GetEmailRecordData,
   GetEmailRecordError,
   GetEmailRecordResponse,
+  GetGroupData,
+  GetGroupError,
+  GetGroupResponse,
   GetNamespaceData,
   GetNamespaceError,
   GetNamespaceResponse,
@@ -65,6 +74,9 @@ import type {
   ListEmailRecordsData,
   ListEmailRecordsError,
   ListEmailRecordsResponse,
+  ListGroupsData,
+  ListGroupsError,
+  ListGroupsResponse,
   ListIndustriesError,
   ListIndustriesResponse,
   ListNamespacesData,
@@ -120,6 +132,9 @@ import type {
   UpdateEmailRecordData,
   UpdateEmailRecordError,
   UpdateEmailRecordResponse,
+  UpdateGroupData,
+  UpdateGroupError,
+  UpdateGroupResponse,
   UpdateNamespaceData,
   UpdateNamespaceError,
   UpdateNamespaceResponse,
@@ -135,6 +150,9 @@ import type {
   UpdateUserData,
   UpdateUserError,
   UpdateUserResponse,
+  UpsertUserByEmployeeIdData,
+  UpsertUserByEmployeeIdError,
+  UpsertUserByEmployeeIdResponse,
   VerifyIdentityData,
   VerifyIdentityError,
   VerifyIdentityResponse,
@@ -319,6 +337,22 @@ export const deleteUser = <ThrowOnError extends boolean = false>(
 };
 
 /**
+ * Upsert user by employeeId
+ */
+export const upsertUserByEmployeeId = <ThrowOnError extends boolean = false>(
+  options: Options<UpsertUserByEmployeeIdData, ThrowOnError>
+) => {
+  return (options?.client ?? client).patch<
+    UpsertUserByEmployeeIdResponse,
+    UpsertUserByEmployeeIdError,
+    ThrowOnError
+  >({
+    ...options,
+    url: '/users/employee/{userEmployeeId}',
+  });
+};
+
+/**
  * Verify identity
  */
 export const verifyIdentity = <ThrowOnError extends boolean = false>(
@@ -416,7 +450,7 @@ export const updateNamespace = <ThrowOnError extends boolean = false>(
     ThrowOnError
   >({
     ...options,
-    url: '/namespaces/{namespaceId}',
+    url: '/namespaces/{namespaceIdOrKey}',
   });
 };
 
@@ -670,6 +704,66 @@ export const listIndustries = <ThrowOnError extends boolean = false>(
       url: '/industries',
     }
   );
+};
+
+/**
+ * Create group
+ */
+export const createGroup = <ThrowOnError extends boolean = false>(
+  options: Options<CreateGroupData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<CreateGroupResponse, CreateGroupError, ThrowOnError>({
+    ...options,
+    url: '/groups',
+  });
+};
+
+/**
+ * List groups
+ */
+export const listGroups = <ThrowOnError extends boolean = false>(
+  options?: Options<ListGroupsData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<ListGroupsResponse, ListGroupsError, ThrowOnError>({
+    ...options,
+    url: '/groups',
+  });
+};
+
+/**
+ * Find group by id or name
+ */
+export const getGroup = <ThrowOnError extends boolean = false>(
+  options: Options<GetGroupData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<GetGroupResponse, GetGroupError, ThrowOnError>({
+    ...options,
+    url: '/groups/{groupIdOrName}',
+  });
+};
+
+/**
+ * Update group
+ */
+export const updateGroup = <ThrowOnError extends boolean = false>(
+  options: Options<UpdateGroupData, ThrowOnError>
+) => {
+  return (options?.client ?? client).patch<UpdateGroupResponse, UpdateGroupError, ThrowOnError>({
+    ...options,
+    url: '/groups/{groupId}',
+  });
+};
+
+/**
+ * Delete group
+ */
+export const deleteGroup = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteGroupData, ThrowOnError>
+) => {
+  return (options?.client ?? client).delete<DeleteGroupResponse, DeleteGroupError, ThrowOnError>({
+    ...options,
+    url: '/groups/{groupId}',
+  });
 };
 
 /**

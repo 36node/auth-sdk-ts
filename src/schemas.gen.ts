@@ -118,6 +118,49 @@ export const $User = {
       type: 'string',
       description: '用户名',
     },
+    employeeId: {
+      type: 'string',
+      description: `<<<<<<< HEAD
+员工编号`,
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    groups: {
+      description: '团队',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    lastLoginAt: {
+      format: 'date-time',
+      type: 'string',
+      description: '最后登录时间',
+    },
+    active: {
+      type: 'boolean',
+      description: '是否启用',
+    },
+    inviteCode: {
+      type: 'string',
+      description: '邀请码',
+    },
+    status: {
+      type: 'string',
+      description: `=======
+>>>>>>> main
+状态`,
+    },
+    expireAt: {
+      format: 'date-time',
+      type: 'string',
+      description: '过期时间',
+    },
     id: {
       type: 'string',
       description: 'Entity id',
@@ -450,6 +493,44 @@ export const $CreateUserDto = {
       type: 'string',
       description: '用户名',
     },
+    employeeId: {
+      type: 'string',
+      description: `<<<<<<< HEAD
+员工编号`,
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    groups: {
+      description: '团队',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    active: {
+      type: 'boolean',
+      description: '是否启用',
+    },
+    inviteCode: {
+      type: 'string',
+      description: '邀请码',
+    },
+    status: {
+      type: 'string',
+      description: `=======
+>>>>>>> main
+状态`,
+    },
+    expireAt: {
+      format: 'date-time',
+      type: 'string',
+      description: '过期时间',
+    },
   },
 } as const;
 
@@ -541,6 +622,49 @@ export const $UpdateUserDto = {
       type: 'string',
       description: '用户名',
     },
+    employeeId: {
+      type: 'string',
+      description: `<<<<<<< HEAD
+员工编号`,
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    groups: {
+      description: '团队',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    lastLoginAt: {
+      format: 'date-time',
+      type: 'string',
+      description: '最后登录时间',
+    },
+    active: {
+      type: 'boolean',
+      description: '是否启用',
+    },
+    inviteCode: {
+      type: 'string',
+      description: '邀请码',
+    },
+    status: {
+      type: 'string',
+      description: `=======
+>>>>>>> main
+状态`,
+    },
+    expireAt: {
+      format: 'date-time',
+      type: 'string',
+      description: '过期时间',
+    },
   },
 } as const;
 
@@ -601,6 +725,29 @@ export const $CreateNamespaceDto = {
       type: 'string',
       description: '所属的 namespace',
     },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    active: {
+      type: 'boolean',
+      description: '是否启用',
+    },
+    defaultPassword: {
+      type: 'string',
+      description: '默认密码',
+    },
+    exportable: {
+      type: 'boolean',
+      description: '是否可导出',
+    },
+    userCount: {
+      type: 'number',
+      description: '人数',
+    },
   },
   required: ['name', 'key'],
 } as const;
@@ -636,6 +783,29 @@ export const $Namespace = {
     ns: {
       type: 'string',
       description: '所属的 namespace',
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    active: {
+      type: 'boolean',
+      description: '是否启用',
+    },
+    defaultPassword: {
+      type: 'string',
+      description: '默认密码',
+    },
+    exportable: {
+      type: 'boolean',
+      description: '是否可导出',
+    },
+    userCount: {
+      type: 'number',
+      description: '人数',
     },
     id: {
       type: 'string',
@@ -684,6 +854,29 @@ export const $UpdateNamespaceDto = {
     name: {
       type: 'string',
       description: '名称',
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    active: {
+      type: 'boolean',
+      description: '是否启用',
+    },
+    defaultPassword: {
+      type: 'string',
+      description: '默认密码',
+    },
+    exportable: {
+      type: 'boolean',
+      description: '是否可导出',
+    },
+    userCount: {
+      type: 'number',
+      description: '人数',
     },
   },
 } as const;
@@ -1029,6 +1222,105 @@ export const $Industry = {
     },
   },
   required: ['code', 'name', 'children'],
+} as const;
+
+export const $CreateGroupDto = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+      description: '名称',
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    active: {
+      type: 'boolean',
+      description: '是否启用',
+    },
+    userCount: {
+      type: 'number',
+      description: '人数',
+    },
+  },
+  required: ['name'],
+} as const;
+
+export const $Group = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+      description: '名称',
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    active: {
+      type: 'boolean',
+      description: '是否启用',
+    },
+    userCount: {
+      type: 'number',
+      description: '人数',
+    },
+    id: {
+      type: 'string',
+      description: 'Entity id',
+    },
+    createdAt: {
+      format: 'date-time',
+      type: 'string',
+      description: 'Entity created at when',
+    },
+    updatedAt: {
+      format: 'date-time',
+      type: 'string',
+      description: 'Entity updated at when',
+    },
+    createdBy: {
+      type: 'string',
+      description: 'Entity created by who',
+    },
+    updatedBy: {
+      type: 'string',
+      description: 'Entity updated by who',
+    },
+  },
+  required: ['name', 'id'],
+} as const;
+
+export const $UpdateGroupDto = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+      description: '名称',
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    active: {
+      type: 'boolean',
+      description: '是否启用',
+    },
+    userCount: {
+      type: 'number',
+      description: '人数',
+    },
+  },
 } as const;
 
 export const $Region = {

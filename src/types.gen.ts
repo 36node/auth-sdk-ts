@@ -98,6 +98,41 @@ export type User = {
    */
   username?: string;
   /**
+   * <<<<<<< HEAD
+   * 员工编号
+   */
+  employeeId?: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * 团队
+   */
+  groups?: Array<string>;
+  /**
+   * 最后登录时间
+   */
+  lastLoginAt?: string;
+  /**
+   * 是否启用
+   */
+  active?: boolean;
+  /**
+   * 邀请码
+   */
+  inviteCode?: string;
+  /**
+   * =======
+   * >>>>>>> main
+   * 状态
+   */
+  status?: string;
+  /**
+   * 过期时间
+   */
+  expireAt?: string;
+  /**
    * Entity id
    */
   id: string;
@@ -374,6 +409,37 @@ export type CreateUserDto = {
    * 用户名
    */
   username?: string;
+  /**
+   * <<<<<<< HEAD
+   * 员工编号
+   */
+  employeeId?: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * 团队
+   */
+  groups?: Array<string>;
+  /**
+   * 是否启用
+   */
+  active?: boolean;
+  /**
+   * 邀请码
+   */
+  inviteCode?: string;
+  /**
+   * =======
+   * >>>>>>> main
+   * 状态
+   */
+  status?: string;
+  /**
+   * 过期时间
+   */
+  expireAt?: string;
 };
 
 export type UpdateUserDto = {
@@ -454,6 +520,41 @@ export type UpdateUserDto = {
    * 用户名
    */
   username?: string;
+  /**
+   * <<<<<<< HEAD
+   * 员工编号
+   */
+  employeeId?: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * 团队
+   */
+  groups?: Array<string>;
+  /**
+   * 最后登录时间
+   */
+  lastLoginAt?: string;
+  /**
+   * 是否启用
+   */
+  active?: boolean;
+  /**
+   * 邀请码
+   */
+  inviteCode?: string;
+  /**
+   * =======
+   * >>>>>>> main
+   * 状态
+   */
+  status?: string;
+  /**
+   * 过期时间
+   */
+  expireAt?: string;
 };
 
 export type ResetPasswordDto = {
@@ -501,6 +602,26 @@ export type CreateNamespaceDto = {
    * 所属的 namespace
    */
   ns?: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * 是否启用
+   */
+  active?: boolean;
+  /**
+   * 默认密码
+   */
+  defaultPassword?: string;
+  /**
+   * 是否可导出
+   */
+  exportable?: boolean;
+  /**
+   * 人数
+   */
+  userCount?: number;
 };
 
 export type Namespace = {
@@ -530,6 +651,26 @@ export type Namespace = {
    * 所属的 namespace
    */
   ns?: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * 是否启用
+   */
+  active?: boolean;
+  /**
+   * 默认密码
+   */
+  defaultPassword?: string;
+  /**
+   * 是否可导出
+   */
+  exportable?: boolean;
+  /**
+   * 人数
+   */
+  userCount?: number;
   /**
    * Entity id
    */
@@ -569,6 +710,26 @@ export type UpdateNamespaceDto = {
    * 名称
    */
   name?: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * 是否启用
+   */
+  active?: boolean;
+  /**
+   * 默认密码
+   */
+  defaultPassword?: string;
+  /**
+   * 是否可导出
+   */
+  exportable?: boolean;
+  /**
+   * 人数
+   */
+  userCount?: number;
 };
 
 export type CreateSessionDto = {
@@ -842,6 +1003,83 @@ export type Industry = {
   children: Array<Industry>;
 };
 
+export type CreateGroupDto = {
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * 是否启用
+   */
+  active?: boolean;
+  /**
+   * 人数
+   */
+  userCount?: number;
+};
+
+export type Group = {
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * 是否启用
+   */
+  active?: boolean;
+  /**
+   * 人数
+   */
+  userCount?: number;
+  /**
+   * Entity id
+   */
+  id: string;
+  /**
+   * Entity created at when
+   */
+  createdAt?: string;
+  /**
+   * Entity updated at when
+   */
+  updatedAt?: string;
+  /**
+   * Entity created by who
+   */
+  createdBy?: string;
+  /**
+   * Entity updated by who
+   */
+  updatedBy?: string;
+};
+
+export type UpdateGroupDto = {
+  /**
+   * 名称
+   */
+  name?: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * 是否启用
+   */
+  active?: boolean;
+  /**
+   * 人数
+   */
+  userCount?: number;
+};
+
 export type Region = {
   /**
    * 缩写
@@ -1072,11 +1310,35 @@ export type ListUsersData = {
     /**
      * 排序参数
      */
-    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt';
+    _sort?:
+      | 'createdAt'
+      | '-createdAt'
+      | 'updatedAt'
+      | '-updatedAt'
+      | 'lastLoginAt'
+      | '-lastLoginAt'
+      | 'expireAt'
+      | '-expireAt';
+    /**
+     * 是否启用
+     */
+    active?: boolean;
     /**
      * 邮箱
      */
     email?: string;
+    /**
+     * 过期时间大于该时间
+     */
+    expireAt_gt?: string;
+    /**
+     * 过期时间小于该时间
+     */
+    expireAt_lt?: string;
+    /**
+     * 团队
+     */
+    groups?: Array<string>;
     /**
      * 按 id 筛选
      */
@@ -1090,13 +1352,9 @@ export type ListUsersData = {
      */
     nickname_like?: string;
     /**
-     * 所属命名空间的 ns 本级查询
+     * 所属命名空间的 tree 查询
      */
-    ns?: Array<string>;
-    /**
-     * 所属命名空间的前缀匹配查询
-     */
-    ns_start?: Array<string>;
+    ns_tree?: string;
     /**
      * 手机号
      */
@@ -1109,6 +1367,12 @@ export type ListUsersData = {
      * 角色
      */
     roles?: Array<string>;
+    /**
+     * =======
+     * >>>>>>> main
+     * 状态
+     */
+    status?: string;
     /**
      * 用户名
      */
@@ -1157,6 +1421,17 @@ export type DeleteUserData = {
 export type DeleteUserResponse = void;
 
 export type DeleteUserError = unknown;
+
+export type UpsertUserByEmployeeIdData = {
+  body: UpdateUserDto;
+  path: {
+    userEmployeeId: string;
+  };
+};
+
+export type UpsertUserByEmployeeIdResponse = User;
+
+export type UpsertUserByEmployeeIdError = unknown;
 
 export type VerifyIdentityData = {
   path: {
@@ -1227,6 +1502,10 @@ export type ListNamespacesData = {
      */
     key?: string;
     /**
+     * key tree 查询
+     */
+    key_tree?: string;
+    /**
      * 标签
      */
     labels?: Array<string>;
@@ -1235,13 +1514,9 @@ export type ListNamespacesData = {
      */
     name_like?: string;
     /**
-     * 所属命名空间
+     * 所属命名空间 tree 查询
      */
-    ns?: Array<string>;
-    /**
-     * 所属命名空间 start 查询
-     */
-    ns_start?: Array<string>;
+    ns_tree?: string;
   };
 };
 
@@ -1265,7 +1540,7 @@ export type GetNamespaceError = unknown;
 export type UpdateNamespaceData = {
   body: UpdateNamespaceDto;
   path: {
-    namespaceId: string;
+    namespaceIdOrKey: string;
   };
 };
 
@@ -1525,6 +1800,81 @@ export type DeleteEmailRecordError = unknown;
 export type ListIndustriesResponse = Array<Industry>;
 
 export type ListIndustriesError = unknown;
+
+export type CreateGroupData = {
+  body: CreateGroupDto;
+};
+
+export type CreateGroupResponse = Group;
+
+export type CreateGroupError = unknown;
+
+export type ListGroupsData = {
+  query?: {
+    /**
+     * 分页大小
+     */
+    _limit?: number;
+    /**
+     * 分页偏移
+     */
+    _offset?: number;
+    /**
+     * 排序参数
+     */
+    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt';
+    /**
+     * 是否启用
+     */
+    active?: boolean;
+    /**
+     * 名称
+     */
+    name?: string;
+    /**
+     * 名称 模糊查询
+     */
+    name_like?: string;
+  };
+};
+
+export type ListGroupsResponse = Array<Group>;
+
+export type ListGroupsError = unknown;
+
+export type GetGroupData = {
+  path: {
+    /**
+     * Group id or name, if name should encodeURIComponent
+     */
+    groupIdOrName: string;
+  };
+};
+
+export type GetGroupResponse = Group;
+
+export type GetGroupError = unknown;
+
+export type UpdateGroupData = {
+  body: UpdateGroupDto;
+  path: {
+    groupId: string;
+  };
+};
+
+export type UpdateGroupResponse = Group;
+
+export type UpdateGroupError = unknown;
+
+export type DeleteGroupData = {
+  path: {
+    groupId: string;
+  };
+};
+
+export type DeleteGroupResponse = void;
+
+export type DeleteGroupError = unknown;
 
 export type ListRegionsResponse = Array<Region>;
 
