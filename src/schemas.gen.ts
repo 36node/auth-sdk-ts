@@ -120,8 +120,7 @@ export const $User = {
     },
     employeeId: {
       type: 'string',
-      description: `<<<<<<< HEAD
-员工编号`,
+      description: '员工编号',
     },
     permissions: {
       description: '权限',
@@ -152,9 +151,7 @@ export const $User = {
     },
     status: {
       type: 'string',
-      description: `=======
->>>>>>> main
-状态`,
+      description: '状态',
     },
     expireAt: {
       format: 'date-time',
@@ -495,8 +492,7 @@ export const $CreateUserDto = {
     },
     employeeId: {
       type: 'string',
-      description: `<<<<<<< HEAD
-员工编号`,
+      description: '员工编号',
     },
     permissions: {
       description: '权限',
@@ -522,9 +518,7 @@ export const $CreateUserDto = {
     },
     status: {
       type: 'string',
-      description: `=======
->>>>>>> main
-状态`,
+      description: '状态',
     },
     expireAt: {
       format: 'date-time',
@@ -624,8 +618,7 @@ export const $UpdateUserDto = {
     },
     employeeId: {
       type: 'string',
-      description: `<<<<<<< HEAD
-员工编号`,
+      description: '员工编号',
     },
     permissions: {
       description: '权限',
@@ -656,9 +649,7 @@ export const $UpdateUserDto = {
     },
     status: {
       type: 'string',
-      description: `=======
->>>>>>> main
-状态`,
+      description: '状态',
     },
     expireAt: {
       format: 'date-time',
@@ -982,6 +973,105 @@ export const $UpdateSessionDto = {
   },
 } as const;
 
+export const $CreateGroupDto = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+      description: '名称',
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    active: {
+      type: 'boolean',
+      description: '是否启用',
+    },
+    userCount: {
+      type: 'number',
+      description: '人数',
+    },
+  },
+  required: ['name'],
+} as const;
+
+export const $Group = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+      description: '名称',
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    active: {
+      type: 'boolean',
+      description: '是否启用',
+    },
+    userCount: {
+      type: 'number',
+      description: '人数',
+    },
+    id: {
+      type: 'string',
+      description: 'Entity id',
+    },
+    createdAt: {
+      format: 'date-time',
+      type: 'string',
+      description: 'Entity created at when',
+    },
+    updatedAt: {
+      format: 'date-time',
+      type: 'string',
+      description: 'Entity updated at when',
+    },
+    createdBy: {
+      type: 'string',
+      description: 'Entity created by who',
+    },
+    updatedBy: {
+      type: 'string',
+      description: 'Entity updated by who',
+    },
+  },
+  required: ['name', 'id'],
+} as const;
+
+export const $UpdateGroupDto = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+      description: '名称',
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    active: {
+      type: 'boolean',
+      description: '是否启用',
+    },
+    userCount: {
+      type: 'number',
+      description: '人数',
+    },
+  },
+} as const;
+
 export const $CreateCaptchaDto = {
   type: 'object',
   properties: {
@@ -1202,154 +1292,6 @@ export const $UpdateEmailRecordDto = {
   },
 } as const;
 
-export const $Industry = {
-  type: 'object',
-  properties: {
-    code: {
-      type: 'string',
-      description: '编码',
-    },
-    name: {
-      type: 'string',
-      description: '名称',
-    },
-    children: {
-      description: '子集',
-      type: 'array',
-      items: {
-        $ref: '#/components/schemas/Industry',
-      },
-    },
-  },
-  required: ['code', 'name', 'children'],
-} as const;
-
-export const $CreateGroupDto = {
-  type: 'object',
-  properties: {
-    name: {
-      type: 'string',
-      description: '名称',
-    },
-    permissions: {
-      description: '权限',
-      type: 'array',
-      items: {
-        type: 'string',
-      },
-    },
-    active: {
-      type: 'boolean',
-      description: '是否启用',
-    },
-    userCount: {
-      type: 'number',
-      description: '人数',
-    },
-  },
-  required: ['name'],
-} as const;
-
-export const $Group = {
-  type: 'object',
-  properties: {
-    name: {
-      type: 'string',
-      description: '名称',
-    },
-    permissions: {
-      description: '权限',
-      type: 'array',
-      items: {
-        type: 'string',
-      },
-    },
-    active: {
-      type: 'boolean',
-      description: '是否启用',
-    },
-    userCount: {
-      type: 'number',
-      description: '人数',
-    },
-    id: {
-      type: 'string',
-      description: 'Entity id',
-    },
-    createdAt: {
-      format: 'date-time',
-      type: 'string',
-      description: 'Entity created at when',
-    },
-    updatedAt: {
-      format: 'date-time',
-      type: 'string',
-      description: 'Entity updated at when',
-    },
-    createdBy: {
-      type: 'string',
-      description: 'Entity created by who',
-    },
-    updatedBy: {
-      type: 'string',
-      description: 'Entity updated by who',
-    },
-  },
-  required: ['name', 'id'],
-} as const;
-
-export const $UpdateGroupDto = {
-  type: 'object',
-  properties: {
-    name: {
-      type: 'string',
-      description: '名称',
-    },
-    permissions: {
-      description: '权限',
-      type: 'array',
-      items: {
-        type: 'string',
-      },
-    },
-    active: {
-      type: 'boolean',
-      description: '是否启用',
-    },
-    userCount: {
-      type: 'number',
-      description: '人数',
-    },
-  },
-} as const;
-
-export const $Region = {
-  type: 'object',
-  properties: {
-    code: {
-      type: 'string',
-      description: '缩写',
-    },
-    nameZh: {
-      type: 'string',
-      description: '中文名称',
-    },
-    namePinyin: {
-      type: 'string',
-      description: '中文拼音',
-    },
-    nameEn: {
-      type: 'string',
-      description: '英文名称',
-    },
-    dialingPrefix: {
-      type: 'string',
-      description: '电话前缀',
-    },
-  },
-  required: ['code', 'nameZh', 'namePinyin', 'nameEn', 'dialingPrefix'],
-} as const;
-
 export const $SendSmsDto = {
   type: 'object',
   properties: {
@@ -1487,4 +1429,53 @@ export const $UpdateSmsRecordDto = {
       description: '发送时间',
     },
   },
+} as const;
+
+export const $Industry = {
+  type: 'object',
+  properties: {
+    code: {
+      type: 'string',
+      description: '编码',
+    },
+    name: {
+      type: 'string',
+      description: '名称',
+    },
+    children: {
+      description: '子集',
+      type: 'array',
+      items: {
+        $ref: '#/components/schemas/Industry',
+      },
+    },
+  },
+  required: ['code', 'name', 'children'],
+} as const;
+
+export const $Region = {
+  type: 'object',
+  properties: {
+    code: {
+      type: 'string',
+      description: '缩写',
+    },
+    nameZh: {
+      type: 'string',
+      description: '中文名称',
+    },
+    namePinyin: {
+      type: 'string',
+      description: '中文拼音',
+    },
+    nameEn: {
+      type: 'string',
+      description: '英文名称',
+    },
+    dialingPrefix: {
+      type: 'string',
+      description: '电话前缀',
+    },
+  },
+  required: ['code', 'nameZh', 'namePinyin', 'nameEn', 'dialingPrefix'],
 } as const;

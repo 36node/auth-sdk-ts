@@ -3,6 +3,8 @@
 import { createClient, createConfig, type Options } from '@hey-api/client-fetch';
 
 import type {
+  CleanupAllDataError,
+  CleanupAllDataResponse,
   CreateCaptchaData,
   CreateCaptchaError,
   CreateCaptchaResponse,
@@ -277,6 +279,22 @@ export const refresh = <ThrowOnError extends boolean = false>(
 };
 
 /**
+ * clearnup all data
+ */
+export const cleanupAllData = <ThrowOnError extends boolean = false>(
+  options?: Options<unknown, ThrowOnError>
+) => {
+  return (options?.client ?? client).delete<
+    CleanupAllDataResponse,
+    CleanupAllDataError,
+    ThrowOnError
+  >({
+    ...options,
+    url: '/auth/@cleanup',
+  });
+};
+
+/**
  * Create user
  */
 export const createUser = <ThrowOnError extends boolean = false>(
@@ -537,6 +555,66 @@ export const deleteSession = <ThrowOnError extends boolean = false>(
 };
 
 /**
+ * Create group
+ */
+export const createGroup = <ThrowOnError extends boolean = false>(
+  options: Options<CreateGroupData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<CreateGroupResponse, CreateGroupError, ThrowOnError>({
+    ...options,
+    url: '/groups',
+  });
+};
+
+/**
+ * List groups
+ */
+export const listGroups = <ThrowOnError extends boolean = false>(
+  options?: Options<ListGroupsData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<ListGroupsResponse, ListGroupsError, ThrowOnError>({
+    ...options,
+    url: '/groups',
+  });
+};
+
+/**
+ * Find group by id or name
+ */
+export const getGroup = <ThrowOnError extends boolean = false>(
+  options: Options<GetGroupData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<GetGroupResponse, GetGroupError, ThrowOnError>({
+    ...options,
+    url: '/groups/{groupIdOrName}',
+  });
+};
+
+/**
+ * Update group
+ */
+export const updateGroup = <ThrowOnError extends boolean = false>(
+  options: Options<UpdateGroupData, ThrowOnError>
+) => {
+  return (options?.client ?? client).patch<UpdateGroupResponse, UpdateGroupError, ThrowOnError>({
+    ...options,
+    url: '/groups/{groupId}',
+  });
+};
+
+/**
+ * Delete group
+ */
+export const deleteGroup = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteGroupData, ThrowOnError>
+) => {
+  return (options?.client ?? client).delete<DeleteGroupResponse, DeleteGroupError, ThrowOnError>({
+    ...options,
+    url: '/groups/{groupId}',
+  });
+};
+
+/**
  * Create captcha
  */
 export const createCaptcha = <ThrowOnError extends boolean = false>(
@@ -693,92 +771,6 @@ export const deleteEmailRecord = <ThrowOnError extends boolean = false>(
 };
 
 /**
- * List Industries
- */
-export const listIndustries = <ThrowOnError extends boolean = false>(
-  options?: Options<unknown, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<ListIndustriesResponse, ListIndustriesError, ThrowOnError>(
-    {
-      ...options,
-      url: '/industries',
-    }
-  );
-};
-
-/**
- * Create group
- */
-export const createGroup = <ThrowOnError extends boolean = false>(
-  options: Options<CreateGroupData, ThrowOnError>
-) => {
-  return (options?.client ?? client).post<CreateGroupResponse, CreateGroupError, ThrowOnError>({
-    ...options,
-    url: '/groups',
-  });
-};
-
-/**
- * List groups
- */
-export const listGroups = <ThrowOnError extends boolean = false>(
-  options?: Options<ListGroupsData, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<ListGroupsResponse, ListGroupsError, ThrowOnError>({
-    ...options,
-    url: '/groups',
-  });
-};
-
-/**
- * Find group by id or name
- */
-export const getGroup = <ThrowOnError extends boolean = false>(
-  options: Options<GetGroupData, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<GetGroupResponse, GetGroupError, ThrowOnError>({
-    ...options,
-    url: '/groups/{groupIdOrName}',
-  });
-};
-
-/**
- * Update group
- */
-export const updateGroup = <ThrowOnError extends boolean = false>(
-  options: Options<UpdateGroupData, ThrowOnError>
-) => {
-  return (options?.client ?? client).patch<UpdateGroupResponse, UpdateGroupError, ThrowOnError>({
-    ...options,
-    url: '/groups/{groupId}',
-  });
-};
-
-/**
- * Delete group
- */
-export const deleteGroup = <ThrowOnError extends boolean = false>(
-  options: Options<DeleteGroupData, ThrowOnError>
-) => {
-  return (options?.client ?? client).delete<DeleteGroupResponse, DeleteGroupError, ThrowOnError>({
-    ...options,
-    url: '/groups/{groupId}',
-  });
-};
-
-/**
- * List Regions
- */
-export const listRegions = <ThrowOnError extends boolean = false>(
-  options?: Options<unknown, ThrowOnError>
-) => {
-  return (options?.client ?? client).get<ListRegionsResponse, ListRegionsError, ThrowOnError>({
-    ...options,
-    url: '/regions',
-  });
-};
-
-/**
  * Send sms
  */
 export const sendSms = <ThrowOnError extends boolean = false>(
@@ -861,5 +853,31 @@ export const deleteSmsRecord = <ThrowOnError extends boolean = false>(
   >({
     ...options,
     url: '/sms/records/{smsRecordId}',
+  });
+};
+
+/**
+ * List Industries
+ */
+export const listIndustries = <ThrowOnError extends boolean = false>(
+  options?: Options<unknown, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<ListIndustriesResponse, ListIndustriesError, ThrowOnError>(
+    {
+      ...options,
+      url: '/industries',
+    }
+  );
+};
+
+/**
+ * List Regions
+ */
+export const listRegions = <ThrowOnError extends boolean = false>(
+  options?: Options<unknown, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<ListRegionsResponse, ListRegionsError, ThrowOnError>({
+    ...options,
+    url: '/regions',
   });
 };

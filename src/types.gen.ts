@@ -98,7 +98,6 @@ export type User = {
    */
   username?: string;
   /**
-   * <<<<<<< HEAD
    * 员工编号
    */
   employeeId?: string;
@@ -123,8 +122,6 @@ export type User = {
    */
   inviteCode?: string;
   /**
-   * =======
-   * >>>>>>> main
    * 状态
    */
   status?: string;
@@ -410,7 +407,6 @@ export type CreateUserDto = {
    */
   username?: string;
   /**
-   * <<<<<<< HEAD
    * 员工编号
    */
   employeeId?: string;
@@ -431,8 +427,6 @@ export type CreateUserDto = {
    */
   inviteCode?: string;
   /**
-   * =======
-   * >>>>>>> main
    * 状态
    */
   status?: string;
@@ -521,7 +515,6 @@ export type UpdateUserDto = {
    */
   username?: string;
   /**
-   * <<<<<<< HEAD
    * 员工编号
    */
   employeeId?: string;
@@ -546,8 +539,6 @@ export type UpdateUserDto = {
    */
   inviteCode?: string;
   /**
-   * =======
-   * >>>>>>> main
    * 状态
    */
   status?: string;
@@ -819,6 +810,83 @@ export type UpdateSessionDto = {
   uid?: string;
 };
 
+export type CreateGroupDto = {
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * 是否启用
+   */
+  active?: boolean;
+  /**
+   * 人数
+   */
+  userCount?: number;
+};
+
+export type Group = {
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * 是否启用
+   */
+  active?: boolean;
+  /**
+   * 人数
+   */
+  userCount?: number;
+  /**
+   * Entity id
+   */
+  id: string;
+  /**
+   * Entity created at when
+   */
+  createdAt?: string;
+  /**
+   * Entity updated at when
+   */
+  updatedAt?: string;
+  /**
+   * Entity created by who
+   */
+  createdBy?: string;
+  /**
+   * Entity updated by who
+   */
+  updatedBy?: string;
+};
+
+export type UpdateGroupDto = {
+  /**
+   * 名称
+   */
+  name?: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * 是否启用
+   */
+  active?: boolean;
+  /**
+   * 人数
+   */
+  userCount?: number;
+};
+
 export type CreateCaptchaDto = {
   /**
    * 验证码
@@ -988,121 +1056,6 @@ export type UpdateEmailRecordDto = {
   sentAt?: string;
 };
 
-export type Industry = {
-  /**
-   * 编码
-   */
-  code: string;
-  /**
-   * 名称
-   */
-  name: string;
-  /**
-   * 子集
-   */
-  children: Array<Industry>;
-};
-
-export type CreateGroupDto = {
-  /**
-   * 名称
-   */
-  name: string;
-  /**
-   * 权限
-   */
-  permissions?: Array<string>;
-  /**
-   * 是否启用
-   */
-  active?: boolean;
-  /**
-   * 人数
-   */
-  userCount?: number;
-};
-
-export type Group = {
-  /**
-   * 名称
-   */
-  name: string;
-  /**
-   * 权限
-   */
-  permissions?: Array<string>;
-  /**
-   * 是否启用
-   */
-  active?: boolean;
-  /**
-   * 人数
-   */
-  userCount?: number;
-  /**
-   * Entity id
-   */
-  id: string;
-  /**
-   * Entity created at when
-   */
-  createdAt?: string;
-  /**
-   * Entity updated at when
-   */
-  updatedAt?: string;
-  /**
-   * Entity created by who
-   */
-  createdBy?: string;
-  /**
-   * Entity updated by who
-   */
-  updatedBy?: string;
-};
-
-export type UpdateGroupDto = {
-  /**
-   * 名称
-   */
-  name?: string;
-  /**
-   * 权限
-   */
-  permissions?: Array<string>;
-  /**
-   * 是否启用
-   */
-  active?: boolean;
-  /**
-   * 人数
-   */
-  userCount?: number;
-};
-
-export type Region = {
-  /**
-   * 缩写
-   */
-  code: string;
-  /**
-   * 中文名称
-   */
-  nameZh: string;
-  /**
-   * 中文拼音
-   */
-  namePinyin: string;
-  /**
-   * 英文名称
-   */
-  nameEn: string;
-  /**
-   * 电话前缀
-   */
-  dialingPrefix: string;
-};
-
 export type SendSmsDto = {
   phone: string;
   sign: string;
@@ -1209,6 +1162,44 @@ export type UpdateSmsRecordDto = {
   sentAt?: string;
 };
 
+export type Industry = {
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 子集
+   */
+  children: Array<Industry>;
+};
+
+export type Region = {
+  /**
+   * 缩写
+   */
+  code: string;
+  /**
+   * 中文名称
+   */
+  nameZh: string;
+  /**
+   * 中文拼音
+   */
+  namePinyin: string;
+  /**
+   * 英文名称
+   */
+  nameEn: string;
+  /**
+   * 电话前缀
+   */
+  dialingPrefix: string;
+};
+
 export type HelloResponse = HealthCheckResult;
 
 export type HelloError = unknown;
@@ -1289,6 +1280,10 @@ export type RefreshResponse = SessionWithToken | Token;
 
 export type RefreshError = unknown;
 
+export type CleanupAllDataResponse = void;
+
+export type CleanupAllDataError = unknown;
+
 export type CreateUserData = {
   body: CreateUserDto;
 };
@@ -1368,8 +1363,6 @@ export type ListUsersData = {
      */
     roles?: Array<string>;
     /**
-     * =======
-     * >>>>>>> main
      * 状态
      */
     status?: string;
@@ -1630,6 +1623,81 @@ export type DeleteSessionResponse = void;
 
 export type DeleteSessionError = unknown;
 
+export type CreateGroupData = {
+  body: CreateGroupDto;
+};
+
+export type CreateGroupResponse = Group;
+
+export type CreateGroupError = unknown;
+
+export type ListGroupsData = {
+  query?: {
+    /**
+     * 分页大小
+     */
+    _limit?: number;
+    /**
+     * 分页偏移
+     */
+    _offset?: number;
+    /**
+     * 排序参数
+     */
+    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt';
+    /**
+     * 是否启用
+     */
+    active?: boolean;
+    /**
+     * 名称
+     */
+    name?: string;
+    /**
+     * 名称 模糊查询
+     */
+    name_like?: string;
+  };
+};
+
+export type ListGroupsResponse = Array<Group>;
+
+export type ListGroupsError = unknown;
+
+export type GetGroupData = {
+  path: {
+    /**
+     * Group id or name, if name should encodeURIComponent
+     */
+    groupIdOrName: string;
+  };
+};
+
+export type GetGroupResponse = Group;
+
+export type GetGroupError = unknown;
+
+export type UpdateGroupData = {
+  body: UpdateGroupDto;
+  path: {
+    groupId: string;
+  };
+};
+
+export type UpdateGroupResponse = Group;
+
+export type UpdateGroupError = unknown;
+
+export type DeleteGroupData = {
+  path: {
+    groupId: string;
+  };
+};
+
+export type DeleteGroupResponse = void;
+
+export type DeleteGroupError = unknown;
+
 export type CreateCaptchaData = {
   body: CreateCaptchaDto;
 };
@@ -1797,89 +1865,6 @@ export type DeleteEmailRecordResponse = void;
 
 export type DeleteEmailRecordError = unknown;
 
-export type ListIndustriesResponse = Array<Industry>;
-
-export type ListIndustriesError = unknown;
-
-export type CreateGroupData = {
-  body: CreateGroupDto;
-};
-
-export type CreateGroupResponse = Group;
-
-export type CreateGroupError = unknown;
-
-export type ListGroupsData = {
-  query?: {
-    /**
-     * 分页大小
-     */
-    _limit?: number;
-    /**
-     * 分页偏移
-     */
-    _offset?: number;
-    /**
-     * 排序参数
-     */
-    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt';
-    /**
-     * 是否启用
-     */
-    active?: boolean;
-    /**
-     * 名称
-     */
-    name?: string;
-    /**
-     * 名称 模糊查询
-     */
-    name_like?: string;
-  };
-};
-
-export type ListGroupsResponse = Array<Group>;
-
-export type ListGroupsError = unknown;
-
-export type GetGroupData = {
-  path: {
-    /**
-     * Group id or name, if name should encodeURIComponent
-     */
-    groupIdOrName: string;
-  };
-};
-
-export type GetGroupResponse = Group;
-
-export type GetGroupError = unknown;
-
-export type UpdateGroupData = {
-  body: UpdateGroupDto;
-  path: {
-    groupId: string;
-  };
-};
-
-export type UpdateGroupResponse = Group;
-
-export type UpdateGroupError = unknown;
-
-export type DeleteGroupData = {
-  path: {
-    groupId: string;
-  };
-};
-
-export type DeleteGroupResponse = void;
-
-export type DeleteGroupError = unknown;
-
-export type ListRegionsResponse = Array<Region>;
-
-export type ListRegionsError = unknown;
-
 export type SendSmsData = {
   body: SendSmsDto;
 };
@@ -1978,3 +1963,11 @@ export type DeleteSmsRecordData = {
 export type DeleteSmsRecordResponse = void;
 
 export type DeleteSmsRecordError = unknown;
+
+export type ListIndustriesResponse = Array<Industry>;
+
+export type ListIndustriesError = unknown;
+
+export type ListRegionsResponse = Array<Region>;
+
+export type ListRegionsError = unknown;
