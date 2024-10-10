@@ -812,6 +812,10 @@ export type UpdateSessionDto = {
 
 export type CreateGroupDto = {
   /**
+   * 额外数据
+   */
+  data?: string;
+  /**
    * 名称
    */
   name: string;
@@ -830,6 +834,10 @@ export type CreateGroupDto = {
 };
 
 export type Group = {
+  /**
+   * 额外数据
+   */
+  data?: string;
   /**
    * 名称
    */
@@ -869,6 +877,10 @@ export type Group = {
 };
 
 export type UpdateGroupDto = {
+  /**
+   * 额外数据
+   */
+  data?: string;
   /**
    * 名称
    */

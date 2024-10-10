@@ -976,6 +976,10 @@ export const $UpdateSessionDto = {
 export const $CreateGroupDto = {
   type: 'object',
   properties: {
+    data: {
+      type: 'string',
+      description: '额外数据',
+    },
     name: {
       type: 'string',
       description: '名称',
@@ -1002,6 +1006,10 @@ export const $CreateGroupDto = {
 export const $Group = {
   type: 'object',
   properties: {
+    data: {
+      type: 'string',
+      description: '额外数据',
+    },
     name: {
       type: 'string',
       description: '名称',
@@ -1050,6 +1058,10 @@ export const $Group = {
 export const $UpdateGroupDto = {
   type: 'object',
   properties: {
+    data: {
+      type: 'string',
+      description: '额外数据',
+    },
     name: {
       type: 'string',
       description: '名称',
