@@ -158,6 +158,13 @@ export const $User = {
       type: 'string',
       description: '过期时间',
     },
+    types: {
+      description: '类型，支持设置多个',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
     id: {
       type: 'string',
       description: 'Entity id',
@@ -525,6 +532,13 @@ export const $CreateUserDto = {
       type: 'string',
       description: '过期时间',
     },
+    types: {
+      description: '类型，支持设置多个',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
   },
 } as const;
 
@@ -655,6 +669,13 @@ export const $UpdateUserDto = {
       format: 'date-time',
       type: 'string',
       description: '过期时间',
+    },
+    types: {
+      description: '类型，支持设置多个',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
     },
   },
 } as const;

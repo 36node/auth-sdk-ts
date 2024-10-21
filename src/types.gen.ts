@@ -130,6 +130,10 @@ export type User = {
    */
   expireAt?: string;
   /**
+   * 类型，支持设置多个
+   */
+  types?: Array<string>;
+  /**
    * Entity id
    */
   id: string;
@@ -434,6 +438,10 @@ export type CreateUserDto = {
    * 过期时间
    */
   expireAt?: string;
+  /**
+   * 类型，支持设置多个
+   */
+  types?: Array<string>;
 };
 
 export type UpdateUserDto = {
@@ -546,6 +554,10 @@ export type UpdateUserDto = {
    * 过期时间
    */
   expireAt?: string;
+  /**
+   * 类型，支持设置多个
+   */
+  types?: Array<string>;
 };
 
 export type ResetPasswordDto = {
@@ -1337,11 +1349,11 @@ export type ListUsersData = {
     /**
      * 过期时间大于该时间
      */
-    expireAt_gt?: string;
+    expireAt_gte?: string;
     /**
      * 过期时间小于该时间
      */
-    expireAt_lt?: string;
+    expireAt_lte?: string;
     /**
      * 团队
      */
@@ -1350,6 +1362,10 @@ export type ListUsersData = {
      * 按 id 筛选
      */
     id?: Array<string>;
+    /**
+     * 姓名
+     */
+    name?: string;
     /**
      * 名称 模糊查询
      */
@@ -1378,6 +1394,10 @@ export type ListUsersData = {
      * 状态
      */
     status?: string;
+    /**
+     * 类型，支持设置多个
+     */
+    types?: Array<string>;
     /**
      * 用户名
      */
