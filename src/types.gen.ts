@@ -1224,6 +1224,67 @@ export type Region = {
   dialingPrefix: string;
 };
 
+export type CreateRoleDto = {
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+  /**
+   * role key
+   */
+  key: string;
+  /**
+   * 名称
+   */
+  name: string;
+};
+
+export type Role = {
+  /**
+   * role key
+   */
+  key: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 权限
+   */
+  permissions: Array<string>;
+  /**
+   * Entity id
+   */
+  id: string;
+  /**
+   * Entity created at when
+   */
+  createdAt?: string;
+  /**
+   * Entity updated at when
+   */
+  updatedAt?: string;
+  /**
+   * Entity created by who
+   */
+  createdBy?: string;
+  /**
+   * Entity updated by who
+   */
+  updatedBy?: string;
+};
+
+export type UpdateRoleDto = {
+  /**
+   * 名称
+   */
+  name?: string;
+  /**
+   * 权限
+   */
+  permissions?: Array<string>;
+};
+
 export type HelloResponse = HealthCheckResult;
 
 export type HelloError = unknown;
@@ -2003,3 +2064,78 @@ export type ListIndustriesError = unknown;
 export type ListRegionsResponse = Array<Region>;
 
 export type ListRegionsError = unknown;
+
+export type CreateRoleData = {
+  body: CreateRoleDto;
+};
+
+export type CreateRoleResponse = Role;
+
+export type CreateRoleError = unknown;
+
+export type ListRolesData = {
+  query?: {
+    /**
+     * 分页大小
+     */
+    _limit?: number;
+    /**
+     * 分页偏移
+     */
+    _offset?: number;
+    /**
+     * 排序参数
+     */
+    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt';
+    /**
+     * role key
+     */
+    key?: string;
+    /**
+     * 名称
+     */
+    name?: string;
+    /**
+     * 名称 模糊查询
+     */
+    name_like?: string;
+  };
+};
+
+export type ListRolesResponse = Array<Role>;
+
+export type ListRolesError = unknown;
+
+export type GetRoleData = {
+  path: {
+    /**
+     * Role id or key
+     */
+    roleIdOrKey: string;
+  };
+};
+
+export type GetRoleResponse = Role;
+
+export type GetRoleError = unknown;
+
+export type UpdateRoleData = {
+  body: UpdateRoleDto;
+  path: {
+    roleId: string;
+  };
+};
+
+export type UpdateRoleResponse = Role;
+
+export type UpdateRoleError = unknown;
+
+export type DeleteRoleData = {
+  path: {
+    roleId: string;
+  };
+};
+
+export type DeleteRoleResponse = void;
+
+export type DeleteRoleError = unknown;

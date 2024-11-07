@@ -17,6 +17,9 @@ import type {
   CreateNamespaceData,
   CreateNamespaceError,
   CreateNamespaceResponse,
+  CreateRoleData,
+  CreateRoleError,
+  CreateRoleResponse,
   CreateSessionData,
   CreateSessionError,
   CreateSessionResponse,
@@ -38,6 +41,9 @@ import type {
   DeleteNamespaceData,
   DeleteNamespaceError,
   DeleteNamespaceResponse,
+  DeleteRoleData,
+  DeleteRoleError,
+  DeleteRoleResponse,
   DeleteSessionData,
   DeleteSessionError,
   DeleteSessionResponse,
@@ -59,6 +65,9 @@ import type {
   GetNamespaceData,
   GetNamespaceError,
   GetNamespaceResponse,
+  GetRoleData,
+  GetRoleError,
+  GetRoleResponse,
   GetSessionData,
   GetSessionError,
   GetSessionResponse,
@@ -86,6 +95,9 @@ import type {
   ListNamespacesResponse,
   ListRegionsError,
   ListRegionsResponse,
+  ListRolesData,
+  ListRolesError,
+  ListRolesResponse,
   ListSessionsData,
   ListSessionsError,
   ListSessionsResponse,
@@ -143,6 +155,9 @@ import type {
   UpdatePasswordData,
   UpdatePasswordError,
   UpdatePasswordResponse,
+  UpdateRoleData,
+  UpdateRoleError,
+  UpdateRoleResponse,
   UpdateSessionData,
   UpdateSessionError,
   UpdateSessionResponse,
@@ -879,5 +894,65 @@ export const listRegions = <ThrowOnError extends boolean = false>(
   return (options?.client ?? client).get<ListRegionsResponse, ListRegionsError, ThrowOnError>({
     ...options,
     url: '/regions',
+  });
+};
+
+/**
+ * Create role
+ */
+export const createRole = <ThrowOnError extends boolean = false>(
+  options: Options<CreateRoleData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<CreateRoleResponse, CreateRoleError, ThrowOnError>({
+    ...options,
+    url: '/roles',
+  });
+};
+
+/**
+ * List roles
+ */
+export const listRoles = <ThrowOnError extends boolean = false>(
+  options?: Options<ListRolesData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<ListRolesResponse, ListRolesError, ThrowOnError>({
+    ...options,
+    url: '/roles',
+  });
+};
+
+/**
+ * Find role by id or key
+ */
+export const getRole = <ThrowOnError extends boolean = false>(
+  options: Options<GetRoleData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<GetRoleResponse, GetRoleError, ThrowOnError>({
+    ...options,
+    url: '/roles/{roleIdOrKey}',
+  });
+};
+
+/**
+ * Update role
+ */
+export const updateRole = <ThrowOnError extends boolean = false>(
+  options: Options<UpdateRoleData, ThrowOnError>
+) => {
+  return (options?.client ?? client).patch<UpdateRoleResponse, UpdateRoleError, ThrowOnError>({
+    ...options,
+    url: '/roles/{roleId}',
+  });
+};
+
+/**
+ * Delete role
+ */
+export const deleteRole = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteRoleData, ThrowOnError>
+) => {
+  return (options?.client ?? client).delete<DeleteRoleResponse, DeleteRoleError, ThrowOnError>({
+    ...options,
+    url: '/roles/{roleId}',
   });
 };

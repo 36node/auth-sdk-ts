@@ -1512,3 +1512,86 @@ export const $Region = {
   },
   required: ['code', 'nameZh', 'namePinyin', 'nameEn', 'dialingPrefix'],
 } as const;
+
+export const $CreateRoleDto = {
+  type: 'object',
+  properties: {
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    key: {
+      type: 'string',
+      description: 'role key',
+    },
+    name: {
+      type: 'string',
+      description: '名称',
+    },
+  },
+  required: ['key', 'name'],
+} as const;
+
+export const $Role = {
+  type: 'object',
+  properties: {
+    key: {
+      type: 'string',
+      description: 'role key',
+    },
+    name: {
+      type: 'string',
+      description: '名称',
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+    id: {
+      type: 'string',
+      description: 'Entity id',
+    },
+    createdAt: {
+      format: 'date-time',
+      type: 'string',
+      description: 'Entity created at when',
+    },
+    updatedAt: {
+      format: 'date-time',
+      type: 'string',
+      description: 'Entity updated at when',
+    },
+    createdBy: {
+      type: 'string',
+      description: 'Entity created by who',
+    },
+    updatedBy: {
+      type: 'string',
+      description: 'Entity updated by who',
+    },
+  },
+  required: ['key', 'name', 'permissions', 'id'],
+} as const;
+
+export const $UpdateRoleDto = {
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+      description: '名称',
+    },
+    permissions: {
+      description: '权限',
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+  },
+} as const;
