@@ -1317,11 +1317,7 @@ export type RegisterData = {
   body: RegisterDto;
 };
 
-export type RegisterResponse =
-  | User
-  | {
-      [key: string]: unknown;
-    };
+export type RegisterResponse = User;
 
 export type RegisterError = unknown;
 
@@ -1329,11 +1325,7 @@ export type RegisterByPhoneData = {
   body: RegisterbyPhoneDto;
 };
 
-export type RegisterByPhoneResponse =
-  | User
-  | {
-      [key: string]: unknown;
-    };
+export type RegisterByPhoneResponse = User;
 
 export type RegisterByPhoneError = unknown;
 
@@ -1341,11 +1333,7 @@ export type RegisterByEmailData = {
   body: RegisterByEmailDto;
 };
 
-export type RegisterByEmailResponse =
-  | User
-  | {
-      [key: string]: unknown;
-    };
+export type RegisterByEmailResponse = User;
 
 export type RegisterByEmailError = unknown;
 
@@ -1361,7 +1349,7 @@ export type RefreshData = {
   body: RefreshTokenDto;
 };
 
-export type RefreshResponse = SessionWithToken | Token;
+export type RefreshResponse = SessionWithToken;
 
 export type RefreshError = unknown;
 

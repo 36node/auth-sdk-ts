@@ -180,7 +180,7 @@ export const client = createClient(createConfig());
 /**
  * health check
  */
-export const hello = <ThrowOnError extends boolean = false>(
+export const hello = <ThrowOnError extends boolean = true>(
   options?: Options<unknown, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<HelloResponse, HelloError, ThrowOnError>({
@@ -192,7 +192,7 @@ export const hello = <ThrowOnError extends boolean = false>(
 /**
  * login with username/phone/email and password
  */
-export const login = <ThrowOnError extends boolean = false>(
+export const login = <ThrowOnError extends boolean = true>(
   options: Options<LoginData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<LoginResponse, LoginError, ThrowOnError>({
@@ -204,7 +204,7 @@ export const login = <ThrowOnError extends boolean = false>(
 /**
  * login with email and code
  */
-export const loginByEmail = <ThrowOnError extends boolean = false>(
+export const loginByEmail = <ThrowOnError extends boolean = true>(
   options: Options<LoginByEmailData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<LoginByEmailResponse, LoginByEmailError, ThrowOnError>({
@@ -216,7 +216,7 @@ export const loginByEmail = <ThrowOnError extends boolean = false>(
 /**
  * login with phone and code
  */
-export const loginByPhone = <ThrowOnError extends boolean = false>(
+export const loginByPhone = <ThrowOnError extends boolean = true>(
   options: Options<LoginByPhoneData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<LoginByPhoneResponse, LoginByPhoneError, ThrowOnError>({
@@ -228,7 +228,7 @@ export const loginByPhone = <ThrowOnError extends boolean = false>(
 /**
  * register with username and password
  */
-export const register = <ThrowOnError extends boolean = false>(
+export const register = <ThrowOnError extends boolean = true>(
   options: Options<RegisterData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<RegisterResponse, RegisterError, ThrowOnError>({
@@ -240,7 +240,7 @@ export const register = <ThrowOnError extends boolean = false>(
 /**
  * register with phone and code
  */
-export const registerByPhone = <ThrowOnError extends boolean = false>(
+export const registerByPhone = <ThrowOnError extends boolean = true>(
   options: Options<RegisterByPhoneData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
@@ -256,7 +256,7 @@ export const registerByPhone = <ThrowOnError extends boolean = false>(
 /**
  * register with email and code
  */
-export const registerByEmail = <ThrowOnError extends boolean = false>(
+export const registerByEmail = <ThrowOnError extends boolean = true>(
   options: Options<RegisterByEmailData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
@@ -272,7 +272,7 @@ export const registerByEmail = <ThrowOnError extends boolean = false>(
 /**
  * sign token
  */
-export const signToken = <ThrowOnError extends boolean = false>(
+export const signToken = <ThrowOnError extends boolean = true>(
   options: Options<SignTokenData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<SignTokenResponse, SignTokenError, ThrowOnError>({
@@ -284,7 +284,7 @@ export const signToken = <ThrowOnError extends boolean = false>(
 /**
  * refresh
  */
-export const refresh = <ThrowOnError extends boolean = false>(
+export const refresh = <ThrowOnError extends boolean = true>(
   options: Options<RefreshData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<RefreshResponse, RefreshError, ThrowOnError>({
@@ -296,7 +296,7 @@ export const refresh = <ThrowOnError extends boolean = false>(
 /**
  * clearnup all data
  */
-export const cleanupAllData = <ThrowOnError extends boolean = false>(
+export const cleanupAllData = <ThrowOnError extends boolean = true>(
   options?: Options<unknown, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<
@@ -312,7 +312,7 @@ export const cleanupAllData = <ThrowOnError extends boolean = false>(
 /**
  * Create user
  */
-export const createUser = <ThrowOnError extends boolean = false>(
+export const createUser = <ThrowOnError extends boolean = true>(
   options: Options<CreateUserData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<CreateUserResponse, CreateUserError, ThrowOnError>({
@@ -324,7 +324,7 @@ export const createUser = <ThrowOnError extends boolean = false>(
 /**
  * List users
  */
-export const listUsers = <ThrowOnError extends boolean = false>(
+export const listUsers = <ThrowOnError extends boolean = true>(
   options?: Options<ListUsersData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<ListUsersResponse, ListUsersError, ThrowOnError>({
@@ -336,7 +336,7 @@ export const listUsers = <ThrowOnError extends boolean = false>(
 /**
  * Find user
  */
-export const getUser = <ThrowOnError extends boolean = false>(
+export const getUser = <ThrowOnError extends boolean = true>(
   options: Options<GetUserData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<GetUserResponse, GetUserError, ThrowOnError>({
@@ -348,7 +348,7 @@ export const getUser = <ThrowOnError extends boolean = false>(
 /**
  * Update user
  */
-export const updateUser = <ThrowOnError extends boolean = false>(
+export const updateUser = <ThrowOnError extends boolean = true>(
   options: Options<UpdateUserData, ThrowOnError>
 ) => {
   return (options?.client ?? client).patch<UpdateUserResponse, UpdateUserError, ThrowOnError>({
@@ -360,7 +360,7 @@ export const updateUser = <ThrowOnError extends boolean = false>(
 /**
  * Delete user
  */
-export const deleteUser = <ThrowOnError extends boolean = false>(
+export const deleteUser = <ThrowOnError extends boolean = true>(
   options: Options<DeleteUserData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<DeleteUserResponse, DeleteUserError, ThrowOnError>({
@@ -372,7 +372,7 @@ export const deleteUser = <ThrowOnError extends boolean = false>(
 /**
  * Upsert user by employeeId
  */
-export const upsertUserByEmployeeId = <ThrowOnError extends boolean = false>(
+export const upsertUserByEmployeeId = <ThrowOnError extends boolean = true>(
   options: Options<UpsertUserByEmployeeIdData, ThrowOnError>
 ) => {
   return (options?.client ?? client).patch<
@@ -388,7 +388,7 @@ export const upsertUserByEmployeeId = <ThrowOnError extends boolean = false>(
 /**
  * Verify identity
  */
-export const verifyIdentity = <ThrowOnError extends boolean = false>(
+export const verifyIdentity = <ThrowOnError extends boolean = true>(
   options: Options<VerifyIdentityData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
@@ -404,7 +404,7 @@ export const verifyIdentity = <ThrowOnError extends boolean = false>(
 /**
  * Reset password
  */
-export const resetPassword = <ThrowOnError extends boolean = false>(
+export const resetPassword = <ThrowOnError extends boolean = true>(
   options: Options<ResetPasswordData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<ResetPasswordResponse, ResetPasswordError, ThrowOnError>({
@@ -416,7 +416,7 @@ export const resetPassword = <ThrowOnError extends boolean = false>(
 /**
  * Update password
  */
-export const updatePassword = <ThrowOnError extends boolean = false>(
+export const updatePassword = <ThrowOnError extends boolean = true>(
   options: Options<UpdatePasswordData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
@@ -432,7 +432,7 @@ export const updatePassword = <ThrowOnError extends boolean = false>(
 /**
  * Create namespace
  */
-export const createNamespace = <ThrowOnError extends boolean = false>(
+export const createNamespace = <ThrowOnError extends boolean = true>(
   options: Options<CreateNamespaceData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
@@ -448,7 +448,7 @@ export const createNamespace = <ThrowOnError extends boolean = false>(
 /**
  * List namespaces
  */
-export const listNamespaces = <ThrowOnError extends boolean = false>(
+export const listNamespaces = <ThrowOnError extends boolean = true>(
   options?: Options<ListNamespacesData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<ListNamespacesResponse, ListNamespacesError, ThrowOnError>(
@@ -462,7 +462,7 @@ export const listNamespaces = <ThrowOnError extends boolean = false>(
 /**
  * Find namespace by id or key
  */
-export const getNamespace = <ThrowOnError extends boolean = false>(
+export const getNamespace = <ThrowOnError extends boolean = true>(
   options: Options<GetNamespaceData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<GetNamespaceResponse, GetNamespaceError, ThrowOnError>({
@@ -474,7 +474,7 @@ export const getNamespace = <ThrowOnError extends boolean = false>(
 /**
  * Update namespace
  */
-export const updateNamespace = <ThrowOnError extends boolean = false>(
+export const updateNamespace = <ThrowOnError extends boolean = true>(
   options: Options<UpdateNamespaceData, ThrowOnError>
 ) => {
   return (options?.client ?? client).patch<
@@ -490,7 +490,7 @@ export const updateNamespace = <ThrowOnError extends boolean = false>(
 /**
  * Delete namespace
  */
-export const deleteNamespace = <ThrowOnError extends boolean = false>(
+export const deleteNamespace = <ThrowOnError extends boolean = true>(
   options: Options<DeleteNamespaceData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<
@@ -506,7 +506,7 @@ export const deleteNamespace = <ThrowOnError extends boolean = false>(
 /**
  * Create session
  */
-export const createSession = <ThrowOnError extends boolean = false>(
+export const createSession = <ThrowOnError extends boolean = true>(
   options: Options<CreateSessionData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<CreateSessionResponse, CreateSessionError, ThrowOnError>({
@@ -518,7 +518,7 @@ export const createSession = <ThrowOnError extends boolean = false>(
 /**
  * List sessions
  */
-export const listSessions = <ThrowOnError extends boolean = false>(
+export const listSessions = <ThrowOnError extends boolean = true>(
   options?: Options<ListSessionsData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<ListSessionsResponse, ListSessionsError, ThrowOnError>({
@@ -530,7 +530,7 @@ export const listSessions = <ThrowOnError extends boolean = false>(
 /**
  * Find session by id
  */
-export const getSession = <ThrowOnError extends boolean = false>(
+export const getSession = <ThrowOnError extends boolean = true>(
   options: Options<GetSessionData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<GetSessionResponse, GetSessionError, ThrowOnError>({
@@ -542,7 +542,7 @@ export const getSession = <ThrowOnError extends boolean = false>(
 /**
  * Update session
  */
-export const updateSession = <ThrowOnError extends boolean = false>(
+export const updateSession = <ThrowOnError extends boolean = true>(
   options: Options<UpdateSessionData, ThrowOnError>
 ) => {
   return (options?.client ?? client).patch<UpdateSessionResponse, UpdateSessionError, ThrowOnError>(
@@ -556,7 +556,7 @@ export const updateSession = <ThrowOnError extends boolean = false>(
 /**
  * Delete session
  */
-export const deleteSession = <ThrowOnError extends boolean = false>(
+export const deleteSession = <ThrowOnError extends boolean = true>(
   options: Options<DeleteSessionData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<
@@ -572,7 +572,7 @@ export const deleteSession = <ThrowOnError extends boolean = false>(
 /**
  * Create group
  */
-export const createGroup = <ThrowOnError extends boolean = false>(
+export const createGroup = <ThrowOnError extends boolean = true>(
   options: Options<CreateGroupData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<CreateGroupResponse, CreateGroupError, ThrowOnError>({
@@ -584,7 +584,7 @@ export const createGroup = <ThrowOnError extends boolean = false>(
 /**
  * List groups
  */
-export const listGroups = <ThrowOnError extends boolean = false>(
+export const listGroups = <ThrowOnError extends boolean = true>(
   options?: Options<ListGroupsData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<ListGroupsResponse, ListGroupsError, ThrowOnError>({
@@ -596,7 +596,7 @@ export const listGroups = <ThrowOnError extends boolean = false>(
 /**
  * Find group by id or name
  */
-export const getGroup = <ThrowOnError extends boolean = false>(
+export const getGroup = <ThrowOnError extends boolean = true>(
   options: Options<GetGroupData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<GetGroupResponse, GetGroupError, ThrowOnError>({
@@ -608,7 +608,7 @@ export const getGroup = <ThrowOnError extends boolean = false>(
 /**
  * Update group
  */
-export const updateGroup = <ThrowOnError extends boolean = false>(
+export const updateGroup = <ThrowOnError extends boolean = true>(
   options: Options<UpdateGroupData, ThrowOnError>
 ) => {
   return (options?.client ?? client).patch<UpdateGroupResponse, UpdateGroupError, ThrowOnError>({
@@ -620,7 +620,7 @@ export const updateGroup = <ThrowOnError extends boolean = false>(
 /**
  * Delete group
  */
-export const deleteGroup = <ThrowOnError extends boolean = false>(
+export const deleteGroup = <ThrowOnError extends boolean = true>(
   options: Options<DeleteGroupData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<DeleteGroupResponse, DeleteGroupError, ThrowOnError>({
@@ -632,7 +632,7 @@ export const deleteGroup = <ThrowOnError extends boolean = false>(
 /**
  * Create captcha
  */
-export const createCaptcha = <ThrowOnError extends boolean = false>(
+export const createCaptcha = <ThrowOnError extends boolean = true>(
   options: Options<CreateCaptchaData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<CreateCaptchaResponse, CreateCaptchaError, ThrowOnError>({
@@ -644,7 +644,7 @@ export const createCaptcha = <ThrowOnError extends boolean = false>(
 /**
  * List captchas
  */
-export const listCaptchas = <ThrowOnError extends boolean = false>(
+export const listCaptchas = <ThrowOnError extends boolean = true>(
   options?: Options<ListCaptchasData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<ListCaptchasResponse, ListCaptchasError, ThrowOnError>({
@@ -656,7 +656,7 @@ export const listCaptchas = <ThrowOnError extends boolean = false>(
 /**
  * Find captcha by id
  */
-export const getCaptcha = <ThrowOnError extends boolean = false>(
+export const getCaptcha = <ThrowOnError extends boolean = true>(
   options: Options<GetCaptchaData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<GetCaptchaResponse, GetCaptchaError, ThrowOnError>({
@@ -668,7 +668,7 @@ export const getCaptcha = <ThrowOnError extends boolean = false>(
 /**
  * Update captcha
  */
-export const updateCaptcha = <ThrowOnError extends boolean = false>(
+export const updateCaptcha = <ThrowOnError extends boolean = true>(
   options: Options<UpdateCaptchaData, ThrowOnError>
 ) => {
   return (options?.client ?? client).patch<UpdateCaptchaResponse, UpdateCaptchaError, ThrowOnError>(
@@ -682,7 +682,7 @@ export const updateCaptcha = <ThrowOnError extends boolean = false>(
 /**
  * Delete captcha
  */
-export const deleteCaptcha = <ThrowOnError extends boolean = false>(
+export const deleteCaptcha = <ThrowOnError extends boolean = true>(
   options: Options<DeleteCaptchaData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<
@@ -698,7 +698,7 @@ export const deleteCaptcha = <ThrowOnError extends boolean = false>(
 /**
  * Send plain text email
  */
-export const sendEmail = <ThrowOnError extends boolean = false>(
+export const sendEmail = <ThrowOnError extends boolean = true>(
   options: Options<SendEmailData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<SendEmailResponse, SendEmailError, ThrowOnError>({
@@ -710,7 +710,7 @@ export const sendEmail = <ThrowOnError extends boolean = false>(
 /**
  * Create email record
  */
-export const createEmailRecord = <ThrowOnError extends boolean = false>(
+export const createEmailRecord = <ThrowOnError extends boolean = true>(
   options: Options<CreateEmailRecordData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
@@ -726,7 +726,7 @@ export const createEmailRecord = <ThrowOnError extends boolean = false>(
 /**
  * List email records
  */
-export const listEmailRecords = <ThrowOnError extends boolean = false>(
+export const listEmailRecords = <ThrowOnError extends boolean = true>(
   options?: Options<ListEmailRecordsData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<
@@ -742,7 +742,7 @@ export const listEmailRecords = <ThrowOnError extends boolean = false>(
 /**
  * Find email record by id
  */
-export const getEmailRecord = <ThrowOnError extends boolean = false>(
+export const getEmailRecord = <ThrowOnError extends boolean = true>(
   options: Options<GetEmailRecordData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<GetEmailRecordResponse, GetEmailRecordError, ThrowOnError>(
@@ -756,7 +756,7 @@ export const getEmailRecord = <ThrowOnError extends boolean = false>(
 /**
  * Update email record
  */
-export const updateEmailRecord = <ThrowOnError extends boolean = false>(
+export const updateEmailRecord = <ThrowOnError extends boolean = true>(
   options: Options<UpdateEmailRecordData, ThrowOnError>
 ) => {
   return (options?.client ?? client).patch<
@@ -772,7 +772,7 @@ export const updateEmailRecord = <ThrowOnError extends boolean = false>(
 /**
  * Delete email record
  */
-export const deleteEmailRecord = <ThrowOnError extends boolean = false>(
+export const deleteEmailRecord = <ThrowOnError extends boolean = true>(
   options: Options<DeleteEmailRecordData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<
@@ -788,7 +788,7 @@ export const deleteEmailRecord = <ThrowOnError extends boolean = false>(
 /**
  * Send sms
  */
-export const sendSms = <ThrowOnError extends boolean = false>(
+export const sendSms = <ThrowOnError extends boolean = true>(
   options: Options<SendSmsData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<SendSmsResponse, SendSmsError, ThrowOnError>({
@@ -800,7 +800,7 @@ export const sendSms = <ThrowOnError extends boolean = false>(
 /**
  * Create sms record
  */
-export const createSmsRecord = <ThrowOnError extends boolean = false>(
+export const createSmsRecord = <ThrowOnError extends boolean = true>(
   options: Options<CreateSmsRecordData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<
@@ -816,7 +816,7 @@ export const createSmsRecord = <ThrowOnError extends boolean = false>(
 /**
  * List sms records
  */
-export const listSmsRecords = <ThrowOnError extends boolean = false>(
+export const listSmsRecords = <ThrowOnError extends boolean = true>(
   options?: Options<ListSmsRecordsData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<ListSmsRecordsResponse, ListSmsRecordsError, ThrowOnError>(
@@ -830,7 +830,7 @@ export const listSmsRecords = <ThrowOnError extends boolean = false>(
 /**
  * Find sms record by id
  */
-export const getSmsRecord = <ThrowOnError extends boolean = false>(
+export const getSmsRecord = <ThrowOnError extends boolean = true>(
   options: Options<GetSmsRecordData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<GetSmsRecordResponse, GetSmsRecordError, ThrowOnError>({
@@ -842,7 +842,7 @@ export const getSmsRecord = <ThrowOnError extends boolean = false>(
 /**
  * Update sms record
  */
-export const updateSmsRecord = <ThrowOnError extends boolean = false>(
+export const updateSmsRecord = <ThrowOnError extends boolean = true>(
   options: Options<UpdateSmsRecordData, ThrowOnError>
 ) => {
   return (options?.client ?? client).patch<
@@ -858,7 +858,7 @@ export const updateSmsRecord = <ThrowOnError extends boolean = false>(
 /**
  * Delete sms record
  */
-export const deleteSmsRecord = <ThrowOnError extends boolean = false>(
+export const deleteSmsRecord = <ThrowOnError extends boolean = true>(
   options: Options<DeleteSmsRecordData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<
@@ -874,7 +874,7 @@ export const deleteSmsRecord = <ThrowOnError extends boolean = false>(
 /**
  * List Industries
  */
-export const listIndustries = <ThrowOnError extends boolean = false>(
+export const listIndustries = <ThrowOnError extends boolean = true>(
   options?: Options<unknown, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<ListIndustriesResponse, ListIndustriesError, ThrowOnError>(
@@ -888,7 +888,7 @@ export const listIndustries = <ThrowOnError extends boolean = false>(
 /**
  * List Regions
  */
-export const listRegions = <ThrowOnError extends boolean = false>(
+export const listRegions = <ThrowOnError extends boolean = true>(
   options?: Options<unknown, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<ListRegionsResponse, ListRegionsError, ThrowOnError>({
@@ -900,7 +900,7 @@ export const listRegions = <ThrowOnError extends boolean = false>(
 /**
  * Create role
  */
-export const createRole = <ThrowOnError extends boolean = false>(
+export const createRole = <ThrowOnError extends boolean = true>(
   options: Options<CreateRoleData, ThrowOnError>
 ) => {
   return (options?.client ?? client).post<CreateRoleResponse, CreateRoleError, ThrowOnError>({
@@ -912,7 +912,7 @@ export const createRole = <ThrowOnError extends boolean = false>(
 /**
  * List roles
  */
-export const listRoles = <ThrowOnError extends boolean = false>(
+export const listRoles = <ThrowOnError extends boolean = true>(
   options?: Options<ListRolesData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<ListRolesResponse, ListRolesError, ThrowOnError>({
@@ -924,7 +924,7 @@ export const listRoles = <ThrowOnError extends boolean = false>(
 /**
  * Find role by id or key
  */
-export const getRole = <ThrowOnError extends boolean = false>(
+export const getRole = <ThrowOnError extends boolean = true>(
   options: Options<GetRoleData, ThrowOnError>
 ) => {
   return (options?.client ?? client).get<GetRoleResponse, GetRoleError, ThrowOnError>({
@@ -936,7 +936,7 @@ export const getRole = <ThrowOnError extends boolean = false>(
 /**
  * Update role
  */
-export const updateRole = <ThrowOnError extends boolean = false>(
+export const updateRole = <ThrowOnError extends boolean = true>(
   options: Options<UpdateRoleData, ThrowOnError>
 ) => {
   return (options?.client ?? client).patch<UpdateRoleResponse, UpdateRoleError, ThrowOnError>({
@@ -948,7 +948,7 @@ export const updateRole = <ThrowOnError extends boolean = false>(
 /**
  * Delete role
  */
-export const deleteRole = <ThrowOnError extends boolean = false>(
+export const deleteRole = <ThrowOnError extends boolean = true>(
   options: Options<DeleteRoleData, ThrowOnError>
 ) => {
   return (options?.client ?? client).delete<DeleteRoleResponse, DeleteRoleError, ThrowOnError>({
