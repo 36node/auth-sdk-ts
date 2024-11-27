@@ -64,10 +64,6 @@ jobs:
       - name: genereate sdk
         run: pnpm gen
 
-      - name: replace
-        run: |
-          find ./src -type f | xargs perl -pi -e 's/ThrowOnError extends boolean = false/ThrowOnError extends boolean = true/'
-
       - name: build
         run: |
           npm run build
