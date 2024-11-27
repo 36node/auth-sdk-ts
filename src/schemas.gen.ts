@@ -292,6 +292,17 @@ export const LoginByPhoneDtoSchema = {
   required: ['phone', 'key', 'code'],
 } as const;
 
+export const LogoutDtoSchema = {
+  type: 'object',
+  properties: {
+    key: {
+      type: 'string',
+      description: 'session key',
+    },
+  },
+  required: ['key'],
+} as const;
+
 export const RegisterDtoSchema = {
   type: 'object',
   properties: {

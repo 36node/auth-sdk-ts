@@ -116,6 +116,9 @@ import type {
   LoginData,
   LoginError,
   LoginResponse,
+  LogoutData,
+  LogoutError,
+  LogoutResponse,
   RefreshData,
   RefreshError,
   RefreshResponse,
@@ -222,6 +225,18 @@ export const loginByPhone = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).post<LoginByPhoneResponse, LoginByPhoneError, ThrowOnError>({
     ...options,
     url: '/auth/@loginByPhone',
+  });
+};
+
+/**
+ * logout
+ */
+export const logout = <ThrowOnError extends boolean = true>(
+  options: OptionsLegacyParser<LogoutData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<LogoutResponse, LogoutError, ThrowOnError>({
+    ...options,
+    url: '/auth/@logout',
   });
 };
 

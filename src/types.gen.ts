@@ -462,6 +462,13 @@ export type LoginDto = {
   password: string;
 };
 
+export type LogoutDto = {
+  /**
+   * session key
+   */
+  key: string;
+};
+
 export type Namespace = {
   /**
    * 额外数据
@@ -1312,6 +1319,14 @@ export type LoginByPhoneData = {
 export type LoginByPhoneResponse = SessionWithToken;
 
 export type LoginByPhoneError = unknown;
+
+export type LogoutData = {
+  body: LogoutDto;
+};
+
+export type LogoutResponse = void;
+
+export type LogoutError = unknown;
 
 export type RegisterData = {
   body: RegisterDto;
