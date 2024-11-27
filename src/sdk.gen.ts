@@ -173,6 +173,9 @@ import type {
   UpsertUserByEmployeeIdData,
   UpsertUserByEmployeeIdError,
   UpsertUserByEmployeeIdResponse,
+  VerifyCaptchaData,
+  VerifyCaptchaError,
+  VerifyCaptchaResponse,
   VerifyIdentityData,
   VerifyIdentityError,
   VerifyIdentityResponse,
@@ -707,6 +710,18 @@ export const deleteCaptcha = <ThrowOnError extends boolean = true>(
   >({
     ...options,
     url: '/captchas/{captchaId}',
+  });
+};
+
+/**
+ * verify captcha
+ */
+export const verifyCaptcha = <ThrowOnError extends boolean = true>(
+  options: OptionsLegacyParser<VerifyCaptchaData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<VerifyCaptchaResponse, VerifyCaptchaError, ThrowOnError>({
+    ...options,
+    url: '/captchas/@verifyCaptcha',
   });
 };
 

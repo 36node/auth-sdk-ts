@@ -293,10 +293,6 @@ export type CreateUserDto = {
    */
   active?: boolean;
   /**
-   * 邀请码
-   */
-  inviteCode?: string;
-  /**
    * 状态
    */
   status?: string;
@@ -1135,10 +1131,6 @@ export type UpdateUserDto = {
    */
   active?: boolean;
   /**
-   * 邀请码
-   */
-  inviteCode?: string;
-  /**
    * 状态
    */
   status?: string;
@@ -1255,10 +1247,6 @@ export type User = {
    */
   active?: boolean;
   /**
-   * 邀请码
-   */
-  inviteCode?: string;
-  /**
    * 状态
    */
   status?: string;
@@ -1290,6 +1278,24 @@ export type User = {
    * Entity updated by who
    */
   updatedBy?: string;
+};
+
+export type VerifyCaptchaDto = {
+  /**
+   * 验证码
+   */
+  code: string;
+  /**
+   * 验证码 key
+   */
+  key: string;
+};
+
+export type VerifyCaptchaResultDto = {
+  /**
+   * 是否验证成功
+   */
+  success: boolean;
 };
 
 export type HelloResponse = HealthCheckResult;
@@ -1861,6 +1867,14 @@ export type DeleteCaptchaData = {
 export type DeleteCaptchaResponse = void;
 
 export type DeleteCaptchaError = unknown;
+
+export type VerifyCaptchaData = {
+  body: VerifyCaptchaDto;
+};
+
+export type VerifyCaptchaResponse = VerifyCaptchaResultDto;
+
+export type VerifyCaptchaError = unknown;
 
 export type SendEmailData = {
   body: SendEmailDto;

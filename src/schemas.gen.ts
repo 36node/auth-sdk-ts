@@ -145,10 +145,6 @@ export const UserSchema = {
       type: 'boolean',
       description: '是否启用',
     },
-    inviteCode: {
-      type: 'string',
-      description: '邀请码',
-    },
     status: {
       type: 'string',
       description: '状态',
@@ -530,10 +526,6 @@ export const CreateUserDtoSchema = {
       type: 'boolean',
       description: '是否启用',
     },
-    inviteCode: {
-      type: 'string',
-      description: '邀请码',
-    },
     status: {
       type: 'string',
       description: '状态',
@@ -667,10 +659,6 @@ export const UpdateUserDtoSchema = {
     active: {
       type: 'boolean',
       description: '是否启用',
-    },
-    inviteCode: {
-      type: 'string',
-      description: '邀请码',
     },
     status: {
       type: 'string',
@@ -1195,6 +1183,32 @@ export const UpdateCaptchaDtoSchema = {
       description: 'key',
     },
   },
+} as const;
+
+export const VerifyCaptchaDtoSchema = {
+  type: 'object',
+  properties: {
+    code: {
+      type: 'string',
+      description: '验证码',
+    },
+    key: {
+      type: 'string',
+      description: '验证码 key',
+    },
+  },
+  required: ['code', 'key'],
+} as const;
+
+export const VerifyCaptchaResultDtoSchema = {
+  type: 'object',
+  properties: {
+    success: {
+      type: 'boolean',
+      description: '是否验证成功',
+    },
+  },
+  required: ['success'],
 } as const;
 
 export const SendEmailDtoSchema = {
