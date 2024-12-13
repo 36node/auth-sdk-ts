@@ -2,183 +2,247 @@
 
 import { createClient, createConfig, type OptionsLegacyParser } from '@hey-api/client-fetch';
 
-import type {
-  CleanupAllDataError,
-  CleanupAllDataResponse,
-  CreateCaptchaData,
-  CreateCaptchaError,
-  CreateCaptchaResponse,
-  CreateEmailRecordData,
-  CreateEmailRecordError,
-  CreateEmailRecordResponse,
-  CreateGroupData,
-  CreateGroupError,
-  CreateGroupResponse,
-  CreateNamespaceData,
-  CreateNamespaceError,
-  CreateNamespaceResponse,
-  CreateRoleData,
-  CreateRoleError,
-  CreateRoleResponse,
-  CreateSessionData,
-  CreateSessionError,
-  CreateSessionResponse,
-  CreateSmsRecordData,
-  CreateSmsRecordError,
-  CreateSmsRecordResponse,
-  CreateUserData,
-  CreateUserError,
-  CreateUserResponse,
-  DeleteCaptchaData,
-  DeleteCaptchaError,
-  DeleteCaptchaResponse,
-  DeleteEmailRecordData,
-  DeleteEmailRecordError,
-  DeleteEmailRecordResponse,
-  DeleteGroupData,
-  DeleteGroupError,
-  DeleteGroupResponse,
-  DeleteNamespaceData,
-  DeleteNamespaceError,
-  DeleteNamespaceResponse,
-  DeleteRoleData,
-  DeleteRoleError,
-  DeleteRoleResponse,
-  DeleteSessionData,
-  DeleteSessionError,
-  DeleteSessionResponse,
-  DeleteSmsRecordData,
-  DeleteSmsRecordError,
-  DeleteSmsRecordResponse,
-  DeleteUserData,
-  DeleteUserError,
-  DeleteUserResponse,
-  GetCaptchaData,
-  GetCaptchaError,
-  GetCaptchaResponse,
-  GetEmailRecordData,
-  GetEmailRecordError,
-  GetEmailRecordResponse,
-  GetGroupData,
-  GetGroupError,
-  GetGroupResponse,
-  GetNamespaceData,
-  GetNamespaceError,
-  GetNamespaceResponse,
-  GetRoleData,
-  GetRoleError,
-  GetRoleResponse,
-  GetSessionData,
-  GetSessionError,
-  GetSessionResponse,
-  GetSmsRecordData,
-  GetSmsRecordError,
-  GetSmsRecordResponse,
-  GetUserData,
-  GetUserError,
-  GetUserResponse,
-  HelloError,
-  HelloResponse,
-  ListCaptchasData,
-  ListCaptchasError,
-  ListCaptchasResponse,
-  ListEmailRecordsData,
-  ListEmailRecordsError,
-  ListEmailRecordsResponse,
-  ListGroupsData,
-  ListGroupsError,
-  ListGroupsResponse,
-  ListIndustriesError,
-  ListIndustriesResponse,
-  ListNamespacesData,
-  ListNamespacesError,
-  ListNamespacesResponse,
-  ListRegionsError,
-  ListRegionsResponse,
-  ListRolesData,
-  ListRolesError,
-  ListRolesResponse,
-  ListSessionsData,
-  ListSessionsError,
-  ListSessionsResponse,
-  ListSmsRecordsData,
-  ListSmsRecordsError,
-  ListSmsRecordsResponse,
-  ListUsersData,
-  ListUsersError,
-  ListUsersResponse,
-  LoginByEmailData,
-  LoginByEmailError,
-  LoginByEmailResponse,
-  LoginByPhoneData,
-  LoginByPhoneError,
-  LoginByPhoneResponse,
-  LoginData,
-  LoginError,
-  LoginResponse,
-  LogoutData,
-  LogoutError,
-  LogoutResponse,
-  RefreshData,
-  RefreshError,
-  RefreshResponse,
-  RegisterByEmailData,
-  RegisterByEmailError,
-  RegisterByEmailResponse,
-  RegisterByPhoneData,
-  RegisterByPhoneError,
-  RegisterByPhoneResponse,
-  RegisterData,
-  RegisterError,
-  RegisterResponse,
-  ResetPasswordData,
-  ResetPasswordError,
-  ResetPasswordResponse,
-  SendEmailData,
-  SendEmailError,
-  SendEmailResponse,
-  SendSmsData,
-  SendSmsError,
-  SendSmsResponse,
-  SignTokenData,
-  SignTokenError,
-  SignTokenResponse,
-  UpdateCaptchaData,
-  UpdateCaptchaError,
-  UpdateCaptchaResponse,
-  UpdateEmailRecordData,
-  UpdateEmailRecordError,
-  UpdateEmailRecordResponse,
-  UpdateGroupData,
-  UpdateGroupError,
-  UpdateGroupResponse,
-  UpdateNamespaceData,
-  UpdateNamespaceError,
-  UpdateNamespaceResponse,
-  UpdatePasswordData,
-  UpdatePasswordError,
-  UpdatePasswordResponse,
-  UpdateRoleData,
-  UpdateRoleError,
-  UpdateRoleResponse,
-  UpdateSessionData,
-  UpdateSessionError,
-  UpdateSessionResponse,
-  UpdateSmsRecordData,
-  UpdateSmsRecordError,
-  UpdateSmsRecordResponse,
-  UpdateUserData,
-  UpdateUserError,
-  UpdateUserResponse,
-  UpsertUserByEmployeeIdData,
-  UpsertUserByEmployeeIdError,
-  UpsertUserByEmployeeIdResponse,
-  VerifyCaptchaData,
-  VerifyCaptchaError,
-  VerifyCaptchaResponse,
-  VerifyIdentityData,
-  VerifyIdentityError,
-  VerifyIdentityResponse,
+import {
+  BindThirdPartyResponseTransformer,
+  CreateCaptchaResponseTransformer,
+  CreateEmailRecordResponseTransformer,
+  CreateGroupResponseTransformer,
+  CreateNamespaceResponseTransformer,
+  CreateRoleResponseTransformer,
+  CreateSessionResponseTransformer,
+  CreateSmsRecordResponseTransformer,
+  CreateThirdPartyResponseTransformer,
+  CreateUserResponseTransformer,
+  GetCaptchaResponseTransformer,
+  GetEmailRecordResponseTransformer,
+  GetGroupResponseTransformer,
+  GetNamespaceResponseTransformer,
+  GetRoleResponseTransformer,
+  GetSessionResponseTransformer,
+  GetSmsRecordResponseTransformer,
+  GetUserResponseTransformer,
+  ListCaptchasResponseTransformer,
+  ListEmailRecordsResponseTransformer,
+  ListGroupsResponseTransformer,
+  ListIndustriesResponseTransformer,
+  ListNamespacesResponseTransformer,
+  ListRolesResponseTransformer,
+  ListSessionsResponseTransformer,
+  ListSmsRecordsResponseTransformer,
+  ListUsersResponseTransformer,
+  LoginByEmailResponseTransformer,
+  LoginByGithubResponseTransformer,
+  LoginByPhoneResponseTransformer,
+  LoginResponseTransformer,
+  RefreshResponseTransformer,
+  RegisterByEmailResponseTransformer,
+  RegisterByPhoneResponseTransformer,
+  RegisterResponseTransformer,
+  SignTokenResponseTransformer,
+  UpdateCaptchaResponseTransformer,
+  UpdateEmailRecordResponseTransformer,
+  UpdateGroupResponseTransformer,
+  UpdateNamespaceResponseTransformer,
+  UpdateRoleResponseTransformer,
+  UpdateSessionResponseTransformer,
+  UpdateSmsRecordResponseTransformer,
+  UpdateUserResponseTransformer,
+  UpsertUserByEmployeeIdResponseTransformer,
+  VerifyIdentityResponseTransformer,
+  type BindThirdPartyData,
+  type BindThirdPartyError,
+  type BindThirdPartyResponse,
+  type CleanupAllDataError,
+  type CleanupAllDataResponse,
+  type CreateCaptchaData,
+  type CreateCaptchaError,
+  type CreateCaptchaResponse,
+  type CreateEmailRecordData,
+  type CreateEmailRecordError,
+  type CreateEmailRecordResponse,
+  type CreateGroupData,
+  type CreateGroupError,
+  type CreateGroupResponse,
+  type CreateNamespaceData,
+  type CreateNamespaceError,
+  type CreateNamespaceResponse,
+  type CreateRoleData,
+  type CreateRoleError,
+  type CreateRoleResponse,
+  type CreateSessionData,
+  type CreateSessionError,
+  type CreateSessionResponse,
+  type CreateSmsRecordData,
+  type CreateSmsRecordError,
+  type CreateSmsRecordResponse,
+  type CreateThirdPartyData,
+  type CreateThirdPartyError,
+  type CreateThirdPartyResponse,
+  type CreateUserData,
+  type CreateUserError,
+  type CreateUserResponse,
+  type DeleteCaptchaData,
+  type DeleteCaptchaError,
+  type DeleteCaptchaResponse,
+  type DeleteEmailRecordData,
+  type DeleteEmailRecordError,
+  type DeleteEmailRecordResponse,
+  type DeleteGroupData,
+  type DeleteGroupError,
+  type DeleteGroupResponse,
+  type DeleteNamespaceData,
+  type DeleteNamespaceError,
+  type DeleteNamespaceResponse,
+  type DeleteRoleData,
+  type DeleteRoleError,
+  type DeleteRoleResponse,
+  type DeleteSessionData,
+  type DeleteSessionError,
+  type DeleteSessionResponse,
+  type DeleteSmsRecordData,
+  type DeleteSmsRecordError,
+  type DeleteSmsRecordResponse,
+  type DeleteUserData,
+  type DeleteUserError,
+  type DeleteUserResponse,
+  type GetCaptchaData,
+  type GetCaptchaError,
+  type GetCaptchaResponse,
+  type GetEmailRecordData,
+  type GetEmailRecordError,
+  type GetEmailRecordResponse,
+  type GetGroupData,
+  type GetGroupError,
+  type GetGroupResponse,
+  type GetNamespaceData,
+  type GetNamespaceError,
+  type GetNamespaceResponse,
+  type GetRoleData,
+  type GetRoleError,
+  type GetRoleResponse,
+  type GetSessionData,
+  type GetSessionError,
+  type GetSessionResponse,
+  type GetSmsRecordData,
+  type GetSmsRecordError,
+  type GetSmsRecordResponse,
+  type GetThirdPartyData,
+  type GetThirdPartyError,
+  type GetThirdPartyResponse,
+  type GetUserData,
+  type GetUserError,
+  type GetUserResponse,
+  type HelloError,
+  type HelloResponse,
+  type ListCaptchasData,
+  type ListCaptchasError,
+  type ListCaptchasResponse,
+  type ListEmailRecordsData,
+  type ListEmailRecordsError,
+  type ListEmailRecordsResponse,
+  type ListGroupsData,
+  type ListGroupsError,
+  type ListGroupsResponse,
+  type ListIndustriesError,
+  type ListIndustriesResponse,
+  type ListNamespacesData,
+  type ListNamespacesError,
+  type ListNamespacesResponse,
+  type ListRegionsError,
+  type ListRegionsResponse,
+  type ListRolesData,
+  type ListRolesError,
+  type ListRolesResponse,
+  type ListSessionsData,
+  type ListSessionsError,
+  type ListSessionsResponse,
+  type ListSmsRecordsData,
+  type ListSmsRecordsError,
+  type ListSmsRecordsResponse,
+  type ListThirdPartyData,
+  type ListThirdPartyError,
+  type ListThirdPartyResponse,
+  type ListUsersData,
+  type ListUsersError,
+  type ListUsersResponse,
+  type LoginByEmailData,
+  type LoginByEmailError,
+  type LoginByEmailResponse,
+  type LoginByGithubData,
+  type LoginByGithubError,
+  type LoginByGithubResponse,
+  type LoginByPhoneData,
+  type LoginByPhoneError,
+  type LoginByPhoneResponse,
+  type LoginData,
+  type LoginError,
+  type LoginResponse,
+  type LogoutData,
+  type LogoutError,
+  type LogoutResponse,
+  type RefreshData,
+  type RefreshError,
+  type RefreshResponse,
+  type RegisterByEmailData,
+  type RegisterByEmailError,
+  type RegisterByEmailResponse,
+  type RegisterByPhoneData,
+  type RegisterByPhoneError,
+  type RegisterByPhoneResponse,
+  type RegisterData,
+  type RegisterError,
+  type RegisterResponse,
+  type ResetPasswordData,
+  type ResetPasswordError,
+  type ResetPasswordResponse,
+  type SendEmailData,
+  type SendEmailError,
+  type SendEmailResponse,
+  type SendSmsData,
+  type SendSmsError,
+  type SendSmsResponse,
+  type SignTokenData,
+  type SignTokenError,
+  type SignTokenResponse,
+  type UpdateCaptchaData,
+  type UpdateCaptchaError,
+  type UpdateCaptchaResponse,
+  type UpdateEmailRecordData,
+  type UpdateEmailRecordError,
+  type UpdateEmailRecordResponse,
+  type UpdateGroupData,
+  type UpdateGroupError,
+  type UpdateGroupResponse,
+  type UpdateNamespaceData,
+  type UpdateNamespaceError,
+  type UpdateNamespaceResponse,
+  type UpdatePasswordData,
+  type UpdatePasswordError,
+  type UpdatePasswordResponse,
+  type UpdateRoleData,
+  type UpdateRoleError,
+  type UpdateRoleResponse,
+  type UpdateSessionData,
+  type UpdateSessionError,
+  type UpdateSessionResponse,
+  type UpdateSmsRecordData,
+  type UpdateSmsRecordError,
+  type UpdateSmsRecordResponse,
+  type UpdateThirdPartyData,
+  type UpdateThirdPartyError,
+  type UpdateThirdPartyResponse,
+  type UpdateUserData,
+  type UpdateUserError,
+  type UpdateUserResponse,
+  type UpsertUserByEmployeeIdData,
+  type UpsertUserByEmployeeIdError,
+  type UpsertUserByEmployeeIdResponse,
+  type VerifyCaptchaData,
+  type VerifyCaptchaError,
+  type VerifyCaptchaResponse,
+  type VerifyIdentityData,
+  type VerifyIdentityError,
+  type VerifyIdentityResponse,
 } from './types.gen';
 
 export const client = createClient(createConfig());
@@ -204,11 +268,25 @@ export const login = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).post<LoginResponse, LoginError, ThrowOnError>({
     ...options,
     url: '/auth/@login',
+    responseTransformer: LoginResponseTransformer,
   });
 };
 
 /**
- * login with email and code
+ * login by Github
+ */
+export const loginByGithub = <ThrowOnError extends boolean = true>(
+  options: OptionsLegacyParser<LoginByGithubData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<LoginByGithubResponse, LoginByGithubError, ThrowOnError>({
+    ...options,
+    url: '/auth/@loginByGithub',
+    responseTransformer: LoginByGithubResponseTransformer,
+  });
+};
+
+/**
+ * login by email and code
  */
 export const loginByEmail = <ThrowOnError extends boolean = true>(
   options: OptionsLegacyParser<LoginByEmailData, ThrowOnError>
@@ -216,6 +294,7 @@ export const loginByEmail = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).post<LoginByEmailResponse, LoginByEmailError, ThrowOnError>({
     ...options,
     url: '/auth/@loginByEmail',
+    responseTransformer: LoginByEmailResponseTransformer,
   });
 };
 
@@ -228,6 +307,7 @@ export const loginByPhone = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).post<LoginByPhoneResponse, LoginByPhoneError, ThrowOnError>({
     ...options,
     url: '/auth/@loginByPhone',
+    responseTransformer: LoginByPhoneResponseTransformer,
   });
 };
 
@@ -252,6 +332,7 @@ export const register = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).post<RegisterResponse, RegisterError, ThrowOnError>({
     ...options,
     url: '/auth/@register',
+    responseTransformer: RegisterResponseTransformer,
   });
 };
 
@@ -268,6 +349,7 @@ export const registerByPhone = <ThrowOnError extends boolean = true>(
   >({
     ...options,
     url: '/auth/@registerByPhone',
+    responseTransformer: RegisterByPhoneResponseTransformer,
   });
 };
 
@@ -284,6 +366,7 @@ export const registerByEmail = <ThrowOnError extends boolean = true>(
   >({
     ...options,
     url: '/auth/@registerByEmail',
+    responseTransformer: RegisterByEmailResponseTransformer,
   });
 };
 
@@ -296,6 +379,7 @@ export const signToken = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).post<SignTokenResponse, SignTokenError, ThrowOnError>({
     ...options,
     url: '/auth/@signToken',
+    responseTransformer: SignTokenResponseTransformer,
   });
 };
 
@@ -308,6 +392,7 @@ export const refresh = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).post<RefreshResponse, RefreshError, ThrowOnError>({
     ...options,
     url: '/auth/@refresh',
+    responseTransformer: RefreshResponseTransformer,
   });
 };
 
@@ -336,6 +421,7 @@ export const createUser = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).post<CreateUserResponse, CreateUserError, ThrowOnError>({
     ...options,
     url: '/users',
+    responseTransformer: CreateUserResponseTransformer,
   });
 };
 
@@ -348,6 +434,7 @@ export const listUsers = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).get<ListUsersResponse, ListUsersError, ThrowOnError>({
     ...options,
     url: '/users',
+    responseTransformer: ListUsersResponseTransformer,
   });
 };
 
@@ -360,6 +447,7 @@ export const getUser = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).get<GetUserResponse, GetUserError, ThrowOnError>({
     ...options,
     url: '/users/{userId}',
+    responseTransformer: GetUserResponseTransformer,
   });
 };
 
@@ -372,6 +460,7 @@ export const updateUser = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).patch<UpdateUserResponse, UpdateUserError, ThrowOnError>({
     ...options,
     url: '/users/{userId}',
+    responseTransformer: UpdateUserResponseTransformer,
   });
 };
 
@@ -400,6 +489,7 @@ export const upsertUserByEmployeeId = <ThrowOnError extends boolean = true>(
   >({
     ...options,
     url: '/users/employee/{userEmployeeId}',
+    responseTransformer: UpsertUserByEmployeeIdResponseTransformer,
   });
 };
 
@@ -416,6 +506,7 @@ export const verifyIdentity = <ThrowOnError extends boolean = true>(
   >({
     ...options,
     url: '/users/{userId}/@verifyIdentity',
+    responseTransformer: VerifyIdentityResponseTransformer,
   });
 };
 
@@ -460,6 +551,7 @@ export const createNamespace = <ThrowOnError extends boolean = true>(
   >({
     ...options,
     url: '/namespaces',
+    responseTransformer: CreateNamespaceResponseTransformer,
   });
 };
 
@@ -473,6 +565,7 @@ export const listNamespaces = <ThrowOnError extends boolean = true>(
     {
       ...options,
       url: '/namespaces',
+      responseTransformer: ListNamespacesResponseTransformer,
     }
   );
 };
@@ -486,6 +579,7 @@ export const getNamespace = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).get<GetNamespaceResponse, GetNamespaceError, ThrowOnError>({
     ...options,
     url: '/namespaces/{namespaceIdOrKey}',
+    responseTransformer: GetNamespaceResponseTransformer,
   });
 };
 
@@ -502,6 +596,7 @@ export const updateNamespace = <ThrowOnError extends boolean = true>(
   >({
     ...options,
     url: '/namespaces/{namespaceIdOrKey}',
+    responseTransformer: UpdateNamespaceResponseTransformer,
   });
 };
 
@@ -530,6 +625,7 @@ export const createSession = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).post<CreateSessionResponse, CreateSessionError, ThrowOnError>({
     ...options,
     url: '/sessions',
+    responseTransformer: CreateSessionResponseTransformer,
   });
 };
 
@@ -542,6 +638,7 @@ export const listSessions = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).get<ListSessionsResponse, ListSessionsError, ThrowOnError>({
     ...options,
     url: '/sessions',
+    responseTransformer: ListSessionsResponseTransformer,
   });
 };
 
@@ -554,6 +651,7 @@ export const getSession = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).get<GetSessionResponse, GetSessionError, ThrowOnError>({
     ...options,
     url: '/sessions/{sessionId}',
+    responseTransformer: GetSessionResponseTransformer,
   });
 };
 
@@ -567,6 +665,7 @@ export const updateSession = <ThrowOnError extends boolean = true>(
     {
       ...options,
       url: '/sessions/{sessionId}',
+      responseTransformer: UpdateSessionResponseTransformer,
     }
   );
 };
@@ -596,6 +695,7 @@ export const createGroup = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).post<CreateGroupResponse, CreateGroupError, ThrowOnError>({
     ...options,
     url: '/groups',
+    responseTransformer: CreateGroupResponseTransformer,
   });
 };
 
@@ -608,6 +708,7 @@ export const listGroups = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).get<ListGroupsResponse, ListGroupsError, ThrowOnError>({
     ...options,
     url: '/groups',
+    responseTransformer: ListGroupsResponseTransformer,
   });
 };
 
@@ -620,6 +721,7 @@ export const getGroup = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).get<GetGroupResponse, GetGroupError, ThrowOnError>({
     ...options,
     url: '/groups/{groupIdOrName}',
+    responseTransformer: GetGroupResponseTransformer,
   });
 };
 
@@ -632,6 +734,7 @@ export const updateGroup = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).patch<UpdateGroupResponse, UpdateGroupError, ThrowOnError>({
     ...options,
     url: '/groups/{groupId}',
+    responseTransformer: UpdateGroupResponseTransformer,
   });
 };
 
@@ -656,6 +759,7 @@ export const createCaptcha = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).post<CreateCaptchaResponse, CreateCaptchaError, ThrowOnError>({
     ...options,
     url: '/captchas',
+    responseTransformer: CreateCaptchaResponseTransformer,
   });
 };
 
@@ -668,6 +772,7 @@ export const listCaptchas = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).get<ListCaptchasResponse, ListCaptchasError, ThrowOnError>({
     ...options,
     url: '/captchas',
+    responseTransformer: ListCaptchasResponseTransformer,
   });
 };
 
@@ -680,6 +785,7 @@ export const getCaptcha = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).get<GetCaptchaResponse, GetCaptchaError, ThrowOnError>({
     ...options,
     url: '/captchas/{captchaId}',
+    responseTransformer: GetCaptchaResponseTransformer,
   });
 };
 
@@ -693,6 +799,7 @@ export const updateCaptcha = <ThrowOnError extends boolean = true>(
     {
       ...options,
       url: '/captchas/{captchaId}',
+      responseTransformer: UpdateCaptchaResponseTransformer,
     }
   );
 };
@@ -750,6 +857,7 @@ export const createEmailRecord = <ThrowOnError extends boolean = true>(
   >({
     ...options,
     url: '/email/records',
+    responseTransformer: CreateEmailRecordResponseTransformer,
   });
 };
 
@@ -766,6 +874,7 @@ export const listEmailRecords = <ThrowOnError extends boolean = true>(
   >({
     ...options,
     url: '/email/records',
+    responseTransformer: ListEmailRecordsResponseTransformer,
   });
 };
 
@@ -779,6 +888,7 @@ export const getEmailRecord = <ThrowOnError extends boolean = true>(
     {
       ...options,
       url: '/email/records/{emailRecordId}',
+      responseTransformer: GetEmailRecordResponseTransformer,
     }
   );
 };
@@ -796,6 +906,7 @@ export const updateEmailRecord = <ThrowOnError extends boolean = true>(
   >({
     ...options,
     url: '/email/records/{emailRecordId}',
+    responseTransformer: UpdateEmailRecordResponseTransformer,
   });
 };
 
@@ -840,6 +951,7 @@ export const createSmsRecord = <ThrowOnError extends boolean = true>(
   >({
     ...options,
     url: '/sms/records',
+    responseTransformer: CreateSmsRecordResponseTransformer,
   });
 };
 
@@ -853,6 +965,7 @@ export const listSmsRecords = <ThrowOnError extends boolean = true>(
     {
       ...options,
       url: '/sms/records',
+      responseTransformer: ListSmsRecordsResponseTransformer,
     }
   );
 };
@@ -866,6 +979,7 @@ export const getSmsRecord = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).get<GetSmsRecordResponse, GetSmsRecordError, ThrowOnError>({
     ...options,
     url: '/sms/records/{smsRecordId}',
+    responseTransformer: GetSmsRecordResponseTransformer,
   });
 };
 
@@ -882,6 +996,7 @@ export const updateSmsRecord = <ThrowOnError extends boolean = true>(
   >({
     ...options,
     url: '/sms/records/{smsRecordId}',
+    responseTransformer: UpdateSmsRecordResponseTransformer,
   });
 };
 
@@ -902,6 +1017,82 @@ export const deleteSmsRecord = <ThrowOnError extends boolean = true>(
 };
 
 /**
+ * create third party
+ */
+export const createThirdParty = <ThrowOnError extends boolean = true>(
+  options: OptionsLegacyParser<CreateThirdPartyData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    CreateThirdPartyResponse,
+    CreateThirdPartyError,
+    ThrowOnError
+  >({
+    ...options,
+    url: '/third-parties',
+    responseTransformer: CreateThirdPartyResponseTransformer,
+  });
+};
+
+/**
+ * list third party
+ */
+export const listThirdParty = <ThrowOnError extends boolean = true>(
+  options?: OptionsLegacyParser<ListThirdPartyData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<ListThirdPartyResponse, ListThirdPartyError, ThrowOnError>(
+    {
+      ...options,
+      url: '/third-parties',
+    }
+  );
+};
+
+/**
+ * get third party
+ */
+export const getThirdParty = <ThrowOnError extends boolean = true>(
+  options: OptionsLegacyParser<GetThirdPartyData, ThrowOnError>
+) => {
+  return (options?.client ?? client).get<GetThirdPartyResponse, GetThirdPartyError, ThrowOnError>({
+    ...options,
+    url: '/third-parties/{id}',
+  });
+};
+
+/**
+ * update third party
+ */
+export const updateThirdParty = <ThrowOnError extends boolean = true>(
+  options: OptionsLegacyParser<UpdateThirdPartyData, ThrowOnError>
+) => {
+  return (options?.client ?? client).patch<
+    UpdateThirdPartyResponse,
+    UpdateThirdPartyError,
+    ThrowOnError
+  >({
+    ...options,
+    url: '/third-parties/{id}',
+  });
+};
+
+/**
+ * bind third party
+ */
+export const bindThirdParty = <ThrowOnError extends boolean = true>(
+  options: OptionsLegacyParser<BindThirdPartyData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    BindThirdPartyResponse,
+    BindThirdPartyError,
+    ThrowOnError
+  >({
+    ...options,
+    url: '/third-parties/@bind',
+    responseTransformer: BindThirdPartyResponseTransformer,
+  });
+};
+
+/**
  * List Industries
  */
 export const listIndustries = <ThrowOnError extends boolean = true>(
@@ -911,6 +1102,7 @@ export const listIndustries = <ThrowOnError extends boolean = true>(
     {
       ...options,
       url: '/industries',
+      responseTransformer: ListIndustriesResponseTransformer,
     }
   );
 };
@@ -936,6 +1128,7 @@ export const createRole = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).post<CreateRoleResponse, CreateRoleError, ThrowOnError>({
     ...options,
     url: '/roles',
+    responseTransformer: CreateRoleResponseTransformer,
   });
 };
 
@@ -948,6 +1141,7 @@ export const listRoles = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).get<ListRolesResponse, ListRolesError, ThrowOnError>({
     ...options,
     url: '/roles',
+    responseTransformer: ListRolesResponseTransformer,
   });
 };
 
@@ -960,6 +1154,7 @@ export const getRole = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).get<GetRoleResponse, GetRoleError, ThrowOnError>({
     ...options,
     url: '/roles/{roleIdOrKey}',
+    responseTransformer: GetRoleResponseTransformer,
   });
 };
 
@@ -972,6 +1167,7 @@ export const updateRole = <ThrowOnError extends boolean = true>(
   return (options?.client ?? client).patch<UpdateRoleResponse, UpdateRoleError, ThrowOnError>({
     ...options,
     url: '/roles/{roleId}',
+    responseTransformer: UpdateRoleResponseTransformer,
   });
 };
 
