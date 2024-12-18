@@ -3,11 +3,11 @@
 export type bindThirdPartyDto = {
     username: string;
     password: string;
-    source: 'GitHub' | 'WeChat';
+    source: 'github' | 'wechat';
     login: string;
 };
 
-export type source = 'GitHub' | 'WeChat';
+export type source = 'github' | 'wechat';
 
 export type Captcha = {
     /**
@@ -177,20 +177,19 @@ export type CreateSessionDto = {
     refreshTokenExpireAt: Date;
     /**
      * 用户或第三方用户
+     * "user|123456789"
+     * "github|123456789"
+     * "client|abcddfe"
      */
-    uid: string;
+    subject: string;
     /**
-     * 第三方来源
-     */
-    source?: 'GitHub' | 'WeChat';
-    /**
-     * 客户端/设备
-     */
-    client?: string;
-    /**
-     * 用户动态权限
+     * 受限权限，如果提供这个字段，会覆盖用户的权限
      */
     permissions?: Array<(string)>;
+    /**
+     * 用户所属的组
+     */
+    groups?: Array<(string)>;
     /**
      * user ns
      */
@@ -721,20 +720,19 @@ export type Session = {
     refreshToken: string;
     /**
      * 用户或第三方用户
+     * "user|123456789"
+     * "github|123456789"
+     * "client|abcddfe"
      */
-    uid: string;
+    subject: string;
     /**
-     * 第三方来源
-     */
-    source?: 'GitHub' | 'WeChat';
-    /**
-     * 客户端/设备
-     */
-    client?: string;
-    /**
-     * 用户动态权限
+     * 受限权限，如果提供这个字段，会覆盖用户的权限
      */
     permissions?: Array<(string)>;
+    /**
+     * 用户所属的组
+     */
+    groups?: Array<(string)>;
     /**
      * user ns
      */
@@ -776,20 +774,19 @@ export type SessionWithToken = {
     refreshToken: string;
     /**
      * 用户或第三方用户
+     * "user|123456789"
+     * "github|123456789"
+     * "client|abcddfe"
      */
-    uid: string;
+    subject: string;
     /**
-     * 第三方来源
-     */
-    source?: 'GitHub' | 'WeChat';
-    /**
-     * 客户端/设备
-     */
-    client?: string;
-    /**
-     * 用户动态权限
+     * 受限权限，如果提供这个字段，会覆盖用户的权限
      */
     permissions?: Array<(string)>;
+    /**
+     * 用户所属的组
+     */
+    groups?: Array<(string)>;
     /**
      * user ns
      */
@@ -848,13 +845,13 @@ export type SignTokenDto = {
      */
     expiresIn: string;
     /**
-     * user id
+     * 用户 id
      */
     uid: string;
     /**
-     * user source
+     * 受限权限
      */
-    source?: 'GitHub' | 'WeChat';
+    permissions?: Array<(string)>;
 };
 
 export type SmsRecord = {
@@ -945,7 +942,7 @@ export type ThirdParty = {
 /**
  * 第三方登录来源
  */
-export type ThirdPartySource = 'GitHub' | 'WeChat';
+export type ThirdPartySource = 'github' | 'wechat';
 
 export type Token = {
     /**
@@ -1088,20 +1085,19 @@ export type UpdateSessionDto = {
     refreshTokenExpireAt?: Date;
     /**
      * 用户或第三方用户
+     * "user|123456789"
+     * "github|123456789"
+     * "client|abcddfe"
      */
-    uid?: string;
+    subject?: string;
     /**
-     * 第三方来源
-     */
-    source?: 'GitHub' | 'WeChat';
-    /**
-     * 客户端/设备
-     */
-    client?: string;
-    /**
-     * 用户动态权限
+     * 受限权限，如果提供这个字段，会覆盖用户的权限
      */
     permissions?: Array<(string)>;
+    /**
+     * 用户所属的组
+     */
+    groups?: Array<(string)>;
     /**
      * user ns
      */
@@ -1629,16 +1625,18 @@ export type DeleteUserResponse = (void);
 
 export type DeleteUserError = unknown;
 
-export type UpsertUserByEmployeeIdData = {
-    body: UpdateUserDto;
+export type UpsertUserByEmployeeData = {
+    body: CreateUserDto;
     path: {
-        userEmployeeId: string;
+        employeeId: string;
     };
 };
 
-export type UpsertUserByEmployeeIdResponse = (User);
+export type UpsertUserByEmployeeResponse = (User | {
+    [key: string]: unknown;
+});
 
-export type UpsertUserByEmployeeIdError = unknown;
+export type UpsertUserByEmployeeError = unknown;
 
 export type VerifyIdentityData = {
     path: {
@@ -1780,15 +1778,15 @@ export type ListSessionsData = {
          */
         _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'refreshTokenExpireAt' | '-refreshTokenExpireAt';
         /**
-         * 客户端/设备
+         * 用户所属的组
          */
-        client?: string;
+        groups?: Array<(string)>;
         /**
          * user ns
          */
         ns?: string;
         /**
-         * 用户动态权限
+         * 受限权限，如果提供这个字段，会覆盖用户的权限
          */
         permissions?: Array<(string)>;
         /**
@@ -1796,17 +1794,16 @@ export type ListSessionsData = {
          */
         refreshToken?: string;
         /**
-         * 第三方来源
+         * 用户或第三方用户
+         * "user|123456789"
+         * "github|123456789"
+         * "client|abcddfe"
          */
-        source?: 'GitHub' | 'WeChat';
+        subject?: string;
         /**
          * 类型，登录端
          */
         type?: string;
-        /**
-         * 用户或第三方用户
-         */
-        uid?: string;
     };
 };
 
@@ -2493,13 +2490,6 @@ export const GetUserResponseTransformer: GetUserResponseTransformer = async (dat
 export type UpdateUserResponseTransformer = (data: any) => Promise<UpdateUserResponse>;
 
 export const UpdateUserResponseTransformer: UpdateUserResponseTransformer = async (data) => {
-    UserModelResponseTransformer(data);
-    return data;
-};
-
-export type UpsertUserByEmployeeIdResponseTransformer = (data: any) => Promise<UpsertUserByEmployeeIdResponse>;
-
-export const UpsertUserByEmployeeIdResponseTransformer: UpsertUserByEmployeeIdResponseTransformer = async (data) => {
     UserModelResponseTransformer(data);
     return data;
 };
