@@ -1410,6 +1410,10 @@ export type HelloResponse = (HealthCheckResult);
 
 export type HelloError = unknown;
 
+export type CleanupAllDataResponse = (void);
+
+export type CleanupAllDataError = unknown;
+
 export type LoginData = {
     body: LoginDto;
 };
@@ -1489,10 +1493,6 @@ export type RefreshData = {
 export type RefreshResponse = (SessionWithToken);
 
 export type RefreshError = unknown;
-
-export type CleanupAllDataResponse = (void);
-
-export type CleanupAllDataError = unknown;
 
 export type CreateUserData = {
     body: CreateUserDto;
