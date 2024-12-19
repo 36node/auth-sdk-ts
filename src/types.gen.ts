@@ -655,11 +655,42 @@ export type RegisterDto = {
     ns?: string;
 };
 
-export type ResetPasswordDto = {
+export type ResetPasswordByEmailDto = {
+    /**
+     * 手机号
+     */
+    email: string;
+    /**
+     * 验证码 key
+     */
+    key: string;
+    /**
+     * 验证码 code
+     */
+    code: string;
     /**
      * 密码
      */
-    password?: string;
+    password: string;
+};
+
+export type ResetPasswordByPhoneDto = {
+    /**
+     * 手机号
+     */
+    phone: string;
+    /**
+     * 验证码 key
+     */
+    key: string;
+    /**
+     * 验证码 code
+     */
+    code: string;
+    /**
+     * 密码
+     */
+    password: string;
 };
 
 export type Role = {
@@ -1498,6 +1529,22 @@ export type RefreshResponse = (SessionWithToken);
 
 export type RefreshError = unknown;
 
+export type ResetPasswordByPhoneData = {
+    body: ResetPasswordByPhoneDto;
+};
+
+export type ResetPasswordByPhoneResponse = (void);
+
+export type ResetPasswordByPhoneError = unknown;
+
+export type ResetPasswordByEmailData = {
+    body: ResetPasswordByEmailDto;
+};
+
+export type ResetPasswordByEmailResponse = (void);
+
+export type ResetPasswordByEmailError = unknown;
+
 export type CreateUserData = {
     body: CreateUserDto;
 };
@@ -1651,17 +1698,6 @@ export type VerifyIdentityData = {
 export type VerifyIdentityResponse = (User);
 
 export type VerifyIdentityError = unknown;
-
-export type ResetPasswordData = {
-    body: ResetPasswordDto;
-    path: {
-        userId: string;
-    };
-};
-
-export type ResetPasswordResponse = (void);
-
-export type ResetPasswordError = unknown;
 
 export type UpdatePasswordData = {
     body: UpdatePasswordDto;
