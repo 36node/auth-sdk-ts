@@ -1676,18 +1676,57 @@ export type DeleteUserResponse = (void);
 
 export type DeleteUserError = unknown;
 
-export type UpsertUserByEmployeeData = {
+export type UpsertUserByEmployeeIdData = {
     body: CreateUserDto;
     path: {
         employeeId: string;
     };
 };
 
-export type UpsertUserByEmployeeResponse = (User | {
+export type UpsertUserByEmployeeIdResponse = (User | {
     [key: string]: unknown;
 });
 
-export type UpsertUserByEmployeeError = unknown;
+export type UpsertUserByEmployeeIdError = unknown;
+
+export type UpsertUserByUsernameData = {
+    body: CreateUserDto;
+    path: {
+        username: string;
+    };
+};
+
+export type UpsertUserByUsernameResponse = (User | {
+    [key: string]: unknown;
+});
+
+export type UpsertUserByUsernameError = unknown;
+
+export type UpsertUserByEmailData = {
+    body: CreateUserDto;
+    path: {
+        email: string;
+    };
+};
+
+export type UpsertUserByEmailResponse = (User | {
+    [key: string]: unknown;
+});
+
+export type UpsertUserByEmailError = unknown;
+
+export type UpsertUserByPhoneData = {
+    body: CreateUserDto;
+    path: {
+        phone: string;
+    };
+};
+
+export type UpsertUserByPhoneResponse = (User | {
+    [key: string]: unknown;
+});
+
+export type UpsertUserByPhoneError = unknown;
 
 export type VerifyIdentityData = {
     path: {
