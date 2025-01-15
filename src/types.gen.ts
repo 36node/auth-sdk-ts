@@ -238,6 +238,8 @@ export type createThirdPartyDto = {
      * 第三方登录 accessToken
      */
     accessToken: string;
+    avatar?: string;
+    name?: string;
     /**
      * 关联uid
      */
@@ -948,6 +950,8 @@ export type ThirdParty = {
      * 第三方登录 accessToken
      */
     accessToken: string;
+    avatar?: string;
+    name?: string;
     /**
      * 关联uid
      */
@@ -1177,6 +1181,8 @@ export type UpdateThirdPartyDto = {
      * 第三方登录 accessToken
      */
     accessToken?: string;
+    avatar?: string;
+    name?: string;
     /**
      * 关联uid
      */
@@ -2292,10 +2298,12 @@ export type ListThirdPartyData = {
          * 第三方登录 accessToken
          */
         accessToken?: string;
+        avatar?: string;
         /**
          * 第三方登录 id
          */
         login?: string;
+        name?: string;
         /**
          * 第三方登录来源
          */
