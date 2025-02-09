@@ -289,6 +289,10 @@ export type CreateUserDto = {
      */
     language?: string;
     /**
+     * 等级
+     */
+    level?: number;
+    /**
      * 昵称
      */
     nickname?: string;
@@ -1236,6 +1240,10 @@ export type UpdateUserDto = {
      */
     lastSeenAt?: Date;
     /**
+     * 等级
+     */
+    level?: number;
+    /**
      * 昵称
      */
     nickname?: string;
@@ -1347,6 +1355,10 @@ export type User = {
      * 最后活跃时间
      */
     lastSeenAt?: Date;
+    /**
+     * 等级
+     */
+    level?: number;
     /**
      * 昵称
      */
