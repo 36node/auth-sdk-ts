@@ -13,7 +13,7 @@ export type Authorizer = {
 
 export type bindThirdPartyDto = {
     username: string;
-    password: string;
+    password?: string;
     source: string;
     tid: string;
 };
