@@ -4,14 +4,19 @@ export type AppResult = {
     message: string;
 };
 
+export type Authorizer = {
+    /**
+     * url
+     */
+    url: string;
+};
+
 export type bindThirdPartyDto = {
     username: string;
     password: string;
-    source: 'github' | 'wechat';
-    login: string;
+    source: string;
+    tid: string;
 };
-
-export type source = 'github' | 'wechat';
 
 export type Captcha = {
     /**
@@ -130,7 +135,7 @@ export type CreateNamespaceDto = {
     /**
      * 命名空间的 key
      *
-     * 允许的字符 ^[a-zA-Z][a-zA-Z0-9._/-]{0,30}$
+     * 允许的字符 ^[a-zA-Z][a-zA-Z0-9._/-]{0,200}$
      */
     key: string;
     /**
@@ -180,12 +185,13 @@ export type CreateSessionDto = {
      */
     refreshTokenExpireAt: Date;
     /**
-     * 用户或第三方用户
-     * "user|123456789"
-     * "github|123456789"
-     * "client|abcddfe"
+     * 用户或第三方用户 id
      */
     subject: string;
+    /**
+     * 如果来自第三方，则会加上 source
+     */
+    source?: string;
     /**
      * 受限权限，如果提供这个字段，会覆盖用户的权限
      */
@@ -229,21 +235,42 @@ export type CreateSmsRecordDto = {
 };
 
 export type createThirdPartyDto = {
-    source: ThirdPartySource;
     /**
-     * 第三方登录 id
+     * 第三方登录来源
      */
-    login: string;
+    source: string;
+    /**
+     * 第三方登录的用户唯一标识
+     */
+    tid: string;
     /**
      * 第三方登录 accessToken
      */
     accessToken: string;
-    avatar?: string;
-    name?: string;
+    /**
+     * 第三方登录过期时间
+     */
+    expireAt?: number;
+    /**
+     * 第三方登录 token 类型
+     */
+    tokenType?: string;
+    /**
+     * 第三方登录 refreshToken
+     */
+    refreshToken?: string;
+    /**
+     * 第三方登录 refreshToken 过期时间
+     */
+    refreshTokenExpireAt?: number;
     /**
      * 关联uid
      */
     uid?: string;
+    /**
+     * 用于存储第三方的额外数据
+     */
+    data: string;
 };
 
 export type CreateUserDto = {
@@ -397,6 +424,8 @@ export type EmailStatus = 'pending' | 'sent';
 
 export type GithubDto = {
     code: string;
+    redirectUri?: string;
+    repositoryId?: string;
 };
 
 export type Group = {
@@ -504,9 +533,9 @@ export type LoginDto = {
 
 export type LogoutDto = {
     /**
-     * session refreshToken
+     * session id
      */
-    refreshToken: string;
+    sid: string;
 };
 
 export type Namespace = {
@@ -529,7 +558,7 @@ export type Namespace = {
     /**
      * 命名空间的 key
      *
-     * 允许的字符 ^[a-zA-Z][a-zA-Z0-9._/-]{0,30}$
+     * 允许的字符 ^[a-zA-Z][a-zA-Z0-9._/-]{0,200}$
      */
     key: string;
     /**
@@ -576,6 +605,13 @@ export type Namespace = {
      * Entity updated by who
      */
     updatedBy?: string;
+};
+
+export type OAuthDto = {
+    provider: string;
+    code: string;
+    grantType?: string;
+    redirectUri?: string;
 };
 
 export type RefreshTokenDto = {
@@ -760,12 +796,13 @@ export type Session = {
      */
     refreshToken: string;
     /**
-     * 用户或第三方用户
-     * "user|123456789"
-     * "github|123456789"
-     * "client|abcddfe"
+     * 用户或第三方用户 id
      */
     subject: string;
+    /**
+     * 如果来自第三方，则会加上 source
+     */
+    source?: string;
     /**
      * 受限权限，如果提供这个字段，会覆盖用户的权限
      */
@@ -814,12 +851,13 @@ export type SessionWithToken = {
      */
     refreshToken: string;
     /**
-     * 用户或第三方用户
-     * "user|123456789"
-     * "github|123456789"
-     * "client|abcddfe"
+     * 用户或第三方用户 id
      */
     subject: string;
+    /**
+     * 如果来自第三方，则会加上 source
+     */
+    source?: string;
     /**
      * 受限权限，如果提供这个字段，会覆盖用户的权限
      */
@@ -945,21 +983,42 @@ export type SmsRecord = {
 export type SmsStatus = 'pending' | 'sent';
 
 export type ThirdParty = {
-    source: ThirdPartySource;
     /**
-     * 第三方登录 id
+     * 第三方登录来源
      */
-    login: string;
+    source: string;
+    /**
+     * 第三方登录的用户唯一标识
+     */
+    tid: string;
     /**
      * 第三方登录 accessToken
      */
     accessToken: string;
-    avatar?: string;
-    name?: string;
+    /**
+     * 第三方登录过期时间
+     */
+    expireAt?: number;
+    /**
+     * 第三方登录 token 类型
+     */
+    tokenType?: string;
+    /**
+     * 第三方登录 refreshToken
+     */
+    refreshToken?: string;
+    /**
+     * 第三方登录 refreshToken 过期时间
+     */
+    refreshTokenExpireAt?: number;
     /**
      * 关联uid
      */
     uid?: string;
+    /**
+     * 用于存储第三方的额外数据
+     */
+    data: string;
     /**
      * Entity id
      */
@@ -981,11 +1040,6 @@ export type ThirdParty = {
      */
     updatedBy?: string;
 };
-
-/**
- * 第三方登录来源
- */
-export type ThirdPartySource = 'github' | 'wechat';
 
 export type Token = {
     /**
@@ -1127,12 +1181,13 @@ export type UpdateSessionDto = {
      */
     refreshTokenExpireAt?: Date;
     /**
-     * 用户或第三方用户
-     * "user|123456789"
-     * "github|123456789"
-     * "client|abcddfe"
+     * 用户或第三方用户 id
      */
     subject?: string;
+    /**
+     * 如果来自第三方，则会加上 source
+     */
+    source?: string;
     /**
      * 受限权限，如果提供这个字段，会覆盖用户的权限
      */
@@ -1176,21 +1231,42 @@ export type UpdateSmsRecordDto = {
 };
 
 export type UpdateThirdPartyDto = {
-    source?: ThirdPartySource;
     /**
-     * 第三方登录 id
+     * 第三方登录来源
      */
-    login?: string;
+    source?: string;
+    /**
+     * 第三方登录的用户唯一标识
+     */
+    tid?: string;
     /**
      * 第三方登录 accessToken
      */
     accessToken?: string;
-    avatar?: string;
-    name?: string;
+    /**
+     * 第三方登录过期时间
+     */
+    expireAt?: number;
+    /**
+     * 第三方登录 token 类型
+     */
+    tokenType?: string;
+    /**
+     * 第三方登录 refreshToken
+     */
+    refreshToken?: string;
+    /**
+     * 第三方登录 refreshToken 过期时间
+     */
+    refreshTokenExpireAt?: number;
     /**
      * 关联uid
      */
     uid?: string;
+    /**
+     * 用于存储第三方的额外数据
+     */
+    data?: string;
 };
 
 export type UpdateUserDto = {
@@ -1475,6 +1551,19 @@ export type LoginResponse = (SessionWithToken);
 
 export type LoginError = unknown;
 
+export type GetAuthorizerData = {
+    query: {
+        provider: string;
+        redirectUri?: string;
+        responseType?: string;
+        state?: string;
+    };
+};
+
+export type GetAuthorizerResponse = (Authorizer);
+
+export type GetAuthorizerError = unknown;
+
 export type LoginByGithubData = {
     body: GithubDto;
 };
@@ -1482,6 +1571,14 @@ export type LoginByGithubData = {
 export type LoginByGithubResponse = (SessionWithToken);
 
 export type LoginByGithubError = unknown;
+
+export type LoginByOAuthData = {
+    body: OAuthDto;
+};
+
+export type LoginByOAuthResponse = (SessionWithToken);
+
+export type LoginByOAuthError = unknown;
 
 export type LoginByEmailData = {
     body: LoginByEmailDto;
@@ -1792,7 +1889,7 @@ export type ListNamespacesData = {
         /**
          * 命名空间的 key
          *
-         * 允许的字符 ^[a-zA-Z][a-zA-Z0-9._/-]{0,30}$
+         * 允许的字符 ^[a-zA-Z][a-zA-Z0-9._/-]{0,200}$
          */
         key?: string;
         /**
@@ -1891,10 +1988,11 @@ export type ListSessionsData = {
          */
         refreshToken?: string;
         /**
-         * 用户或第三方用户
-         * "user|123456789"
-         * "github|123456789"
-         * "client|abcddfe"
+         * 如果来自第三方，则会加上 source
+         */
+        source?: string;
+        /**
+         * 用户或第三方用户 id
          */
         subject?: string;
         /**
@@ -2310,16 +2408,34 @@ export type ListThirdPartyData = {
          * 第三方登录 accessToken
          */
         accessToken?: string;
-        avatar?: string;
         /**
-         * 第三方登录 id
+         * 用于存储第三方的额外数据
          */
-        login?: string;
-        name?: string;
+        data?: string;
+        /**
+         * 第三方登录过期时间
+         */
+        expireAt?: number;
+        /**
+         * 第三方登录 refreshToken
+         */
+        refreshToken?: string;
+        /**
+         * 第三方登录 refreshToken 过期时间
+         */
+        refreshTokenExpireAt?: number;
         /**
          * 第三方登录来源
          */
-        source?: ThirdPartySource;
+        source?: string;
+        /**
+         * 第三方登录的用户唯一标识
+         */
+        tid?: string;
+        /**
+         * 第三方登录 token 类型
+         */
+        tokenType?: string;
         /**
          * 关联uid
          */
@@ -2477,6 +2593,13 @@ export const LoginResponseTransformer: LoginResponseTransformer = async (data) =
 export type LoginByGithubResponseTransformer = (data: any) => Promise<LoginByGithubResponse>;
 
 export const LoginByGithubResponseTransformer: LoginByGithubResponseTransformer = async (data) => {
+    SessionWithTokenModelResponseTransformer(data);
+    return data;
+};
+
+export type LoginByOAuthResponseTransformer = (data: any) => Promise<LoginByOAuthResponse>;
+
+export const LoginByOAuthResponseTransformer: LoginByOAuthResponseTransformer = async (data) => {
     SessionWithTokenModelResponseTransformer(data);
     return data;
 };
