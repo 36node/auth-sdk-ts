@@ -12,7 +12,7 @@ export type Authorizer = {
 };
 
 export type bindThirdPartyDto = {
-    username: string;
+    login: string;
     password?: string;
     source: string;
     tid: string;
@@ -1886,12 +1886,6 @@ export type ListNamespacesData = {
          * 排序参数
          */
         _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name';
-        /**
-         * 命名空间的 key
-         *
-         * 允许的字符 ^[a-zA-Z][a-zA-Z0-9._/-]{0,200}$
-         */
-        key?: string;
         /**
          * key tree 查询
          */
