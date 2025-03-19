@@ -2468,6 +2468,32 @@ export type UpdateThirdPartyResponse = ({
 
 export type UpdateThirdPartyError = unknown;
 
+export type GetThirdPartyByUidData = {
+    path: {
+        source: string;
+        uid: string;
+    };
+};
+
+export type GetThirdPartyByUidResponse = ({
+    [key: string]: unknown;
+} | ThirdParty);
+
+export type GetThirdPartyByUidError = unknown;
+
+export type GetThirdPartyByTidData = {
+    path: {
+        source: string;
+        tid: string;
+    };
+};
+
+export type GetThirdPartyByTidResponse = ({
+    [key: string]: unknown;
+} | ThirdParty);
+
+export type GetThirdPartyByTidError = unknown;
+
 export type BindThirdPartyData = {
     body: bindThirdPartyDto;
 };
