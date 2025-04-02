@@ -2031,6 +2031,16 @@ export type DeleteSessionResponse = (void);
 
 export type DeleteSessionError = unknown;
 
+export type GetSessionByKeyData = {
+    path: {
+        key: string;
+    };
+};
+
+export type GetSessionByKeyResponse = (Session);
+
+export type GetSessionByKeyError = unknown;
+
 export type CreateGroupData = {
     body: CreateGroupDto;
 };
@@ -2826,6 +2836,13 @@ export const GetSessionResponseTransformer: GetSessionResponseTransformer = asyn
 export type UpdateSessionResponseTransformer = (data: any) => Promise<UpdateSessionResponse>;
 
 export const UpdateSessionResponseTransformer: UpdateSessionResponseTransformer = async (data) => {
+    SessionModelResponseTransformer(data);
+    return data;
+};
+
+export type GetSessionByKeyResponseTransformer = (data: any) => Promise<GetSessionByKeyResponse>;
+
+export const GetSessionByKeyResponseTransformer: GetSessionByKeyResponseTransformer = async (data) => {
     SessionModelResponseTransformer(data);
     return data;
 };
