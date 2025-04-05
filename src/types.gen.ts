@@ -183,7 +183,7 @@ export type CreateSessionDto = {
     /**
      * 会话过期时间
      */
-    refreshTokenExpireAt: Date;
+    expireAt: Date;
     /**
      * 用户或第三方用户 id
      */
@@ -616,7 +616,7 @@ export type OAuthDto = {
 
 export type RefreshTokenDto = {
     /**
-     * user id
+     * refresh token 也就是 session key
      */
     refreshToken: string;
 };
@@ -790,11 +790,12 @@ export type Session = {
     /**
      * 会话过期时间
      */
-    refreshTokenExpireAt: Date;
+    expireAt: Date;
     /**
-     * refresh token
+     * session key
+     * 可以作为 refresh token
      */
-    refreshToken: string;
+    key: string;
     /**
      * 用户或第三方用户 id
      */
@@ -845,11 +846,12 @@ export type SessionWithToken = {
     /**
      * 会话过期时间
      */
-    refreshTokenExpireAt: Date;
+    expireAt: Date;
     /**
-     * refresh token
+     * session key
+     * 可以作为 refresh token
      */
-    refreshToken: string;
+    key: string;
     /**
      * 用户或第三方用户 id
      */
@@ -1179,7 +1181,7 @@ export type UpdateSessionDto = {
     /**
      * 会话过期时间
      */
-    refreshTokenExpireAt?: Date;
+    expireAt?: Date;
     /**
      * 用户或第三方用户 id
      */
@@ -1964,7 +1966,7 @@ export type ListSessionsData = {
         /**
          * 排序参数
          */
-        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'refreshTokenExpireAt' | '-refreshTokenExpireAt';
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'expireAt' | '-expireAt';
         /**
          * 用户所属的组
          */
@@ -2600,8 +2602,8 @@ export type LoginResponseTransformer = (data: any) => Promise<LoginResponse>;
 export type SessionWithTokenModelResponseTransformer = (data: any) => SessionWithToken;
 
 export const SessionWithTokenModelResponseTransformer: SessionWithTokenModelResponseTransformer = data => {
-    if (data?.refreshTokenExpireAt) {
-        data.refreshTokenExpireAt = new Date(data.refreshTokenExpireAt);
+    if (data?.expireAt) {
+        data.expireAt = new Date(data.expireAt);
     }
     if (data?.createdAt) {
         data.createdAt = new Date(data.createdAt);
@@ -2800,8 +2802,8 @@ export type CreateSessionResponseTransformer = (data: any) => Promise<CreateSess
 export type SessionModelResponseTransformer = (data: any) => Session;
 
 export const SessionModelResponseTransformer: SessionModelResponseTransformer = data => {
-    if (data?.refreshTokenExpireAt) {
-        data.refreshTokenExpireAt = new Date(data.refreshTokenExpireAt);
+    if (data?.expireAt) {
+        data.expireAt = new Date(data.expireAt);
     }
     if (data?.createdAt) {
         data.createdAt = new Date(data.createdAt);
