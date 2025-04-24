@@ -139,7 +139,7 @@ export type CreateNamespaceDto = {
      */
     key: string;
     /**
-     * 所属的 namespace
+     * 所属的 namespace key
      */
     ns?: string;
     /**
@@ -193,9 +193,13 @@ export type CreateSessionDto = {
      */
     source?: string;
     /**
-     * 受限权限，如果提供这个字段，会覆盖用户的权限
+     * 角色之外的权限
      */
     permissions?: Array<(string)>;
+    /**
+     * 角色
+     */
+    roles?: Array<(string)>;
     /**
      * 用户所属的组
      */
@@ -205,9 +209,13 @@ export type CreateSessionDto = {
      */
     ns?: string;
     /**
-     * 类型，登录端
+     * 用户类型
      */
     type?: string;
+    /**
+     * 一次性的，禁止轮换
+     */
+    oneTimeUse?: boolean;
 };
 
 export type CreateSmsRecordDto = {
@@ -562,7 +570,7 @@ export type Namespace = {
      */
     key: string;
     /**
-     * 所属的 namespace
+     * 所属的 namespace key
      */
     ns?: string;
     /**
@@ -805,9 +813,13 @@ export type Session = {
      */
     source?: string;
     /**
-     * 受限权限，如果提供这个字段，会覆盖用户的权限
+     * 角色之外的权限
      */
     permissions?: Array<(string)>;
+    /**
+     * 角色
+     */
+    roles?: Array<(string)>;
     /**
      * 用户所属的组
      */
@@ -817,9 +829,13 @@ export type Session = {
      */
     ns?: string;
     /**
-     * 类型，登录端
+     * 用户类型
      */
     type?: string;
+    /**
+     * 一次性的，禁止轮换
+     */
+    oneTimeUse?: boolean;
     /**
      * Entity id
      */
@@ -861,9 +877,13 @@ export type SessionWithToken = {
      */
     source?: string;
     /**
-     * 受限权限，如果提供这个字段，会覆盖用户的权限
+     * 角色之外的权限
      */
     permissions?: Array<(string)>;
+    /**
+     * 角色
+     */
+    roles?: Array<(string)>;
     /**
      * 用户所属的组
      */
@@ -873,9 +893,13 @@ export type SessionWithToken = {
      */
     ns?: string;
     /**
-     * 类型，登录端
+     * 用户类型
      */
     type?: string;
+    /**
+     * 一次性的，禁止轮换
+     */
+    oneTimeUse?: boolean;
     /**
      * Entity id
      */
@@ -1191,9 +1215,13 @@ export type UpdateSessionDto = {
      */
     source?: string;
     /**
-     * 受限权限，如果提供这个字段，会覆盖用户的权限
+     * 角色之外的权限
      */
     permissions?: Array<(string)>;
+    /**
+     * 角色
+     */
+    roles?: Array<(string)>;
     /**
      * 用户所属的组
      */
@@ -1203,9 +1231,13 @@ export type UpdateSessionDto = {
      */
     ns?: string;
     /**
-     * 类型，登录端
+     * 用户类型
      */
     type?: string;
+    /**
+     * 一次性的，禁止轮换
+     */
+    oneTimeUse?: boolean;
 };
 
 export type UpdateSmsRecordDto = {
@@ -1662,462 +1694,6 @@ export type ResetPasswordByEmailResponse = (void);
 
 export type ResetPasswordByEmailError = unknown;
 
-export type CreateUserData = {
-    body: CreateUserDto;
-};
-
-export type CreateUserResponse = (User);
-
-export type CreateUserError = unknown;
-
-export type ListUsersData = {
-    query?: {
-        /**
-         * 分页大小
-         */
-        _limit?: number;
-        /**
-         * 分页偏移
-         */
-        _offset?: number;
-        /**
-         * 排序参数
-         */
-        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'lastLoginAt' | '-lastLoginAt' | 'expireAt' | '-expireAt';
-        /**
-         * 是否启用
-         */
-        active?: boolean;
-        /**
-         * 邮箱
-         */
-        email?: string;
-        /**
-         * 过期时间大于该时间
-         */
-        expireAt_gte?: Date;
-        /**
-         * 过期时间小于该时间
-         */
-        expireAt_lte?: Date;
-        /**
-         * 团队
-         */
-        groups?: Array<(string)>;
-        /**
-         * 按 id 筛选
-         */
-        id?: Array<(string)>;
-        /**
-         * 姓名
-         */
-        name?: string;
-        /**
-         * 名称 模糊查询
-         */
-        name_like?: string;
-        /**
-         * 昵称 模糊查询
-         */
-        nickname_like?: string;
-        /**
-         * 所属命名空间的 tree 查询
-         */
-        ns_tree?: string;
-        /**
-         * 手机号
-         */
-        phone?: string;
-        /**
-         * 注册地区，存地区编号
-         */
-        registerRegion?: string;
-        /**
-         * 角色
-         */
-        roles?: Array<(string)>;
-        /**
-         * 状态
-         */
-        status?: string;
-        /**
-         * 类型, 登录端
-         */
-        type?: string;
-        /**
-         * 用户名
-         */
-        username?: string;
-        /**
-         * 用户名 模糊查询
-         */
-        username_like?: string;
-    };
-};
-
-export type ListUsersResponse = (Array<User>);
-
-export type ListUsersError = unknown;
-
-export type GetUserData = {
-    path: {
-        /**
-         * User id
-         */
-        userId: string;
-    };
-};
-
-export type GetUserResponse = (User);
-
-export type GetUserError = unknown;
-
-export type UpdateUserData = {
-    body: UpdateUserDto;
-    path: {
-        userId: string;
-    };
-};
-
-export type UpdateUserResponse = (User);
-
-export type UpdateUserError = unknown;
-
-export type DeleteUserData = {
-    path: {
-        userId: string;
-    };
-};
-
-export type DeleteUserResponse = (void);
-
-export type DeleteUserError = unknown;
-
-export type UpsertUserByEmployeeIdData = {
-    body: CreateUserDto;
-    path: {
-        employeeId: string;
-    };
-};
-
-export type UpsertUserByEmployeeIdResponse = (User | {
-    [key: string]: unknown;
-});
-
-export type UpsertUserByEmployeeIdError = unknown;
-
-export type UpsertUserByUsernameData = {
-    body: CreateUserDto;
-    path: {
-        username: string;
-    };
-};
-
-export type UpsertUserByUsernameResponse = (User | {
-    [key: string]: unknown;
-});
-
-export type UpsertUserByUsernameError = unknown;
-
-export type UpsertUserByEmailData = {
-    body: CreateUserDto;
-    path: {
-        email: string;
-    };
-};
-
-export type UpsertUserByEmailResponse = (User | {
-    [key: string]: unknown;
-});
-
-export type UpsertUserByEmailError = unknown;
-
-export type UpsertUserByPhoneData = {
-    body: CreateUserDto;
-    path: {
-        phone: string;
-    };
-};
-
-export type UpsertUserByPhoneResponse = (User | {
-    [key: string]: unknown;
-});
-
-export type UpsertUserByPhoneError = unknown;
-
-export type VerifyIdentityData = {
-    path: {
-        userId: string;
-    };
-};
-
-export type VerifyIdentityResponse = (User);
-
-export type VerifyIdentityError = unknown;
-
-export type UpdatePasswordData = {
-    body: UpdatePasswordDto;
-    path: {
-        userId: string;
-    };
-};
-
-export type UpdatePasswordResponse = (void);
-
-export type UpdatePasswordError = unknown;
-
-export type CreateNamespaceData = {
-    body: CreateNamespaceDto;
-};
-
-export type CreateNamespaceResponse = (Namespace);
-
-export type CreateNamespaceError = unknown;
-
-export type ListNamespacesData = {
-    query?: {
-        /**
-         * 分页大小
-         */
-        _limit?: number;
-        /**
-         * 分页偏移
-         */
-        _offset?: number;
-        /**
-         * 排序参数
-         */
-        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name';
-        /**
-         * key tree 查询
-         */
-        key_tree?: string;
-        /**
-         * 标签
-         */
-        labels?: Array<(string)>;
-        /**
-         * 名称 模糊查询
-         */
-        name_like?: string;
-        /**
-         * 所属命名空间 tree 查询
-         */
-        ns_tree?: string;
-    };
-};
-
-export type ListNamespacesResponse = (Array<Namespace>);
-
-export type ListNamespacesError = unknown;
-
-export type GetNamespaceData = {
-    path: {
-        /**
-         * Namespace id or key, if key should encodeURIComponent
-         */
-        namespaceIdOrKey: string;
-    };
-};
-
-export type GetNamespaceResponse = (Namespace);
-
-export type GetNamespaceError = unknown;
-
-export type UpdateNamespaceData = {
-    body: UpdateNamespaceDto;
-    path: {
-        namespaceIdOrKey: string;
-    };
-};
-
-export type UpdateNamespaceResponse = (Namespace);
-
-export type UpdateNamespaceError = unknown;
-
-export type DeleteNamespaceData = {
-    path: {
-        namespaceId: string;
-    };
-};
-
-export type DeleteNamespaceResponse = (void);
-
-export type DeleteNamespaceError = unknown;
-
-export type CreateSessionData = {
-    body: CreateSessionDto;
-};
-
-export type CreateSessionResponse = (Session);
-
-export type CreateSessionError = unknown;
-
-export type ListSessionsData = {
-    query?: {
-        /**
-         * 分页大小
-         */
-        _limit?: number;
-        /**
-         * 分页偏移
-         */
-        _offset?: number;
-        /**
-         * 排序参数
-         */
-        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'expireAt' | '-expireAt';
-        /**
-         * 用户所属的组
-         */
-        groups?: Array<(string)>;
-        /**
-         * user ns
-         */
-        ns?: string;
-        /**
-         * 受限权限，如果提供这个字段，会覆盖用户的权限
-         */
-        permissions?: Array<(string)>;
-        /**
-         * 用 key 进行查询
-         */
-        refreshToken?: string;
-        /**
-         * 如果来自第三方，则会加上 source
-         */
-        source?: string;
-        /**
-         * 用户或第三方用户 id
-         */
-        subject?: string;
-        /**
-         * 类型，登录端
-         */
-        type?: string;
-    };
-};
-
-export type ListSessionsResponse = (Array<Session>);
-
-export type ListSessionsError = unknown;
-
-export type GetSessionData = {
-    path: {
-        sessionId: string;
-    };
-};
-
-export type GetSessionResponse = (Session);
-
-export type GetSessionError = unknown;
-
-export type UpdateSessionData = {
-    body: UpdateSessionDto;
-    path: {
-        sessionId: string;
-    };
-};
-
-export type UpdateSessionResponse = (Session);
-
-export type UpdateSessionError = unknown;
-
-export type DeleteSessionData = {
-    path: {
-        sessionId: string;
-    };
-};
-
-export type DeleteSessionResponse = (void);
-
-export type DeleteSessionError = unknown;
-
-export type GetSessionByKeyData = {
-    path: {
-        key: string;
-    };
-};
-
-export type GetSessionByKeyResponse = (Session);
-
-export type GetSessionByKeyError = unknown;
-
-export type CreateGroupData = {
-    body: CreateGroupDto;
-};
-
-export type CreateGroupResponse = (Group);
-
-export type CreateGroupError = unknown;
-
-export type ListGroupsData = {
-    query?: {
-        /**
-         * 分页大小
-         */
-        _limit?: number;
-        /**
-         * 分页偏移
-         */
-        _offset?: number;
-        /**
-         * 排序参数
-         */
-        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt';
-        /**
-         * 是否启用
-         */
-        active?: boolean;
-        /**
-         * 名称
-         */
-        name?: string;
-        /**
-         * 名称 模糊查询
-         */
-        name_like?: string;
-    };
-};
-
-export type ListGroupsResponse = (Array<Group>);
-
-export type ListGroupsError = unknown;
-
-export type GetGroupData = {
-    path: {
-        /**
-         * Group id or name, if name should encodeURIComponent
-         */
-        groupIdOrName: string;
-    };
-};
-
-export type GetGroupResponse = (Group);
-
-export type GetGroupError = unknown;
-
-export type UpdateGroupData = {
-    body: UpdateGroupDto;
-    path: {
-        groupId: string;
-    };
-};
-
-export type UpdateGroupResponse = (Group);
-
-export type UpdateGroupError = unknown;
-
-export type DeleteGroupData = {
-    path: {
-        groupId: string;
-    };
-};
-
-export type DeleteGroupResponse = (void);
-
-export type DeleteGroupError = unknown;
-
 export type CreateCaptchaData = {
     body: CreateCaptchaDto;
 };
@@ -2292,6 +1868,270 @@ export type DeleteEmailRecordData = {
 export type DeleteEmailRecordResponse = (void);
 
 export type DeleteEmailRecordError = unknown;
+
+export type CreateGroupData = {
+    body: CreateGroupDto;
+};
+
+export type CreateGroupResponse = (Group);
+
+export type CreateGroupError = unknown;
+
+export type ListGroupsData = {
+    query?: {
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt';
+        /**
+         * 是否启用
+         */
+        active?: boolean;
+        /**
+         * 按 id 筛选
+         */
+        id?: Array<(string)>;
+        /**
+         * 名称
+         */
+        name?: string;
+        /**
+         * 名称 模糊查询
+         */
+        name_like?: string;
+    };
+};
+
+export type ListGroupsResponse = (Array<Group>);
+
+export type ListGroupsError = unknown;
+
+export type GetGroupData = {
+    path: {
+        /**
+         * Group id or name, if name should encodeURIComponent
+         */
+        groupIdOrName: string;
+    };
+};
+
+export type GetGroupResponse = (Group);
+
+export type GetGroupError = unknown;
+
+export type UpdateGroupData = {
+    body: UpdateGroupDto;
+    path: {
+        groupId: string;
+    };
+};
+
+export type UpdateGroupResponse = (Group);
+
+export type UpdateGroupError = unknown;
+
+export type DeleteGroupData = {
+    path: {
+        groupId: string;
+    };
+};
+
+export type DeleteGroupResponse = (void);
+
+export type DeleteGroupError = unknown;
+
+export type CreateNamespaceData = {
+    body: CreateNamespaceDto;
+};
+
+export type CreateNamespaceResponse = (Namespace);
+
+export type CreateNamespaceError = unknown;
+
+export type ListNamespacesData = {
+    query?: {
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name';
+        /**
+         * key tree 查询
+         */
+        key_tree?: string;
+        /**
+         * 标签
+         */
+        labels?: Array<(string)>;
+        /**
+         * 名称 模糊查询
+         */
+        name_like?: string;
+        /**
+         * 所属命名空间 tree 查询
+         */
+        ns_tree?: string;
+    };
+};
+
+export type ListNamespacesResponse = (Array<Namespace>);
+
+export type ListNamespacesError = unknown;
+
+export type GetNamespaceData = {
+    path: {
+        /**
+         * Namespace id or key, if key should encodeURIComponent
+         */
+        namespaceIdOrKey: string;
+    };
+};
+
+export type GetNamespaceResponse = (Namespace);
+
+export type GetNamespaceError = unknown;
+
+export type UpdateNamespaceData = {
+    body: UpdateNamespaceDto;
+    path: {
+        namespaceIdOrKey: string;
+    };
+};
+
+export type UpdateNamespaceResponse = (Namespace);
+
+export type UpdateNamespaceError = unknown;
+
+export type DeleteNamespaceData = {
+    path: {
+        namespaceId: string;
+    };
+};
+
+export type DeleteNamespaceResponse = (void);
+
+export type DeleteNamespaceError = unknown;
+
+export type CreateSessionData = {
+    body: CreateSessionDto;
+};
+
+export type CreateSessionResponse = (Session);
+
+export type CreateSessionError = unknown;
+
+export type ListSessionsData = {
+    query?: {
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'expireAt' | '-expireAt';
+        /**
+         * 用户所属的组
+         */
+        groups?: Array<(string)>;
+        /**
+         * user ns
+         */
+        ns?: string;
+        /**
+         * 一次性的，禁止轮换
+         */
+        oneTimeUse?: boolean;
+        /**
+         * 角色之外的权限
+         */
+        permissions?: Array<(string)>;
+        /**
+         * 用 key 进行查询
+         */
+        refreshToken?: string;
+        /**
+         * 角色
+         */
+        roles?: Array<(string)>;
+        /**
+         * 如果来自第三方，则会加上 source
+         */
+        source?: string;
+        /**
+         * 用户或第三方用户 id
+         */
+        subject?: string;
+        /**
+         * 用户类型
+         */
+        type?: string;
+    };
+};
+
+export type ListSessionsResponse = (Array<Session>);
+
+export type ListSessionsError = unknown;
+
+export type GetSessionData = {
+    path: {
+        sessionId: string;
+    };
+};
+
+export type GetSessionResponse = (Session);
+
+export type GetSessionError = unknown;
+
+export type UpdateSessionData = {
+    body: UpdateSessionDto;
+    path: {
+        sessionId: string;
+    };
+};
+
+export type UpdateSessionResponse = (Session);
+
+export type UpdateSessionError = unknown;
+
+export type DeleteSessionData = {
+    path: {
+        sessionId: string;
+    };
+};
+
+export type DeleteSessionResponse = (void);
+
+export type DeleteSessionError = unknown;
+
+export type GetSessionByKeyData = {
+    path: {
+        key: string;
+    };
+};
+
+export type GetSessionByKeyResponse = (Session);
+
+export type GetSessionByKeyError = unknown;
 
 export type SendSmsData = {
     body: SendSmsDto;
@@ -2514,6 +2354,210 @@ export type BindThirdPartyResponse = (ThirdParty);
 
 export type BindThirdPartyError = unknown;
 
+export type CreateUserData = {
+    body: CreateUserDto;
+};
+
+export type CreateUserResponse = (User);
+
+export type CreateUserError = unknown;
+
+export type ListUsersData = {
+    query?: {
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'lastLoginAt' | '-lastLoginAt' | 'expireAt' | '-expireAt';
+        /**
+         * 是否启用
+         */
+        active?: boolean;
+        /**
+         * 邮箱
+         */
+        email?: string;
+        /**
+         * 过期时间大于该时间
+         */
+        expireAt_gte?: Date;
+        /**
+         * 过期时间小于该时间
+         */
+        expireAt_lte?: Date;
+        /**
+         * 团队
+         */
+        groups?: Array<(string)>;
+        /**
+         * 按 id 筛选
+         */
+        id?: Array<(string)>;
+        /**
+         * 姓名
+         */
+        name?: string;
+        /**
+         * 名称 模糊查询
+         */
+        name_like?: string;
+        /**
+         * 昵称 模糊查询
+         */
+        nickname_like?: string;
+        /**
+         * 所属命名空间的 tree 查询
+         */
+        ns_tree?: string;
+        /**
+         * 手机号
+         */
+        phone?: string;
+        /**
+         * 注册地区，存地区编号
+         */
+        registerRegion?: string;
+        /**
+         * 角色
+         */
+        roles?: Array<(string)>;
+        /**
+         * 状态
+         */
+        status?: string;
+        /**
+         * 类型, 登录端
+         */
+        type?: string;
+        /**
+         * 用户名
+         */
+        username?: string;
+        /**
+         * 用户名 模糊查询
+         */
+        username_like?: string;
+    };
+};
+
+export type ListUsersResponse = (Array<User>);
+
+export type ListUsersError = unknown;
+
+export type GetUserData = {
+    path: {
+        /**
+         * User id
+         */
+        userId: string;
+    };
+};
+
+export type GetUserResponse = (User);
+
+export type GetUserError = unknown;
+
+export type UpdateUserData = {
+    body: UpdateUserDto;
+    path: {
+        userId: string;
+    };
+};
+
+export type UpdateUserResponse = (User);
+
+export type UpdateUserError = unknown;
+
+export type DeleteUserData = {
+    path: {
+        userId: string;
+    };
+};
+
+export type DeleteUserResponse = (void);
+
+export type DeleteUserError = unknown;
+
+export type UpsertUserByEmployeeIdData = {
+    body: CreateUserDto;
+    path: {
+        employeeId: string;
+    };
+};
+
+export type UpsertUserByEmployeeIdResponse = (User | {
+    [key: string]: unknown;
+});
+
+export type UpsertUserByEmployeeIdError = unknown;
+
+export type UpsertUserByUsernameData = {
+    body: CreateUserDto;
+    path: {
+        username: string;
+    };
+};
+
+export type UpsertUserByUsernameResponse = (User | {
+    [key: string]: unknown;
+});
+
+export type UpsertUserByUsernameError = unknown;
+
+export type UpsertUserByEmailData = {
+    body: CreateUserDto;
+    path: {
+        email: string;
+    };
+};
+
+export type UpsertUserByEmailResponse = (User | {
+    [key: string]: unknown;
+});
+
+export type UpsertUserByEmailError = unknown;
+
+export type UpsertUserByPhoneData = {
+    body: CreateUserDto;
+    path: {
+        phone: string;
+    };
+};
+
+export type UpsertUserByPhoneResponse = (User | {
+    [key: string]: unknown;
+});
+
+export type UpsertUserByPhoneError = unknown;
+
+export type VerifyIdentityData = {
+    path: {
+        userId: string;
+    };
+};
+
+export type VerifyIdentityResponse = (User);
+
+export type VerifyIdentityError = unknown;
+
+export type UpdatePasswordData = {
+    body: UpdatePasswordDto;
+    path: {
+        userId: string;
+    };
+};
+
+export type UpdatePasswordResponse = (void);
+
+export type UpdatePasswordError = unknown;
+
 export type ListIndustriesResponse = (Array<Industry>);
 
 export type ListIndustriesError = unknown;
@@ -2718,40 +2762,135 @@ export const RefreshResponseTransformer: RefreshResponseTransformer = async (dat
     return data;
 };
 
-export type CreateUserResponseTransformer = (data: any) => Promise<CreateUserResponse>;
+export type CreateCaptchaResponseTransformer = (data: any) => Promise<CreateCaptchaResponse>;
 
-export const CreateUserResponseTransformer: CreateUserResponseTransformer = async (data) => {
-    UserModelResponseTransformer(data);
-    return data;
-};
+export type CaptchaModelResponseTransformer = (data: any) => Captcha;
 
-export type ListUsersResponseTransformer = (data: any) => Promise<ListUsersResponse>;
-
-export const ListUsersResponseTransformer: ListUsersResponseTransformer = async (data) => {
-    if (Array.isArray(data)) {
-        data.forEach(UserModelResponseTransformer);
+export const CaptchaModelResponseTransformer: CaptchaModelResponseTransformer = data => {
+    if (data?.expireAt) {
+        data.expireAt = new Date(data.expireAt);
+    }
+    if (data?.createdAt) {
+        data.createdAt = new Date(data.createdAt);
+    }
+    if (data?.updatedAt) {
+        data.updatedAt = new Date(data.updatedAt);
     }
     return data;
 };
 
-export type GetUserResponseTransformer = (data: any) => Promise<GetUserResponse>;
-
-export const GetUserResponseTransformer: GetUserResponseTransformer = async (data) => {
-    UserModelResponseTransformer(data);
+export const CreateCaptchaResponseTransformer: CreateCaptchaResponseTransformer = async (data) => {
+    CaptchaModelResponseTransformer(data);
     return data;
 };
 
-export type UpdateUserResponseTransformer = (data: any) => Promise<UpdateUserResponse>;
+export type ListCaptchasResponseTransformer = (data: any) => Promise<ListCaptchasResponse>;
 
-export const UpdateUserResponseTransformer: UpdateUserResponseTransformer = async (data) => {
-    UserModelResponseTransformer(data);
+export const ListCaptchasResponseTransformer: ListCaptchasResponseTransformer = async (data) => {
+    if (Array.isArray(data)) {
+        data.forEach(CaptchaModelResponseTransformer);
+    }
     return data;
 };
 
-export type VerifyIdentityResponseTransformer = (data: any) => Promise<VerifyIdentityResponse>;
+export type GetCaptchaResponseTransformer = (data: any) => Promise<GetCaptchaResponse>;
 
-export const VerifyIdentityResponseTransformer: VerifyIdentityResponseTransformer = async (data) => {
-    UserModelResponseTransformer(data);
+export const GetCaptchaResponseTransformer: GetCaptchaResponseTransformer = async (data) => {
+    CaptchaModelResponseTransformer(data);
+    return data;
+};
+
+export type UpdateCaptchaResponseTransformer = (data: any) => Promise<UpdateCaptchaResponse>;
+
+export const UpdateCaptchaResponseTransformer: UpdateCaptchaResponseTransformer = async (data) => {
+    CaptchaModelResponseTransformer(data);
+    return data;
+};
+
+export type CreateEmailRecordResponseTransformer = (data: any) => Promise<CreateEmailRecordResponse>;
+
+export type EmailRecordModelResponseTransformer = (data: any) => EmailRecord;
+
+export const EmailRecordModelResponseTransformer: EmailRecordModelResponseTransformer = data => {
+    if (data?.sentAt) {
+        data.sentAt = new Date(data.sentAt);
+    }
+    if (data?.createdAt) {
+        data.createdAt = new Date(data.createdAt);
+    }
+    if (data?.updatedAt) {
+        data.updatedAt = new Date(data.updatedAt);
+    }
+    return data;
+};
+
+export const CreateEmailRecordResponseTransformer: CreateEmailRecordResponseTransformer = async (data) => {
+    EmailRecordModelResponseTransformer(data);
+    return data;
+};
+
+export type ListEmailRecordsResponseTransformer = (data: any) => Promise<ListEmailRecordsResponse>;
+
+export const ListEmailRecordsResponseTransformer: ListEmailRecordsResponseTransformer = async (data) => {
+    if (Array.isArray(data)) {
+        data.forEach(EmailRecordModelResponseTransformer);
+    }
+    return data;
+};
+
+export type GetEmailRecordResponseTransformer = (data: any) => Promise<GetEmailRecordResponse>;
+
+export const GetEmailRecordResponseTransformer: GetEmailRecordResponseTransformer = async (data) => {
+    EmailRecordModelResponseTransformer(data);
+    return data;
+};
+
+export type UpdateEmailRecordResponseTransformer = (data: any) => Promise<UpdateEmailRecordResponse>;
+
+export const UpdateEmailRecordResponseTransformer: UpdateEmailRecordResponseTransformer = async (data) => {
+    EmailRecordModelResponseTransformer(data);
+    return data;
+};
+
+export type CreateGroupResponseTransformer = (data: any) => Promise<CreateGroupResponse>;
+
+export type GroupModelResponseTransformer = (data: any) => Group;
+
+export const GroupModelResponseTransformer: GroupModelResponseTransformer = data => {
+    if (data?.createdAt) {
+        data.createdAt = new Date(data.createdAt);
+    }
+    if (data?.updatedAt) {
+        data.updatedAt = new Date(data.updatedAt);
+    }
+    return data;
+};
+
+export const CreateGroupResponseTransformer: CreateGroupResponseTransformer = async (data) => {
+    GroupModelResponseTransformer(data);
+    return data;
+};
+
+export type ListGroupsResponseTransformer = (data: any) => Promise<ListGroupsResponse>;
+
+export const ListGroupsResponseTransformer: ListGroupsResponseTransformer = async (data) => {
+    if (Array.isArray(data)) {
+        data.forEach(GroupModelResponseTransformer);
+    }
+    return data;
+};
+
+export type GetGroupResponseTransformer = (data: any) => Promise<GetGroupResponse>;
+
+export const GetGroupResponseTransformer: GetGroupResponseTransformer = async (data) => {
+    GroupModelResponseTransformer(data);
+    return data;
+};
+
+export type UpdateGroupResponseTransformer = (data: any) => Promise<UpdateGroupResponse>;
+
+export const UpdateGroupResponseTransformer: UpdateGroupResponseTransformer = async (data) => {
+    GroupModelResponseTransformer(data);
     return data;
 };
 
@@ -2849,138 +2988,6 @@ export const GetSessionByKeyResponseTransformer: GetSessionByKeyResponseTransfor
     return data;
 };
 
-export type CreateGroupResponseTransformer = (data: any) => Promise<CreateGroupResponse>;
-
-export type GroupModelResponseTransformer = (data: any) => Group;
-
-export const GroupModelResponseTransformer: GroupModelResponseTransformer = data => {
-    if (data?.createdAt) {
-        data.createdAt = new Date(data.createdAt);
-    }
-    if (data?.updatedAt) {
-        data.updatedAt = new Date(data.updatedAt);
-    }
-    return data;
-};
-
-export const CreateGroupResponseTransformer: CreateGroupResponseTransformer = async (data) => {
-    GroupModelResponseTransformer(data);
-    return data;
-};
-
-export type ListGroupsResponseTransformer = (data: any) => Promise<ListGroupsResponse>;
-
-export const ListGroupsResponseTransformer: ListGroupsResponseTransformer = async (data) => {
-    if (Array.isArray(data)) {
-        data.forEach(GroupModelResponseTransformer);
-    }
-    return data;
-};
-
-export type GetGroupResponseTransformer = (data: any) => Promise<GetGroupResponse>;
-
-export const GetGroupResponseTransformer: GetGroupResponseTransformer = async (data) => {
-    GroupModelResponseTransformer(data);
-    return data;
-};
-
-export type UpdateGroupResponseTransformer = (data: any) => Promise<UpdateGroupResponse>;
-
-export const UpdateGroupResponseTransformer: UpdateGroupResponseTransformer = async (data) => {
-    GroupModelResponseTransformer(data);
-    return data;
-};
-
-export type CreateCaptchaResponseTransformer = (data: any) => Promise<CreateCaptchaResponse>;
-
-export type CaptchaModelResponseTransformer = (data: any) => Captcha;
-
-export const CaptchaModelResponseTransformer: CaptchaModelResponseTransformer = data => {
-    if (data?.expireAt) {
-        data.expireAt = new Date(data.expireAt);
-    }
-    if (data?.createdAt) {
-        data.createdAt = new Date(data.createdAt);
-    }
-    if (data?.updatedAt) {
-        data.updatedAt = new Date(data.updatedAt);
-    }
-    return data;
-};
-
-export const CreateCaptchaResponseTransformer: CreateCaptchaResponseTransformer = async (data) => {
-    CaptchaModelResponseTransformer(data);
-    return data;
-};
-
-export type ListCaptchasResponseTransformer = (data: any) => Promise<ListCaptchasResponse>;
-
-export const ListCaptchasResponseTransformer: ListCaptchasResponseTransformer = async (data) => {
-    if (Array.isArray(data)) {
-        data.forEach(CaptchaModelResponseTransformer);
-    }
-    return data;
-};
-
-export type GetCaptchaResponseTransformer = (data: any) => Promise<GetCaptchaResponse>;
-
-export const GetCaptchaResponseTransformer: GetCaptchaResponseTransformer = async (data) => {
-    CaptchaModelResponseTransformer(data);
-    return data;
-};
-
-export type UpdateCaptchaResponseTransformer = (data: any) => Promise<UpdateCaptchaResponse>;
-
-export const UpdateCaptchaResponseTransformer: UpdateCaptchaResponseTransformer = async (data) => {
-    CaptchaModelResponseTransformer(data);
-    return data;
-};
-
-export type CreateEmailRecordResponseTransformer = (data: any) => Promise<CreateEmailRecordResponse>;
-
-export type EmailRecordModelResponseTransformer = (data: any) => EmailRecord;
-
-export const EmailRecordModelResponseTransformer: EmailRecordModelResponseTransformer = data => {
-    if (data?.sentAt) {
-        data.sentAt = new Date(data.sentAt);
-    }
-    if (data?.createdAt) {
-        data.createdAt = new Date(data.createdAt);
-    }
-    if (data?.updatedAt) {
-        data.updatedAt = new Date(data.updatedAt);
-    }
-    return data;
-};
-
-export const CreateEmailRecordResponseTransformer: CreateEmailRecordResponseTransformer = async (data) => {
-    EmailRecordModelResponseTransformer(data);
-    return data;
-};
-
-export type ListEmailRecordsResponseTransformer = (data: any) => Promise<ListEmailRecordsResponse>;
-
-export const ListEmailRecordsResponseTransformer: ListEmailRecordsResponseTransformer = async (data) => {
-    if (Array.isArray(data)) {
-        data.forEach(EmailRecordModelResponseTransformer);
-    }
-    return data;
-};
-
-export type GetEmailRecordResponseTransformer = (data: any) => Promise<GetEmailRecordResponse>;
-
-export const GetEmailRecordResponseTransformer: GetEmailRecordResponseTransformer = async (data) => {
-    EmailRecordModelResponseTransformer(data);
-    return data;
-};
-
-export type UpdateEmailRecordResponseTransformer = (data: any) => Promise<UpdateEmailRecordResponse>;
-
-export const UpdateEmailRecordResponseTransformer: UpdateEmailRecordResponseTransformer = async (data) => {
-    EmailRecordModelResponseTransformer(data);
-    return data;
-};
-
 export type CreateSmsRecordResponseTransformer = (data: any) => Promise<CreateSmsRecordResponse>;
 
 export type SmsRecordModelResponseTransformer = (data: any) => SmsRecord;
@@ -3049,6 +3056,43 @@ export type BindThirdPartyResponseTransformer = (data: any) => Promise<BindThird
 
 export const BindThirdPartyResponseTransformer: BindThirdPartyResponseTransformer = async (data) => {
     ThirdPartyModelResponseTransformer(data);
+    return data;
+};
+
+export type CreateUserResponseTransformer = (data: any) => Promise<CreateUserResponse>;
+
+export const CreateUserResponseTransformer: CreateUserResponseTransformer = async (data) => {
+    UserModelResponseTransformer(data);
+    return data;
+};
+
+export type ListUsersResponseTransformer = (data: any) => Promise<ListUsersResponse>;
+
+export const ListUsersResponseTransformer: ListUsersResponseTransformer = async (data) => {
+    if (Array.isArray(data)) {
+        data.forEach(UserModelResponseTransformer);
+    }
+    return data;
+};
+
+export type GetUserResponseTransformer = (data: any) => Promise<GetUserResponse>;
+
+export const GetUserResponseTransformer: GetUserResponseTransformer = async (data) => {
+    UserModelResponseTransformer(data);
+    return data;
+};
+
+export type UpdateUserResponseTransformer = (data: any) => Promise<UpdateUserResponse>;
+
+export const UpdateUserResponseTransformer: UpdateUserResponseTransformer = async (data) => {
+    UserModelResponseTransformer(data);
+    return data;
+};
+
+export type VerifyIdentityResponseTransformer = (data: any) => Promise<VerifyIdentityResponse>;
+
+export const VerifyIdentityResponseTransformer: VerifyIdentityResponseTransformer = async (data) => {
+    UserModelResponseTransformer(data);
     return data;
 };
 
