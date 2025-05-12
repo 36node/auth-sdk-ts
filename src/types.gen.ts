@@ -291,6 +291,10 @@ export type CreateUserDto = {
      */
     readonly hasPassword?: boolean;
     /**
+     * 标签
+     */
+    labels?: Array<(string)>;
+    /**
      * 头像
      */
     avatar?: string;
@@ -1338,6 +1342,10 @@ export type UpdateUserDto = {
      */
     intro?: string;
     /**
+     * 标签
+     */
+    labels?: Array<(string)>;
+    /**
      * 使用语言
      */
     language?: string;
@@ -1453,6 +1461,10 @@ export type User = {
      * 简介
      */
     intro?: string;
+    /**
+     * 标签
+     */
+    labels: Array<(string)>;
     /**
      * 使用语言
      */
@@ -2400,6 +2412,10 @@ export type ListUsersData = {
          * 按 id 筛选
          */
         id?: Array<(string)>;
+        /**
+         * 标签
+         */
+        labels?: Array<(string)>;
         /**
          * 姓名
          */
