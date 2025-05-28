@@ -322,6 +322,10 @@ export type CreateUserDto = {
      */
     avatar?: string;
     /**
+     * 生日
+     */
+    birthday?: Date;
+    /**
      * 额外数据
      */
     data?: string;
@@ -1404,6 +1408,10 @@ export type UpdateUserDto = {
      */
     avatar?: string;
     /**
+     * 生日
+     */
+    birthday?: Date;
+    /**
      * 额外数据
      */
     data?: string;
@@ -1527,6 +1535,10 @@ export type User = {
      * 头像
      */
     avatar?: string;
+    /**
+     * 生日
+     */
+    birthday?: Date;
     /**
      * 额外数据
      */
@@ -3026,6 +3038,9 @@ export type RegisterResponseTransformer = (data: any) => Promise<RegisterRespons
 export type UserModelResponseTransformer = (data: any) => User;
 
 export const UserModelResponseTransformer: UserModelResponseTransformer = data => {
+    if (data?.birthday) {
+        data.birthday = new Date(data.birthday);
+    }
     if (data?.identityVerifiedAt) {
         data.identityVerifiedAt = new Date(data.identityVerifiedAt);
     }
