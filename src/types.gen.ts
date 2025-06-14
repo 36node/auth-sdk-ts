@@ -80,7 +80,10 @@ export type CreateCaptchaDto = {
 };
 
 export type CreateEmailRecordDto = {
-    status: EmailStatus;
+    /**
+     * 发送状态
+     */
+    status: (EmailStatus);
     /**
      * 发件者
      */
@@ -120,10 +123,6 @@ export type CreateGroupDto = {
      * 是否启用
      */
     active?: boolean;
-    /**
-     * 人数
-     */
-    userCount?: number;
 };
 
 export type CreateNamespaceDto = {
@@ -169,10 +168,6 @@ export type CreateNamespaceDto = {
      * 是否可导出
      */
     exportable?: boolean;
-    /**
-     * 人数
-     */
-    userCount?: number;
 };
 
 export type CreateRoleDto = {
@@ -230,7 +225,10 @@ export type CreateSessionDto = {
 };
 
 export type CreateSmsRecordDto = {
-    status: SmsStatus;
+    /**
+     * 发送状态
+     */
+    status: (SmsStatus);
     /**
      * 手机号
      */
@@ -417,7 +415,10 @@ export type DateGroup = {
 };
 
 export type EmailRecord = {
-    status: EmailStatus;
+    /**
+     * 发送状态
+     */
+    status: (EmailStatus);
     /**
      * 发件者
      */
@@ -488,10 +489,6 @@ export type Group = {
      * 是否启用
      */
     active?: boolean;
-    /**
-     * 人数
-     */
-    userCount?: number;
     /**
      * Entity id
      */
@@ -625,10 +622,6 @@ export type Namespace = {
      */
     exportable?: boolean;
     /**
-     * 人数
-     */
-    userCount?: number;
-    /**
      * Entity id
      */
     id: string;
@@ -655,6 +648,10 @@ export type OAuthDto = {
     code: string;
     grantType?: string;
     redirectUri?: string;
+};
+
+export type Object = {
+    [key: string]: unknown;
 };
 
 export type RefreshTokenDto = {
@@ -1055,7 +1052,10 @@ export type SignTokenDto = {
 };
 
 export type SmsRecord = {
-    status: SmsStatus;
+    /**
+     * 发送状态
+     */
+    status: (SmsStatus);
     /**
      * 手机号
      */
@@ -1189,7 +1189,10 @@ export type UpdateCaptchaDto = {
 };
 
 export type UpdateEmailRecordDto = {
-    status?: EmailStatus;
+    /**
+     * 发送状态
+     */
+    status?: (EmailStatus);
     /**
      * 发件者
      */
@@ -1229,10 +1232,6 @@ export type UpdateGroupDto = {
      * 是否启用
      */
     active?: boolean;
-    /**
-     * 人数
-     */
-    userCount?: number;
 };
 
 export type UpdateNamespaceDto = {
@@ -1268,10 +1267,6 @@ export type UpdateNamespaceDto = {
      * 是否可导出
      */
     exportable?: boolean;
-    /**
-     * 人数
-     */
-    userCount?: number;
 };
 
 export type UpdatePasswordDto = {
@@ -1336,7 +1331,10 @@ export type UpdateSessionDto = {
 };
 
 export type UpdateSmsRecordDto = {
-    status?: SmsStatus;
+    /**
+     * 发送状态
+     */
+    status?: (SmsStatus);
     /**
      * 手机号
      */
@@ -2084,6 +2082,19 @@ export type DeleteGroupResponse = (void);
 
 export type DeleteGroupError = unknown;
 
+export type UpsertGroupByNameData = {
+    body: CreateGroupDto;
+    path: {
+        groupName: string;
+    };
+};
+
+export type UpsertGroupByNameResponse = (Group | {
+    [key: string]: unknown;
+});
+
+export type UpsertGroupByNameError = unknown;
+
 export type CreateNamespaceData = {
     body: CreateNamespaceDto;
 };
@@ -2107,6 +2118,14 @@ export type ListNamespacesData = {
          */
         _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name';
         /**
+         * 按 key 查询
+         */
+        key?: Object;
+        /**
+         * key start 查询
+         */
+        key_start?: Object;
+        /**
          * key tree 查询
          */
         key_tree?: string;
@@ -2118,6 +2137,14 @@ export type ListNamespacesData = {
          * 名称 模糊查询
          */
         name_like?: string;
+        /**
+         * 所属命名空间
+         */
+        ns?: Object;
+        /**
+         * 所属命名空间 start 查询
+         */
+        ns_start?: Object;
         /**
          * 所属命名空间 tree 查询
          */
@@ -2557,6 +2584,14 @@ export type ListUsersData = {
          */
         nickname_like?: string;
         /**
+         * 所属命名空间的 ns 本级查询
+         */
+        ns?: Object;
+        /**
+         * 所属命名空间的前缀匹配查询
+         */
+        ns_start?: Object;
+        /**
          * 所属命名空间的 tree 查询
          */
         ns_tree?: string;
@@ -2653,6 +2688,14 @@ export type CountUsersData = {
          * 昵称 模糊查询
          */
         nickname_like?: string;
+        /**
+         * 所属命名空间的 ns 本级查询
+         */
+        ns?: Object;
+        /**
+         * 所属命名空间的前缀匹配查询
+         */
+        ns_start?: Object;
         /**
          * 所属命名空间的 tree 查询
          */
@@ -2858,6 +2901,14 @@ export type AggregateUsersData = {
          * 昵称 模糊查询
          */
         nickname_like?: string;
+        /**
+         * 所属命名空间的 ns 本级查询
+         */
+        ns?: Object;
+        /**
+         * 所属命名空间的前缀匹配查询
+         */
+        ns_start?: Object;
         /**
          * 所属命名空间的 tree 查询
          */
