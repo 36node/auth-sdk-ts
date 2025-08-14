@@ -5,7 +5,16 @@ export type AggregateUserDto = {
      * The group by clause
      */
     group?: Array<('level' | 'labels' | 'language' | 'ns' | 'registerRegion' | 'roles' | 'groups' | 'active' | 'status' | 'createdAt')>;
+    /**
+     * Date unit for time-based grouping when createdAt is in group
+     */
+    dateUnit?: 'hour' | 'day' | 'week' | 'month' | 'year';
 };
+
+/**
+ * Date unit for time-based grouping when createdAt is in group
+ */
+export type dateUnit = 'hour' | 'day' | 'week' | 'month' | 'year';
 
 export type AppResult = {
     message: string;
