@@ -21,8 +21,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@hey-api/client-fetch": "^0.5.4",
-    "@hey-api/openapi-ts": "^0.59.2"
+    "@hey-api/openapi-ts": "^0.84.3"
   },
   "devDependencies": {
     "@types/node": "22.10.2",
