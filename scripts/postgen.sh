@@ -16,7 +16,14 @@ find ./src/gen -type f -name "*.ts" | while read -r file; do
   perl -pi -e 's/ThrowOnError extends boolean = false/ThrowOnError extends boolean = true/g' "$file"
   
   # 2. 删除单行的 @ts-expect-error 注释（包括前面的缩进）
-  sed -i '' '/^[[:space:]]*\/\/ @ts-expect-error[[:space:]]*$/d' "$file"
+  # 兼容 macOS (BSD sed) 和 Linux (GNU sed)
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS
+    sed -i '' '/^[[:space:]]*\/\/ @ts-expect-error[[:space:]]*$/d' "$file"
+  else
+    # Linux
+    sed -i '/^[[:space:]]*\/\/ @ts-expect-error[[:space:]]*$/d' "$file"
+  fi
 done
 
 echo "✅ Post-generation processing completed!"
