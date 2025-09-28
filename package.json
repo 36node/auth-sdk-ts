@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsc",
     "gen": "openapi-ts",
-    "postgen": "find ./src -type f | xargs perl -pi -e 's/ThrowOnError extends boolean = false/ThrowOnError extends boolean = true/'",
+    "postgen": "bash scripts/postgen.sh",
     "github-secret": "tsc scripts/github-action-secret.ts"
   },
   "keywords": [],
