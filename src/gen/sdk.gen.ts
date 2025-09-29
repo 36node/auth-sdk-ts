@@ -3,7 +3,7 @@
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
 import { bindThirdPartyResponseTransformer, createCaptchaResponseTransformer, createEmailRecordResponseTransformer, createGroupResponseTransformer, createNamespaceResponseTransformer, createRoleResponseTransformer, createSessionResponseTransformer, createSmsRecordResponseTransformer, createThirdPartyResponseTransformer, createUserResponseTransformer, getCaptchaResponseTransformer, getEmailRecordResponseTransformer, getGroupResponseTransformer, getNamespaceResponseTransformer, getRoleResponseTransformer, getSessionByKeyResponseTransformer, getSessionResponseTransformer, getSmsRecordResponseTransformer, getUserResponseTransformer, listCaptchasResponseTransformer, listEmailRecordsResponseTransformer, listGroupsResponseTransformer, listIndustriesResponseTransformer, listNamespacesResponseTransformer, listRolesResponseTransformer, listSessionsResponseTransformer, listSmsRecordsResponseTransformer, listUsersResponseTransformer, loginByEmailResponseTransformer, loginByGithubResponseTransformer, loginByOAuthResponseTransformer, loginByPhoneResponseTransformer, loginResponseTransformer, refreshResponseTransformer, registerByEmailResponseTransformer, registerByPhoneResponseTransformer, registerResponseTransformer, signTokenResponseTransformer, updateCaptchaResponseTransformer, updateEmailRecordResponseTransformer, updateGroupResponseTransformer, updateNamespaceResponseTransformer, updateRoleResponseTransformer, updateSessionResponseTransformer, updateSmsRecordResponseTransformer, updateUserResponseTransformer, verifyIdentityResponseTransformer } from './transformers.gen';
-import type { AggregateUsersData, AggregateUsersResponses, BindThirdPartyData, BindThirdPartyResponses, CleanupData, CleanupResponses, CountUsersData, CountUsersResponses, CreateCaptchaData, CreateCaptchaResponses, CreateEmailRecordData, CreateEmailRecordResponses, CreateGroupData, CreateGroupResponses, CreateNamespaceData, CreateNamespaceResponses, CreateRoleData, CreateRoleResponses, CreateSessionData, CreateSessionResponses, CreateSmsRecordData, CreateSmsRecordResponses, CreateThirdPartyData, CreateThirdPartyResponses, CreateUserData, CreateUserResponses, DeleteCaptchaData, DeleteCaptchaResponses, DeleteEmailRecordData, DeleteEmailRecordResponses, DeleteGroupData, DeleteGroupResponses, DeleteNamespaceData, DeleteNamespaceResponses, DeleteRoleData, DeleteRoleResponses, DeleteSessionData, DeleteSessionResponses, DeleteSmsRecordData, DeleteSmsRecordResponses, DeleteUserData, DeleteUserResponses, GetAuthorizerData, GetAuthorizerResponses, GetCaptchaData, GetCaptchaResponses, GetEmailRecordData, GetEmailRecordResponses, GetGroupData, GetGroupResponses, GetNamespaceData, GetNamespaceResponses, GetRoleData, GetRoleResponses, GetSessionByKeyData, GetSessionByKeyResponses, GetSessionData, GetSessionResponses, GetSmsRecordData, GetSmsRecordResponses, GetThirdPartyByTidData, GetThirdPartyByTidResponses, GetThirdPartyByUidData, GetThirdPartyByUidResponses, GetThirdPartyData, GetThirdPartyResponses, GetUserData, GetUserResponses, HelloData, HelloResponses, ListCaptchasData, ListCaptchasResponses, ListEmailRecordsData, ListEmailRecordsResponses, ListGroupsData, ListGroupsResponses, ListIndustriesData, ListIndustriesResponses, ListNamespacesData, ListNamespacesResponses, ListRegionsData, ListRegionsResponses, ListRolesData, ListRolesResponses, ListSessionsData, ListSessionsResponses, ListSmsRecordsData, ListSmsRecordsResponses, ListThirdPartyData, ListThirdPartyResponses, ListUsersData, ListUsersResponses, LoginByEmailData, LoginByEmailResponses, LoginByGithubData, LoginByGithubResponses, LoginByOAuthData, LoginByOAuthResponses, LoginByPhoneData, LoginByPhoneResponses, LoginData, LoginResponses, LogoutData, LogoutResponses, RefreshData, RefreshResponses, RegisterByEmailData, RegisterByEmailResponses, RegisterByPhoneData, RegisterByPhoneResponses, RegisterData, RegisterResponses, ResetPasswordByEmailData, ResetPasswordByEmailResponses, ResetPasswordByPhoneData, ResetPasswordByPhoneResponses, SendEmailData, SendEmailResponses, SendSmsData, SendSmsResponses, SignTokenData, SignTokenResponses, UpdateCaptchaData, UpdateCaptchaResponses, UpdateEmailRecordData, UpdateEmailRecordResponses, UpdateGroupData, UpdateGroupResponses, UpdateNamespaceData, UpdateNamespaceResponses, UpdatePasswordData, UpdatePasswordResponses, UpdateRoleData, UpdateRoleResponses, UpdateSessionData, UpdateSessionResponses, UpdateSmsRecordData, UpdateSmsRecordResponses, UpdateThirdPartyData, UpdateThirdPartyResponses, UpdateUserData, UpdateUserResponses, UpsertGroupByNameData, UpsertGroupByNameResponses, UpsertUserByEmailData, UpsertUserByEmailResponses, UpsertUserByEmployeeIdData, UpsertUserByEmployeeIdResponses, UpsertUserByPhoneData, UpsertUserByPhoneResponses, UpsertUserByUsernameData, UpsertUserByUsernameResponses, VerifyCaptchaData, VerifyCaptchaResponses, VerifyIdentityData, VerifyIdentityResponses } from './types.gen';
+import type { AggregateUsersData, AggregateUsersResponses, BindThirdPartyData, BindThirdPartyResponses, CleanupData, CleanupResponses, CountCaptchasData, CountCaptchasResponses, CountEmailRecordsData, CountEmailRecordsResponses, CountGroupsData, CountGroupsResponses, CountNamespacesData, CountNamespacesResponses, CountRolesData, CountRolesResponses, CountSessionsData, CountSessionsResponses, CountSmsRecordsData, CountSmsRecordsResponses, CountThirdPartyData, CountThirdPartyResponses, CountUsersData, CountUsersResponses, CreateCaptchaData, CreateCaptchaResponses, CreateEmailRecordData, CreateEmailRecordResponses, CreateGroupData, CreateGroupResponses, CreateNamespaceData, CreateNamespaceResponses, CreateRoleData, CreateRoleResponses, CreateSessionData, CreateSessionResponses, CreateSmsRecordData, CreateSmsRecordResponses, CreateThirdPartyData, CreateThirdPartyResponses, CreateUserData, CreateUserResponses, DeleteCaptchaData, DeleteCaptchaResponses, DeleteEmailRecordData, DeleteEmailRecordResponses, DeleteGroupData, DeleteGroupResponses, DeleteNamespaceData, DeleteNamespaceResponses, DeleteRoleData, DeleteRoleResponses, DeleteSessionData, DeleteSessionResponses, DeleteSmsRecordData, DeleteSmsRecordResponses, DeleteUserData, DeleteUserResponses, GetAuthorizerData, GetAuthorizerResponses, GetCaptchaData, GetCaptchaResponses, GetEmailRecordData, GetEmailRecordResponses, GetGroupData, GetGroupResponses, GetNamespaceData, GetNamespaceResponses, GetRoleData, GetRoleResponses, GetSessionByKeyData, GetSessionByKeyResponses, GetSessionData, GetSessionResponses, GetSmsRecordData, GetSmsRecordResponses, GetThirdPartyByTidData, GetThirdPartyByTidResponses, GetThirdPartyByUidData, GetThirdPartyByUidResponses, GetThirdPartyData, GetThirdPartyResponses, GetUserData, GetUserResponses, HelloData, HelloResponses, ListCaptchasData, ListCaptchasResponses, ListEmailRecordsData, ListEmailRecordsResponses, ListGroupsData, ListGroupsResponses, ListIndustriesData, ListIndustriesResponses, ListNamespacesData, ListNamespacesResponses, ListRegionsData, ListRegionsResponses, ListRolesData, ListRolesResponses, ListSessionsData, ListSessionsResponses, ListSmsRecordsData, ListSmsRecordsResponses, ListThirdPartyData, ListThirdPartyResponses, ListUsersData, ListUsersResponses, LoginByEmailData, LoginByEmailResponses, LoginByGithubData, LoginByGithubResponses, LoginByOAuthData, LoginByOAuthResponses, LoginByPhoneData, LoginByPhoneResponses, LoginData, LoginResponses, LogoutData, LogoutResponses, RefreshData, RefreshResponses, RegisterByEmailData, RegisterByEmailResponses, RegisterByPhoneData, RegisterByPhoneResponses, RegisterData, RegisterResponses, ResetPasswordByEmailData, ResetPasswordByEmailResponses, ResetPasswordByPhoneData, ResetPasswordByPhoneResponses, SendEmailData, SendEmailResponses, SendSmsData, SendSmsResponses, SignTokenData, SignTokenResponses, UpdateCaptchaData, UpdateCaptchaResponses, UpdateEmailRecordData, UpdateEmailRecordResponses, UpdateGroupData, UpdateGroupResponses, UpdateNamespaceData, UpdateNamespaceResponses, UpdatePasswordData, UpdatePasswordResponses, UpdateRoleData, UpdateRoleResponses, UpdateSessionData, UpdateSessionResponses, UpdateSmsRecordData, UpdateSmsRecordResponses, UpdateThirdPartyData, UpdateThirdPartyResponses, UpdateUserData, UpdateUserResponses, UpsertGroupByNameData, UpsertGroupByNameResponses, UpsertUserByEmailData, UpsertUserByEmailResponses, UpsertUserByEmployeeIdData, UpsertUserByEmployeeIdResponses, UpsertUserByPhoneData, UpsertUserByPhoneResponses, UpsertUserByUsernameData, UpsertUserByUsernameResponses, VerifyCaptchaData, VerifyCaptchaResponses, VerifyIdentityData, VerifyIdentityResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -266,6 +266,16 @@ export const createCaptcha = <ThrowOnError extends boolean = true>(options: Opti
 };
 
 /**
+ * Count captchas
+ */
+export const countCaptchas = <ThrowOnError extends boolean = true>(options?: Options<CountCaptchasData, ThrowOnError>) => {
+    return (options?.client ?? client).post<CountCaptchasResponses, unknown, ThrowOnError>({
+        url: '/captchas/@count',
+        ...options
+    });
+};
+
+/**
  * Delete captcha
  */
 export const deleteCaptcha = <ThrowOnError extends boolean = true>(options: Options<DeleteCaptchaData, ThrowOnError>) => {
@@ -368,6 +378,22 @@ export const createEmailRecord = <ThrowOnError extends boolean = true>(options: 
 };
 
 /**
+ * Count email records
+ */
+export const countEmailRecords = <ThrowOnError extends boolean = true>(options?: Options<CountEmailRecordsData, ThrowOnError>) => {
+    return (options?.client ?? client).post<CountEmailRecordsResponses, unknown, ThrowOnError>({
+        security: [
+            {
+                name: 'x-api-key',
+                type: 'apiKey'
+            }
+        ],
+        url: '/email/records/@count',
+        ...options
+    });
+};
+
+/**
  * Delete email record
  */
 export const deleteEmailRecord = <ThrowOnError extends boolean = true>(options: Options<DeleteEmailRecordData, ThrowOnError>) => {
@@ -444,6 +470,16 @@ export const createGroup = <ThrowOnError extends boolean = true>(options: Option
             'Content-Type': 'application/json',
             ...options.headers
         }
+    });
+};
+
+/**
+ * Count groups
+ */
+export const countGroups = <ThrowOnError extends boolean = true>(options?: Options<CountGroupsData, ThrowOnError>) => {
+    return (options?.client ?? client).post<CountGroupsResponses, unknown, ThrowOnError>({
+        url: '/groups/@count',
+        ...options
     });
 };
 
@@ -536,6 +572,22 @@ export const createNamespace = <ThrowOnError extends boolean = true>(options: Op
 };
 
 /**
+ * Count namespaces
+ */
+export const countNamespaces = <ThrowOnError extends boolean = true>(options?: Options<CountNamespacesData, ThrowOnError>) => {
+    return (options?.client ?? client).post<CountNamespacesResponses, unknown, ThrowOnError>({
+        security: [
+            {
+                name: 'x-api-key',
+                type: 'apiKey'
+            }
+        ],
+        url: '/namespaces/@count',
+        ...options
+    });
+};
+
+/**
  * Find namespace by id or key
  */
 export const getNamespace = <ThrowOnError extends boolean = true>(options: Options<GetNamespaceData, ThrowOnError>) => {
@@ -624,6 +676,22 @@ export const createSession = <ThrowOnError extends boolean = true>(options: Opti
             'Content-Type': 'application/json',
             ...options.headers
         }
+    });
+};
+
+/**
+ * Count sessions
+ */
+export const countSessions = <ThrowOnError extends boolean = true>(options?: Options<CountSessionsData, ThrowOnError>) => {
+    return (options?.client ?? client).post<CountSessionsResponses, unknown, ThrowOnError>({
+        security: [
+            {
+                name: 'x-api-key',
+                type: 'apiKey'
+            }
+        ],
+        url: '/sessions/@count',
+        ...options
     });
 };
 
@@ -751,6 +819,22 @@ export const createSmsRecord = <ThrowOnError extends boolean = true>(options: Op
 };
 
 /**
+ * Count sms records
+ */
+export const countSmsRecords = <ThrowOnError extends boolean = true>(options?: Options<CountSmsRecordsData, ThrowOnError>) => {
+    return (options?.client ?? client).post<CountSmsRecordsResponses, unknown, ThrowOnError>({
+        security: [
+            {
+                name: 'x-api-key',
+                type: 'apiKey'
+            }
+        ],
+        url: '/sms/records/@count',
+        ...options
+    });
+};
+
+/**
  * Delete sms record
  */
 export const deleteSmsRecord = <ThrowOnError extends boolean = true>(options: Options<DeleteSmsRecordData, ThrowOnError>) => {
@@ -826,6 +910,16 @@ export const createThirdParty = <ThrowOnError extends boolean = true>(options: O
             'Content-Type': 'application/json',
             ...options.headers
         }
+    });
+};
+
+/**
+ * Count third party
+ */
+export const countThirdParty = <ThrowOnError extends boolean = true>(options?: Options<CountThirdPartyData, ThrowOnError>) => {
+    return (options?.client ?? client).post<CountThirdPartyResponses, unknown, ThrowOnError>({
+        url: '/third-parties/@count',
+        ...options
     });
 };
 
@@ -919,7 +1013,7 @@ export const createUser = <ThrowOnError extends boolean = true>(options: Options
  */
 export const countUsers = <ThrowOnError extends boolean = true>(options?: Options<CountUsersData, ThrowOnError>) => {
     return (options?.client ?? client).post<CountUsersResponses, unknown, ThrowOnError>({
-        url: '/users/@countUsers',
+        url: '/users/@count',
         ...options
     });
 };
@@ -1111,6 +1205,22 @@ export const createRole = <ThrowOnError extends boolean = true>(options: Options
             'Content-Type': 'application/json',
             ...options.headers
         }
+    });
+};
+
+/**
+ * Count roles
+ */
+export const countRoles = <ThrowOnError extends boolean = true>(options?: Options<CountRolesData, ThrowOnError>) => {
+    return (options?.client ?? client).post<CountRolesResponses, unknown, ThrowOnError>({
+        security: [
+            {
+                name: 'x-api-key',
+                type: 'apiKey'
+            }
+        ],
+        url: '/roles/@count',
+        ...options
     });
 };
 

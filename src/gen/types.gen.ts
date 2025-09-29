@@ -544,6 +544,10 @@ export type Captcha = {
     updatedBy?: string;
 };
 
+export type CountResult = {
+    count: number;
+};
+
 export type UpdateCaptchaDto = {
     /**
      * 验证码
@@ -1423,10 +1427,6 @@ export type CreateUserDto = {
      * 类型, 登录端
      */
     type?: string;
-};
-
-export type CountResult = {
-    count: number;
 };
 
 export type UpdateUserDto = {
@@ -2803,6 +2803,44 @@ export type CreateCaptchaResponses = {
 
 export type CreateCaptchaResponse = CreateCaptchaResponses[keyof CreateCaptchaResponses];
 
+export type CountCaptchasData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'expireAt' | '-expireAt';
+        /**
+         * 验证码
+         */
+        code?: string;
+        /**
+         * key
+         */
+        key?: string;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
+    };
+    url: '/captchas/@count';
+};
+
+export type CountCaptchasResponses = {
+    /**
+     * The count of captchas.
+     */
+    200: CountResult;
+    201: CountResult;
+};
+
+export type CountCaptchasResponse = CountCaptchasResponses[keyof CountCaptchasResponses];
+
 export type DeleteCaptchaData = {
     body?: never;
     path: {
@@ -2962,6 +3000,64 @@ export type CreateEmailRecordResponses = {
 
 export type CreateEmailRecordResponse = CreateEmailRecordResponses[keyof CreateEmailRecordResponses];
 
+export type CountEmailRecordsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * 发送状态
+         */
+        status?: EmailStatus;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'sentAt' | '-sentAt';
+        /**
+         * 创建时间大于该时间
+         */
+        createdAt_gt?: Date;
+        /**
+         * 创建时间小于该时间
+         */
+        createdAt_lt?: Date;
+        /**
+         * 发送时间大于该时间
+         */
+        sentAt_gt?: Date;
+        /**
+         * 发送时间小于该时间
+         */
+        sentAt_lt?: Date;
+        /**
+         * 发件者
+         */
+        from?: string;
+        /**
+         * 收件者
+         */
+        to?: string;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
+    };
+    url: '/email/records/@count';
+};
+
+export type CountEmailRecordsResponses = {
+    /**
+     * The count of email records.
+     */
+    200: CountResult;
+    201: CountResult;
+};
+
+export type CountEmailRecordsResponse = CountEmailRecordsResponses[keyof CountEmailRecordsResponses];
+
 export type DeleteEmailRecordData = {
     body?: never;
     path: {
@@ -3079,6 +3175,52 @@ export type CreateGroupResponses = {
 };
 
 export type CreateGroupResponse = CreateGroupResponses[keyof CreateGroupResponses];
+
+export type CountGroupsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt';
+        /**
+         * 按 id 筛选
+         */
+        id?: Array<string>;
+        /**
+         * 名称 模糊查询
+         */
+        name_like?: string;
+        /**
+         * 名称
+         */
+        name?: string;
+        /**
+         * 是否启用
+         */
+        active?: boolean;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
+    };
+    url: '/groups/@count';
+};
+
+export type CountGroupsResponses = {
+    /**
+     * The result of count groups.
+     */
+    200: CountResult;
+    201: CountResult;
+};
+
+export type CountGroupsResponse = CountGroupsResponses[keyof CountGroupsResponses];
 
 export type GetGroupData = {
     body?: never;
@@ -3235,6 +3377,68 @@ export type CreateNamespaceResponses = {
 
 export type CreateNamespaceResponse = CreateNamespaceResponses[keyof CreateNamespaceResponses];
 
+export type CountNamespacesData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * 按 key 查询
+         */
+        key?: string | Array<string>;
+        /**
+         * key start 查询
+         */
+        key_start?: string | Array<string>;
+        /**
+         * key tree 查询
+         */
+        key_tree?: string;
+        /**
+         * 所属命名空间
+         */
+        ns?: string | Array<string>;
+        /**
+         * 所属命名空间 start 查询
+         */
+        ns_start?: string | Array<string>;
+        /**
+         * 所属命名空间 tree 查询
+         */
+        ns_tree?: string;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name';
+        /**
+         * 名称 模糊查询
+         */
+        name_like?: string;
+        /**
+         * 标签
+         */
+        labels?: Array<string>;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
+    };
+    url: '/namespaces/@count';
+};
+
+export type CountNamespacesResponses = {
+    /**
+     * The result of count namespaces.
+     */
+    200: CountResult;
+    201: CountResult;
+};
+
+export type CountNamespacesResponse = CountNamespacesResponses[keyof CountNamespacesResponses];
+
 export type GetNamespaceData = {
     body?: never;
     path: {
@@ -3372,6 +3576,72 @@ export type CreateSessionResponses = {
 };
 
 export type CreateSessionResponse = CreateSessionResponses[keyof CreateSessionResponses];
+
+export type CountSessionsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'expireAt' | '-expireAt';
+        /**
+         * 用 key 进行查询
+         */
+        refreshToken?: string;
+        /**
+         * 用户或第三方用户 id
+         */
+        subject?: string;
+        /**
+         * 如果来自第三方，则会加上 source
+         */
+        source?: string;
+        /**
+         * 角色之外的权限
+         */
+        permissions?: Array<string>;
+        /**
+         * 角色
+         */
+        roles?: Array<string>;
+        /**
+         * 用户所属的组
+         */
+        groups?: Array<string>;
+        /**
+         * user ns
+         */
+        ns?: string;
+        /**
+         * 用户类型
+         */
+        type?: string;
+        /**
+         * 一次性的，禁止轮换
+         */
+        oneTimeUse?: boolean;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
+    };
+    url: '/sessions/@count';
+};
+
+export type CountSessionsResponses = {
+    /**
+     * The count of sessions.
+     */
+    200: CountResult;
+    201: CountResult;
+};
+
+export type CountSessionsResponse = CountSessionsResponses[keyof CountSessionsResponses];
 
 export type DeleteSessionData = {
     body?: never;
@@ -3534,6 +3804,64 @@ export type CreateSmsRecordResponses = {
 
 export type CreateSmsRecordResponse = CreateSmsRecordResponses[keyof CreateSmsRecordResponses];
 
+export type CountSmsRecordsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * 发送状态
+         */
+        status?: SmsStatus;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'sentAt' | '-sentAt';
+        /**
+         * 创建时间大于该时间
+         */
+        createdAt_gt?: Date;
+        /**
+         * 创建时间小于该时间
+         */
+        createdAt_lt?: Date;
+        /**
+         * 发送时间大于该时间
+         */
+        sentAt_gt?: Date;
+        /**
+         * 发送时间小于该时间
+         */
+        sentAt_lt?: Date;
+        /**
+         * 手机号
+         */
+        phone?: string;
+        /**
+         * 签名
+         */
+        sign?: string;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
+    };
+    url: '/sms/records/@count';
+};
+
+export type CountSmsRecordsResponses = {
+    /**
+     * The count of sms records.
+     */
+    200: CountResult;
+    201: CountResult;
+};
+
+export type CountSmsRecordsResponse = CountSmsRecordsResponses[keyof CountSmsRecordsResponses];
+
 export type DeleteSmsRecordData = {
     body?: never;
     path: {
@@ -3670,6 +3998,67 @@ export type CreateThirdPartyResponses = {
 };
 
 export type CreateThirdPartyResponse = CreateThirdPartyResponses[keyof CreateThirdPartyResponses];
+
+export type CountThirdPartyData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * 第三方登录来源
+         */
+        source?: string;
+        /**
+         * 第三方登录的用户唯一标识
+         */
+        tid?: string;
+        /**
+         * 第三方登录 accessToken
+         */
+        accessToken?: string;
+        /**
+         * 第三方登录过期时间
+         */
+        expireAt?: number;
+        /**
+         * 第三方登录 token 类型
+         */
+        tokenType?: string;
+        /**
+         * 第三方登录 refreshToken
+         */
+        refreshToken?: string;
+        /**
+         * 第三方登录 refreshToken 过期时间
+         */
+        refreshTokenExpireAt?: number;
+        /**
+         * 关联uid
+         */
+        uid?: string;
+        /**
+         * 用于存储第三方的额外数据
+         */
+        data?: string;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
+    };
+    url: '/third-parties/@count';
+};
+
+export type CountThirdPartyResponses = {
+    /**
+     * The third party record count.
+     */
+    201: CountResult;
+};
+
+export type CountThirdPartyResponse = CountThirdPartyResponses[keyof CountThirdPartyResponses];
 
 export type GetThirdPartyData = {
     body?: never;
@@ -4003,7 +4392,7 @@ export type CountUsersData = {
          */
         _offset?: number;
     };
-    url: '/users/@countUsers';
+    url: '/users/@count';
 };
 
 export type CountUsersResponses = {
@@ -4398,6 +4787,48 @@ export type CreateRoleResponses = {
 };
 
 export type CreateRoleResponse = CreateRoleResponses[keyof CreateRoleResponses];
+
+export type CountRolesData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt';
+        /**
+         * 名称 模糊查询
+         */
+        name_like?: string;
+        /**
+         * 名称
+         */
+        name?: string;
+        /**
+         * role key
+         */
+        key?: string;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
+    };
+    url: '/roles/@count';
+};
+
+export type CountRolesResponses = {
+    /**
+     * The result of count roles.
+     */
+    200: CountResult;
+    201: CountResult;
+};
+
+export type CountRolesResponse = CountRolesResponses[keyof CountRolesResponses];
 
 export type GetRoleData = {
     body?: never;
