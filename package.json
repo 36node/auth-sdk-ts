@@ -1,6 +1,6 @@
 {
   "name": "@36node/auth-sdk",
-  "version": "2.14.1",
+  "version": "2.14.2",
   "description": "36node auth sdk for auth service",
   "source": "src/index.ts",
   "main": "dist/index.js",
