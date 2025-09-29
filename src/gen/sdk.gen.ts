@@ -242,8 +242,8 @@ export const resetPasswordByEmail = <ThrowOnError extends boolean = true>(option
 /**
  * List captchas
  */
-export const listCaptchas = <ThrowOnError extends boolean = true>(options: Options<ListCaptchasData, ThrowOnError>) => {
-    return (options.client ?? client).get<ListCaptchasResponses, unknown, ThrowOnError>({
+export const listCaptchas = <ThrowOnError extends boolean = true>(options?: Options<ListCaptchasData, ThrowOnError>) => {
+    return (options?.client ?? client).get<ListCaptchasResponses, unknown, ThrowOnError>({
         responseTransformer: listCaptchasResponseTransformer,
         url: '/captchas',
         ...options
@@ -332,8 +332,8 @@ export const sendEmail = <ThrowOnError extends boolean = true>(options: Options<
 /**
  * List email records
  */
-export const listEmailRecords = <ThrowOnError extends boolean = true>(options: Options<ListEmailRecordsData, ThrowOnError>) => {
-    return (options.client ?? client).get<ListEmailRecordsResponses, unknown, ThrowOnError>({
+export const listEmailRecords = <ThrowOnError extends boolean = true>(options?: Options<ListEmailRecordsData, ThrowOnError>) => {
+    return (options?.client ?? client).get<ListEmailRecordsResponses, unknown, ThrowOnError>({
         responseTransformer: listEmailRecordsResponseTransformer,
         security: [
             {
@@ -424,8 +424,8 @@ export const updateEmailRecord = <ThrowOnError extends boolean = true>(options: 
 /**
  * List groups
  */
-export const listGroups = <ThrowOnError extends boolean = true>(options: Options<ListGroupsData, ThrowOnError>) => {
-    return (options.client ?? client).get<ListGroupsResponses, unknown, ThrowOnError>({
+export const listGroups = <ThrowOnError extends boolean = true>(options?: Options<ListGroupsData, ThrowOnError>) => {
+    return (options?.client ?? client).get<ListGroupsResponses, unknown, ThrowOnError>({
         responseTransformer: listGroupsResponseTransformer,
         url: '/groups',
         ...options
@@ -500,8 +500,8 @@ export const upsertGroupByName = <ThrowOnError extends boolean = true>(options: 
 /**
  * List namespaces
  */
-export const listNamespaces = <ThrowOnError extends boolean = true>(options: Options<ListNamespacesData, ThrowOnError>) => {
-    return (options.client ?? client).get<ListNamespacesResponses, unknown, ThrowOnError>({
+export const listNamespaces = <ThrowOnError extends boolean = true>(options?: Options<ListNamespacesData, ThrowOnError>) => {
+    return (options?.client ?? client).get<ListNamespacesResponses, unknown, ThrowOnError>({
         responseTransformer: listNamespacesResponseTransformer,
         security: [
             {
@@ -592,8 +592,8 @@ export const deleteNamespace = <ThrowOnError extends boolean = true>(options: Op
 /**
  * List sessions
  */
-export const listSessions = <ThrowOnError extends boolean = true>(options: Options<ListSessionsData, ThrowOnError>) => {
-    return (options.client ?? client).get<ListSessionsResponses, unknown, ThrowOnError>({
+export const listSessions = <ThrowOnError extends boolean = true>(options?: Options<ListSessionsData, ThrowOnError>) => {
+    return (options?.client ?? client).get<ListSessionsResponses, unknown, ThrowOnError>({
         responseTransformer: listSessionsResponseTransformer,
         security: [
             {
@@ -715,8 +715,8 @@ export const sendSms = <ThrowOnError extends boolean = true>(options: Options<Se
 /**
  * List sms records
  */
-export const listSmsRecords = <ThrowOnError extends boolean = true>(options: Options<ListSmsRecordsData, ThrowOnError>) => {
-    return (options.client ?? client).get<ListSmsRecordsResponses, unknown, ThrowOnError>({
+export const listSmsRecords = <ThrowOnError extends boolean = true>(options?: Options<ListSmsRecordsData, ThrowOnError>) => {
+    return (options?.client ?? client).get<ListSmsRecordsResponses, unknown, ThrowOnError>({
         responseTransformer: listSmsRecordsResponseTransformer,
         security: [
             {
@@ -807,8 +807,8 @@ export const updateSmsRecord = <ThrowOnError extends boolean = true>(options: Op
 /**
  * list third party
  */
-export const listThirdParty = <ThrowOnError extends boolean = true>(options: Options<ListThirdPartyData, ThrowOnError>) => {
-    return (options.client ?? client).get<ListThirdPartyResponses, unknown, ThrowOnError>({
+export const listThirdParty = <ThrowOnError extends boolean = true>(options?: Options<ListThirdPartyData, ThrowOnError>) => {
+    return (options?.client ?? client).get<ListThirdPartyResponses, unknown, ThrowOnError>({
         url: '/third-parties',
         ...options
     });
@@ -891,8 +891,8 @@ export const bindThirdParty = <ThrowOnError extends boolean = true>(options: Opt
 /**
  * List users
  */
-export const listUsers = <ThrowOnError extends boolean = true>(options: Options<ListUsersData, ThrowOnError>) => {
-    return (options.client ?? client).get<ListUsersResponses, unknown, ThrowOnError>({
+export const listUsers = <ThrowOnError extends boolean = true>(options?: Options<ListUsersData, ThrowOnError>) => {
+    return (options?.client ?? client).get<ListUsersResponses, unknown, ThrowOnError>({
         responseTransformer: listUsersResponseTransformer,
         url: '/users',
         ...options
@@ -917,8 +917,8 @@ export const createUser = <ThrowOnError extends boolean = true>(options: Options
 /**
  * Count users
  */
-export const countUsers = <ThrowOnError extends boolean = true>(options: Options<CountUsersData, ThrowOnError>) => {
-    return (options.client ?? client).post<CountUsersResponses, unknown, ThrowOnError>({
+export const countUsers = <ThrowOnError extends boolean = true>(options?: Options<CountUsersData, ThrowOnError>) => {
+    return (options?.client ?? client).post<CountUsersResponses, unknown, ThrowOnError>({
         url: '/users/@countUsers',
         ...options
     });
@@ -1058,8 +1058,8 @@ export const aggregateUsers = <ThrowOnError extends boolean = true>(options: Opt
 /**
  * List Industries
  */
-export const listIndustries = <ThrowOnError extends boolean = true>(options: Options<ListIndustriesData, ThrowOnError>) => {
-    return (options.client ?? client).get<ListIndustriesResponses, unknown, ThrowOnError>({
+export const listIndustries = <ThrowOnError extends boolean = true>(options?: Options<ListIndustriesData, ThrowOnError>) => {
+    return (options?.client ?? client).get<ListIndustriesResponses, unknown, ThrowOnError>({
         responseTransformer: listIndustriesResponseTransformer,
         url: '/industries',
         ...options

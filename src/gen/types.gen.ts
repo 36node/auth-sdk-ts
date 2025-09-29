@@ -95,13 +95,6 @@ export type SessionWithToken = {
     tokenExpireAt: Date;
 };
 
-export type GetAuthorizerQuery = {
-    provider: string;
-    redirectUri?: string;
-    responseType?: string;
-    state?: string;
-};
-
 export type Authorizer = {
     /**
      * url
@@ -551,29 +544,6 @@ export type Captcha = {
     updatedBy?: string;
 };
 
-export type ListCaptchasQuery = {
-    /**
-     * 排序参数
-     */
-    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'expireAt' | '-expireAt';
-    /**
-     * 验证码
-     */
-    code?: string;
-    /**
-     * key
-     */
-    key?: string;
-    /**
-     * 分页大小
-     */
-    _limit?: number;
-    /**
-     * 分页偏移
-     */
-    _offset?: number;
-};
-
 export type UpdateCaptchaDto = {
     /**
      * 验证码
@@ -693,49 +663,6 @@ export type EmailRecord = {
     updatedBy?: string;
 };
 
-export type ListEmailRecordsQuery = {
-    /**
-     * 发送状态
-     */
-    status?: EmailStatus;
-    /**
-     * 排序参数
-     */
-    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'sentAt' | '-sentAt';
-    /**
-     * 创建时间大于该时间
-     */
-    createdAt_gt?: Date;
-    /**
-     * 创建时间小于该时间
-     */
-    createdAt_lt?: Date;
-    /**
-     * 发送时间大于该时间
-     */
-    sentAt_gt?: Date;
-    /**
-     * 发送时间小于该时间
-     */
-    sentAt_lt?: Date;
-    /**
-     * 发件者
-     */
-    from?: string;
-    /**
-     * 收件者
-     */
-    to?: string;
-    /**
-     * 分页大小
-     */
-    _limit?: number;
-    /**
-     * 分页偏移
-     */
-    _offset?: number;
-};
-
 export type UpdateEmailRecordDto = {
     /**
      * 发送状态
@@ -819,37 +746,6 @@ export type Group = {
      * Entity updated by who
      */
     updatedBy?: string;
-};
-
-export type ListGroupsQuery = {
-    /**
-     * 排序参数
-     */
-    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt';
-    /**
-     * 按 id 筛选
-     */
-    id?: Array<string>;
-    /**
-     * 名称 模糊查询
-     */
-    name_like?: string;
-    /**
-     * 名称
-     */
-    name?: string;
-    /**
-     * 是否启用
-     */
-    active?: boolean;
-    /**
-     * 分页大小
-     */
-    _limit?: number;
-    /**
-     * 分页偏移
-     */
-    _offset?: number;
 };
 
 export type UpdateGroupDto = {
@@ -979,53 +875,6 @@ export type Namespace = {
      * Entity updated by who
      */
     updatedBy?: string;
-};
-
-export type ListNamespacesQuery = {
-    /**
-     * 按 key 查询
-     */
-    key?: string | Array<string>;
-    /**
-     * key start 查询
-     */
-    key_start?: string | Array<string>;
-    /**
-     * key tree 查询
-     */
-    key_tree?: string;
-    /**
-     * 所属命名空间
-     */
-    ns?: string | Array<string>;
-    /**
-     * 所属命名空间 start 查询
-     */
-    ns_start?: string | Array<string>;
-    /**
-     * 所属命名空间 tree 查询
-     */
-    ns_tree?: string;
-    /**
-     * 排序参数
-     */
-    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name';
-    /**
-     * 名称 模糊查询
-     */
-    name_like?: string;
-    /**
-     * 标签
-     */
-    labels?: Array<string>;
-    /**
-     * 分页大小
-     */
-    _limit?: number;
-    /**
-     * 分页偏移
-     */
-    _offset?: number;
 };
 
 export type UpdateNamespaceDto = {
@@ -1166,57 +1015,6 @@ export type Session = {
     updatedBy?: string;
 };
 
-export type ListSessionsQuery = {
-    /**
-     * 排序参数
-     */
-    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'expireAt' | '-expireAt';
-    /**
-     * 用 key 进行查询
-     */
-    refreshToken?: string;
-    /**
-     * 用户或第三方用户 id
-     */
-    subject?: string;
-    /**
-     * 如果来自第三方，则会加上 source
-     */
-    source?: string;
-    /**
-     * 角色之外的权限
-     */
-    permissions?: Array<string>;
-    /**
-     * 角色
-     */
-    roles?: Array<string>;
-    /**
-     * 用户所属的组
-     */
-    groups?: Array<string>;
-    /**
-     * user ns
-     */
-    ns?: string;
-    /**
-     * 用户类型
-     */
-    type?: string;
-    /**
-     * 一次性的，禁止轮换
-     */
-    oneTimeUse?: boolean;
-    /**
-     * 分页大小
-     */
-    _limit?: number;
-    /**
-     * 分页偏移
-     */
-    _offset?: number;
-};
-
 export type UpdateSessionDto = {
     /**
      * 会话过期时间
@@ -1344,49 +1142,6 @@ export type SmsRecord = {
     updatedBy?: string;
 };
 
-export type ListSmsRecordsQuery = {
-    /**
-     * 发送状态
-     */
-    status?: SmsStatus;
-    /**
-     * 排序参数
-     */
-    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'sentAt' | '-sentAt';
-    /**
-     * 创建时间大于该时间
-     */
-    createdAt_gt?: Date;
-    /**
-     * 创建时间小于该时间
-     */
-    createdAt_lt?: Date;
-    /**
-     * 发送时间大于该时间
-     */
-    sentAt_gt?: Date;
-    /**
-     * 发送时间小于该时间
-     */
-    sentAt_lt?: Date;
-    /**
-     * 手机号
-     */
-    phone?: string;
-    /**
-     * 签名
-     */
-    sign?: string;
-    /**
-     * 分页大小
-     */
-    _limit?: number;
-    /**
-     * 分页偏移
-     */
-    _offset?: number;
-};
-
 export type UpdateSmsRecordDto = {
     /**
      * 发送状态
@@ -1510,53 +1265,6 @@ export type ThirdParty = {
      * Entity updated by who
      */
     updatedBy?: string;
-};
-
-export type ListThirdPartyQuery = {
-    /**
-     * 第三方登录来源
-     */
-    source?: string;
-    /**
-     * 第三方登录的用户唯一标识
-     */
-    tid?: string;
-    /**
-     * 第三方登录 accessToken
-     */
-    accessToken?: string;
-    /**
-     * 第三方登录过期时间
-     */
-    expireAt?: number;
-    /**
-     * 第三方登录 token 类型
-     */
-    tokenType?: string;
-    /**
-     * 第三方登录 refreshToken
-     */
-    refreshToken?: string;
-    /**
-     * 第三方登录 refreshToken 过期时间
-     */
-    refreshTokenExpireAt?: number;
-    /**
-     * 关联uid
-     */
-    uid?: string;
-    /**
-     * 用于存储第三方的额外数据
-     */
-    data?: string;
-    /**
-     * 分页大小
-     */
-    _limit?: number;
-    /**
-     * 分页偏移
-     */
-    _offset?: number;
 };
 
 export type UpdateThirdPartyDto = {
@@ -1715,105 +1423,6 @@ export type CreateUserDto = {
      * 类型, 登录端
      */
     type?: string;
-};
-
-export type ListUsersQuery = {
-    /**
-     * 按 id 筛选
-     */
-    id?: Array<string>;
-    /**
-     * 所属命名空间
-     */
-    ns?: string | Array<string>;
-    /**
-     * 所属命名空间 start 查询
-     */
-    ns_start?: string | Array<string>;
-    /**
-     * 排序参数
-     */
-    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'lastLoginAt' | '-lastLoginAt' | 'expireAt' | '-expireAt';
-    /**
-     * 名称 模糊查询
-     */
-    name_like?: string;
-    /**
-     * 用户名 模糊查询
-     */
-    username_like?: string;
-    /**
-     * 昵称 模糊查询
-     */
-    nickname_like?: string;
-    /**
-     * 所属命名空间的 tree 查询
-     */
-    ns_tree?: string;
-    /**
-     * 过期时间大于该时间
-     */
-    expireAt_gte?: Date;
-    /**
-     * 过期时间小于该时间
-     */
-    expireAt_lte?: Date;
-    /**
-     * 是否启用
-     */
-    active?: boolean;
-    /**
-     * 邮箱
-     */
-    email?: string;
-    /**
-     * 团队
-     */
-    groups?: Array<string>;
-    /**
-     * 邀请人
-     */
-    inviter?: string;
-    /**
-     * 标签
-     */
-    labels?: Array<string>;
-    /**
-     * 姓名
-     */
-    name?: string;
-    /**
-     * 手机号
-     */
-    phone?: string;
-    /**
-     * 注册地区，存地区编号
-     */
-    registerRegion?: string;
-    /**
-     * 角色
-     */
-    roles?: Array<string>;
-    /**
-     * 状态
-     */
-    status?: string;
-    /**
-     * 类型, 登录端
-     */
-    type?: string;
-    /**
-     * 用户名
-     */
-    username?: string;
-    /**
-     * 分页大小
-     */
-    _limit?: number;
-    /**
-     * 分页偏移
-     */
-    _offset?: number;
 };
 
 export type CountResult = {
@@ -1991,14 +1600,6 @@ export type UserAggregateResult = {
     count: number;
 };
 
-export type ListIndustriesQuery = {
-    /**
-     * 返回的层数
-     * 默认返回所有层级
-     */
-    depth?: number;
-};
-
 export type Industry = {
     /**
      * 编码
@@ -2098,6 +1699,264 @@ export type UpdateRoleDto = {
     permissions?: Array<string>;
 };
 
+export type ListUsersQuery = {
+    /**
+     * 按 id 筛选
+     */
+    id?: Array<string>;
+    /**
+     * 所属命名空间
+     */
+    ns?: string | Array<string>;
+    /**
+     * 所属命名空间 start 查询
+     */
+    ns_start?: string | Array<string>;
+    /**
+     * 排序参数
+     */
+    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'lastLoginAt' | '-lastLoginAt' | 'expireAt' | '-expireAt';
+    /**
+     * 名称 模糊查询
+     */
+    name_like?: string;
+    /**
+     * 用户名 模糊查询
+     */
+    username_like?: string;
+    /**
+     * 昵称 模糊查询
+     */
+    nickname_like?: string;
+    /**
+     * 所属命名空间的 tree 查询
+     */
+    ns_tree?: string;
+    /**
+     * 过期时间大于该时间
+     */
+    expireAt_gte?: Date;
+    /**
+     * 过期时间小于该时间
+     */
+    expireAt_lte?: Date;
+    /**
+     * 是否启用
+     */
+    active?: boolean;
+    /**
+     * 邮箱
+     */
+    email?: string;
+    /**
+     * 团队
+     */
+    groups?: Array<string>;
+    /**
+     * 邀请人
+     */
+    inviter?: string;
+    /**
+     * 标签
+     */
+    labels?: Array<string>;
+    /**
+     * 姓名
+     */
+    name?: string;
+    /**
+     * 手机号
+     */
+    phone?: string;
+    /**
+     * 注册地区，存地区编号
+     */
+    registerRegion?: string;
+    /**
+     * 角色
+     */
+    roles?: Array<string>;
+    /**
+     * 状态
+     */
+    status?: string;
+    /**
+     * 类型, 登录端
+     */
+    type?: string;
+    /**
+     * 用户名
+     */
+    username?: string;
+    /**
+     * 分页大小
+     */
+    _limit?: number;
+    /**
+     * 分页偏移
+     */
+    _offset?: number;
+};
+
+export type ListNamespacesQuery = {
+    /**
+     * 按 key 查询
+     */
+    key?: string | Array<string>;
+    /**
+     * key start 查询
+     */
+    key_start?: string | Array<string>;
+    /**
+     * key tree 查询
+     */
+    key_tree?: string;
+    /**
+     * 所属命名空间
+     */
+    ns?: string | Array<string>;
+    /**
+     * 所属命名空间 start 查询
+     */
+    ns_start?: string | Array<string>;
+    /**
+     * 所属命名空间 tree 查询
+     */
+    ns_tree?: string;
+    /**
+     * 排序参数
+     */
+    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name';
+    /**
+     * 名称 模糊查询
+     */
+    name_like?: string;
+    /**
+     * 标签
+     */
+    labels?: Array<string>;
+    /**
+     * 分页大小
+     */
+    _limit?: number;
+    /**
+     * 分页偏移
+     */
+    _offset?: number;
+};
+
+export type GetAuthorizerQuery = {
+    provider: string;
+    redirectUri?: string;
+    responseType?: string;
+    state?: string;
+};
+
+export type ListCaptchasQuery = {
+    /**
+     * 排序参数
+     */
+    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'expireAt' | '-expireAt';
+    /**
+     * 验证码
+     */
+    code?: string;
+    /**
+     * key
+     */
+    key?: string;
+    /**
+     * 分页大小
+     */
+    _limit?: number;
+    /**
+     * 分页偏移
+     */
+    _offset?: number;
+};
+
+export type ListEmailRecordsQuery = {
+    /**
+     * 发送状态
+     */
+    status?: EmailStatus;
+    /**
+     * 排序参数
+     */
+    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'sentAt' | '-sentAt';
+    /**
+     * 创建时间大于该时间
+     */
+    createdAt_gt?: Date;
+    /**
+     * 创建时间小于该时间
+     */
+    createdAt_lt?: Date;
+    /**
+     * 发送时间大于该时间
+     */
+    sentAt_gt?: Date;
+    /**
+     * 发送时间小于该时间
+     */
+    sentAt_lt?: Date;
+    /**
+     * 发件者
+     */
+    from?: string;
+    /**
+     * 收件者
+     */
+    to?: string;
+    /**
+     * 分页大小
+     */
+    _limit?: number;
+    /**
+     * 分页偏移
+     */
+    _offset?: number;
+};
+
+export type ListGroupsQuery = {
+    /**
+     * 排序参数
+     */
+    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt';
+    /**
+     * 按 id 筛选
+     */
+    id?: Array<string>;
+    /**
+     * 名称 模糊查询
+     */
+    name_like?: string;
+    /**
+     * 名称
+     */
+    name?: string;
+    /**
+     * 是否启用
+     */
+    active?: boolean;
+    /**
+     * 分页大小
+     */
+    _limit?: number;
+    /**
+     * 分页偏移
+     */
+    _offset?: number;
+};
+
+export type ListIndustriesQuery = {
+    /**
+     * 返回的层数
+     * 默认返回所有层级
+     */
+    depth?: number;
+};
+
 export type ListRolesQuery = {
     /**
      * 排序参数
@@ -2115,6 +1974,147 @@ export type ListRolesQuery = {
      * role key
      */
     key?: string;
+    /**
+     * 分页大小
+     */
+    _limit?: number;
+    /**
+     * 分页偏移
+     */
+    _offset?: number;
+};
+
+export type ListSessionsQuery = {
+    /**
+     * 排序参数
+     */
+    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'expireAt' | '-expireAt';
+    /**
+     * 用 key 进行查询
+     */
+    refreshToken?: string;
+    /**
+     * 用户或第三方用户 id
+     */
+    subject?: string;
+    /**
+     * 如果来自第三方，则会加上 source
+     */
+    source?: string;
+    /**
+     * 角色之外的权限
+     */
+    permissions?: Array<string>;
+    /**
+     * 角色
+     */
+    roles?: Array<string>;
+    /**
+     * 用户所属的组
+     */
+    groups?: Array<string>;
+    /**
+     * user ns
+     */
+    ns?: string;
+    /**
+     * 用户类型
+     */
+    type?: string;
+    /**
+     * 一次性的，禁止轮换
+     */
+    oneTimeUse?: boolean;
+    /**
+     * 分页大小
+     */
+    _limit?: number;
+    /**
+     * 分页偏移
+     */
+    _offset?: number;
+};
+
+export type ListSmsRecordsQuery = {
+    /**
+     * 发送状态
+     */
+    status?: SmsStatus;
+    /**
+     * 排序参数
+     */
+    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'sentAt' | '-sentAt';
+    /**
+     * 创建时间大于该时间
+     */
+    createdAt_gt?: Date;
+    /**
+     * 创建时间小于该时间
+     */
+    createdAt_lt?: Date;
+    /**
+     * 发送时间大于该时间
+     */
+    sentAt_gt?: Date;
+    /**
+     * 发送时间小于该时间
+     */
+    sentAt_lt?: Date;
+    /**
+     * 手机号
+     */
+    phone?: string;
+    /**
+     * 签名
+     */
+    sign?: string;
+    /**
+     * 分页大小
+     */
+    _limit?: number;
+    /**
+     * 分页偏移
+     */
+    _offset?: number;
+};
+
+export type ListThirdPartyQuery = {
+    /**
+     * 第三方登录来源
+     */
+    source?: string;
+    /**
+     * 第三方登录的用户唯一标识
+     */
+    tid?: string;
+    /**
+     * 第三方登录 accessToken
+     */
+    accessToken?: string;
+    /**
+     * 第三方登录过期时间
+     */
+    expireAt?: number;
+    /**
+     * 第三方登录 token 类型
+     */
+    tokenType?: string;
+    /**
+     * 第三方登录 refreshToken
+     */
+    refreshToken?: string;
+    /**
+     * 第三方登录 refreshToken 过期时间
+     */
+    refreshTokenExpireAt?: number;
+    /**
+     * 关联uid
+     */
+    uid?: string;
+    /**
+     * 用于存储第三方的额外数据
+     */
+    data?: string;
     /**
      * 分页大小
      */
@@ -2553,7 +2553,10 @@ export type GetAuthorizerData = {
     body?: never;
     path?: never;
     query: {
-        GetAuthorizerQuery: GetAuthorizerQuery;
+        provider: string;
+        redirectUri?: string;
+        responseType?: string;
+        state?: string;
     };
     url: '/auth/authorizer';
 };
@@ -2750,8 +2753,27 @@ export type ResetPasswordByEmailResponse = ResetPasswordByEmailResponses[keyof R
 export type ListCaptchasData = {
     body?: never;
     path?: never;
-    query: {
-        ListCaptchasQuery: ListCaptchasQuery;
+    query?: {
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'expireAt' | '-expireAt';
+        /**
+         * 验证码
+         */
+        code?: string;
+        /**
+         * key
+         */
+        key?: string;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
     };
     url: '/captchas';
 };
@@ -2870,8 +2892,47 @@ export type SendEmailResponse = SendEmailResponses[keyof SendEmailResponses];
 export type ListEmailRecordsData = {
     body?: never;
     path?: never;
-    query: {
-        ListEmailRecordsQuery: ListEmailRecordsQuery;
+    query?: {
+        /**
+         * 发送状态
+         */
+        status?: EmailStatus;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'sentAt' | '-sentAt';
+        /**
+         * 创建时间大于该时间
+         */
+        createdAt_gt?: Date;
+        /**
+         * 创建时间小于该时间
+         */
+        createdAt_lt?: Date;
+        /**
+         * 发送时间大于该时间
+         */
+        sentAt_gt?: Date;
+        /**
+         * 发送时间小于该时间
+         */
+        sentAt_lt?: Date;
+        /**
+         * 发件者
+         */
+        from?: string;
+        /**
+         * 收件者
+         */
+        to?: string;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
     };
     url: '/email/records';
 };
@@ -2961,8 +3022,35 @@ export type UpdateEmailRecordResponse = UpdateEmailRecordResponses[keyof UpdateE
 export type ListGroupsData = {
     body?: never;
     path?: never;
-    query: {
-        ListGroupsQuery: ListGroupsQuery;
+    query?: {
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt';
+        /**
+         * 按 id 筛选
+         */
+        id?: Array<string>;
+        /**
+         * 名称 模糊查询
+         */
+        name_like?: string;
+        /**
+         * 名称
+         */
+        name?: string;
+        /**
+         * 是否启用
+         */
+        active?: boolean;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
     };
     url: '/groups';
 };
@@ -3073,8 +3161,51 @@ export type UpsertGroupByNameResponse = UpsertGroupByNameResponses[keyof UpsertG
 export type ListNamespacesData = {
     body?: never;
     path?: never;
-    query: {
-        ListNamespacesQuery: ListNamespacesQuery;
+    query?: {
+        /**
+         * 按 key 查询
+         */
+        key?: string | Array<string>;
+        /**
+         * key start 查询
+         */
+        key_start?: string | Array<string>;
+        /**
+         * key tree 查询
+         */
+        key_tree?: string;
+        /**
+         * 所属命名空间
+         */
+        ns?: string | Array<string>;
+        /**
+         * 所属命名空间 start 查询
+         */
+        ns_start?: string | Array<string>;
+        /**
+         * 所属命名空间 tree 查询
+         */
+        ns_tree?: string;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name';
+        /**
+         * 名称 模糊查询
+         */
+        name_like?: string;
+        /**
+         * 标签
+         */
+        labels?: Array<string>;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
     };
     url: '/namespaces';
 };
@@ -3164,8 +3295,55 @@ export type DeleteNamespaceResponse = DeleteNamespaceResponses[keyof DeleteNames
 export type ListSessionsData = {
     body?: never;
     path?: never;
-    query: {
-        ListSessionsQuery: ListSessionsQuery;
+    query?: {
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'expireAt' | '-expireAt';
+        /**
+         * 用 key 进行查询
+         */
+        refreshToken?: string;
+        /**
+         * 用户或第三方用户 id
+         */
+        subject?: string;
+        /**
+         * 如果来自第三方，则会加上 source
+         */
+        source?: string;
+        /**
+         * 角色之外的权限
+         */
+        permissions?: Array<string>;
+        /**
+         * 角色
+         */
+        roles?: Array<string>;
+        /**
+         * 用户所属的组
+         */
+        groups?: Array<string>;
+        /**
+         * user ns
+         */
+        ns?: string;
+        /**
+         * 用户类型
+         */
+        type?: string;
+        /**
+         * 一次性的，禁止轮换
+         */
+        oneTimeUse?: boolean;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
     };
     url: '/sessions';
 };
@@ -3286,8 +3464,47 @@ export type SendSmsResponse = SendSmsResponses[keyof SendSmsResponses];
 export type ListSmsRecordsData = {
     body?: never;
     path?: never;
-    query: {
-        ListSmsRecordsQuery: ListSmsRecordsQuery;
+    query?: {
+        /**
+         * 发送状态
+         */
+        status?: SmsStatus;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'sentAt' | '-sentAt';
+        /**
+         * 创建时间大于该时间
+         */
+        createdAt_gt?: Date;
+        /**
+         * 创建时间小于该时间
+         */
+        createdAt_lt?: Date;
+        /**
+         * 发送时间大于该时间
+         */
+        sentAt_gt?: Date;
+        /**
+         * 发送时间小于该时间
+         */
+        sentAt_lt?: Date;
+        /**
+         * 手机号
+         */
+        phone?: string;
+        /**
+         * 签名
+         */
+        sign?: string;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
     };
     url: '/sms/records';
 };
@@ -3377,8 +3594,51 @@ export type UpdateSmsRecordResponse = UpdateSmsRecordResponses[keyof UpdateSmsRe
 export type ListThirdPartyData = {
     body?: never;
     path?: never;
-    query: {
-        ListThirdPartyQuery: ListThirdPartyQuery;
+    query?: {
+        /**
+         * 第三方登录来源
+         */
+        source?: string;
+        /**
+         * 第三方登录的用户唯一标识
+         */
+        tid?: string;
+        /**
+         * 第三方登录 accessToken
+         */
+        accessToken?: string;
+        /**
+         * 第三方登录过期时间
+         */
+        expireAt?: number;
+        /**
+         * 第三方登录 token 类型
+         */
+        tokenType?: string;
+        /**
+         * 第三方登录 refreshToken
+         */
+        refreshToken?: string;
+        /**
+         * 第三方登录 refreshToken 过期时间
+         */
+        refreshTokenExpireAt?: number;
+        /**
+         * 关联uid
+         */
+        uid?: string;
+        /**
+         * 用于存储第三方的额外数据
+         */
+        data?: string;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
     };
     url: '/third-parties';
 };
@@ -3516,8 +3776,103 @@ export type BindThirdPartyResponse = BindThirdPartyResponses[keyof BindThirdPart
 export type ListUsersData = {
     body?: never;
     path?: never;
-    query: {
-        ListUsersQuery: ListUsersQuery;
+    query?: {
+        /**
+         * 按 id 筛选
+         */
+        id?: Array<string>;
+        /**
+         * 所属命名空间
+         */
+        ns?: string | Array<string>;
+        /**
+         * 所属命名空间 start 查询
+         */
+        ns_start?: string | Array<string>;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'lastLoginAt' | '-lastLoginAt' | 'expireAt' | '-expireAt';
+        /**
+         * 名称 模糊查询
+         */
+        name_like?: string;
+        /**
+         * 用户名 模糊查询
+         */
+        username_like?: string;
+        /**
+         * 昵称 模糊查询
+         */
+        nickname_like?: string;
+        /**
+         * 所属命名空间的 tree 查询
+         */
+        ns_tree?: string;
+        /**
+         * 过期时间大于该时间
+         */
+        expireAt_gte?: Date;
+        /**
+         * 过期时间小于该时间
+         */
+        expireAt_lte?: Date;
+        /**
+         * 是否启用
+         */
+        active?: boolean;
+        /**
+         * 邮箱
+         */
+        email?: string;
+        /**
+         * 团队
+         */
+        groups?: Array<string>;
+        /**
+         * 邀请人
+         */
+        inviter?: string;
+        /**
+         * 标签
+         */
+        labels?: Array<string>;
+        /**
+         * 姓名
+         */
+        name?: string;
+        /**
+         * 手机号
+         */
+        phone?: string;
+        /**
+         * 注册地区，存地区编号
+         */
+        registerRegion?: string;
+        /**
+         * 角色
+         */
+        roles?: Array<string>;
+        /**
+         * 状态
+         */
+        status?: string;
+        /**
+         * 类型, 登录端
+         */
+        type?: string;
+        /**
+         * 用户名
+         */
+        username?: string;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
     };
     url: '/users';
 };
@@ -3550,8 +3905,103 @@ export type CreateUserResponse = CreateUserResponses[keyof CreateUserResponses];
 export type CountUsersData = {
     body?: never;
     path?: never;
-    query: {
-        ListUsersQuery: ListUsersQuery;
+    query?: {
+        /**
+         * 按 id 筛选
+         */
+        id?: Array<string>;
+        /**
+         * 所属命名空间
+         */
+        ns?: string | Array<string>;
+        /**
+         * 所属命名空间 start 查询
+         */
+        ns_start?: string | Array<string>;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'lastLoginAt' | '-lastLoginAt' | 'expireAt' | '-expireAt';
+        /**
+         * 名称 模糊查询
+         */
+        name_like?: string;
+        /**
+         * 用户名 模糊查询
+         */
+        username_like?: string;
+        /**
+         * 昵称 模糊查询
+         */
+        nickname_like?: string;
+        /**
+         * 所属命名空间的 tree 查询
+         */
+        ns_tree?: string;
+        /**
+         * 过期时间大于该时间
+         */
+        expireAt_gte?: Date;
+        /**
+         * 过期时间小于该时间
+         */
+        expireAt_lte?: Date;
+        /**
+         * 是否启用
+         */
+        active?: boolean;
+        /**
+         * 邮箱
+         */
+        email?: string;
+        /**
+         * 团队
+         */
+        groups?: Array<string>;
+        /**
+         * 邀请人
+         */
+        inviter?: string;
+        /**
+         * 标签
+         */
+        labels?: Array<string>;
+        /**
+         * 姓名
+         */
+        name?: string;
+        /**
+         * 手机号
+         */
+        phone?: string;
+        /**
+         * 注册地区，存地区编号
+         */
+        registerRegion?: string;
+        /**
+         * 角色
+         */
+        roles?: Array<string>;
+        /**
+         * 状态
+         */
+        status?: string;
+        /**
+         * 类型, 登录端
+         */
+        type?: string;
+        /**
+         * 用户名
+         */
+        username?: string;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
     };
     url: '/users/@countUsers';
 };
@@ -3743,8 +4193,103 @@ export type UpdatePasswordResponse = UpdatePasswordResponses[keyof UpdatePasswor
 export type AggregateUsersData = {
     body: AggregateUserDto;
     path?: never;
-    query: {
-        ListUsersQuery: ListUsersQuery;
+    query?: {
+        /**
+         * 按 id 筛选
+         */
+        id?: Array<string>;
+        /**
+         * 所属命名空间
+         */
+        ns?: string | Array<string>;
+        /**
+         * 所属命名空间 start 查询
+         */
+        ns_start?: string | Array<string>;
+        /**
+         * 排序参数
+         */
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'lastLoginAt' | '-lastLoginAt' | 'expireAt' | '-expireAt';
+        /**
+         * 名称 模糊查询
+         */
+        name_like?: string;
+        /**
+         * 用户名 模糊查询
+         */
+        username_like?: string;
+        /**
+         * 昵称 模糊查询
+         */
+        nickname_like?: string;
+        /**
+         * 所属命名空间的 tree 查询
+         */
+        ns_tree?: string;
+        /**
+         * 过期时间大于该时间
+         */
+        expireAt_gte?: Date;
+        /**
+         * 过期时间小于该时间
+         */
+        expireAt_lte?: Date;
+        /**
+         * 是否启用
+         */
+        active?: boolean;
+        /**
+         * 邮箱
+         */
+        email?: string;
+        /**
+         * 团队
+         */
+        groups?: Array<string>;
+        /**
+         * 邀请人
+         */
+        inviter?: string;
+        /**
+         * 标签
+         */
+        labels?: Array<string>;
+        /**
+         * 姓名
+         */
+        name?: string;
+        /**
+         * 手机号
+         */
+        phone?: string;
+        /**
+         * 注册地区，存地区编号
+         */
+        registerRegion?: string;
+        /**
+         * 角色
+         */
+        roles?: Array<string>;
+        /**
+         * 状态
+         */
+        status?: string;
+        /**
+         * 类型, 登录端
+         */
+        type?: string;
+        /**
+         * 用户名
+         */
+        username?: string;
+        /**
+         * 分页大小
+         */
+        _limit?: number;
+        /**
+         * 分页偏移
+         */
+        _offset?: number;
     };
     url: '/users/@aggregate';
 };
@@ -3762,8 +4307,12 @@ export type AggregateUsersResponse = AggregateUsersResponses[keyof AggregateUser
 export type ListIndustriesData = {
     body?: never;
     path?: never;
-    query: {
-        ListIndustriesQuery: ListIndustriesQuery;
+    query?: {
+        /**
+         * 返回的层数
+         * 默认返回所有层级
+         */
+        depth?: number;
     };
     url: '/industries';
 };
