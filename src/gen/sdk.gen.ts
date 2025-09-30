@@ -588,7 +588,23 @@ export const countNamespaces = <ThrowOnError extends boolean = true>(options?: O
 };
 
 /**
- * Find namespace by id or key
+ * Delete namespace
+ */
+export const deleteNamespace = <ThrowOnError extends boolean = true>(options: Options<DeleteNamespaceData, ThrowOnError>) => {
+    return (options.client ?? client).delete<DeleteNamespaceResponses, unknown, ThrowOnError>({
+        security: [
+            {
+                name: 'x-api-key',
+                type: 'apiKey'
+            }
+        ],
+        url: '/namespaces/{key}',
+        ...options
+    });
+};
+
+/**
+ * Find namespace by key
  */
 export const getNamespace = <ThrowOnError extends boolean = true>(options: Options<GetNamespaceData, ThrowOnError>) => {
     return (options.client ?? client).get<GetNamespaceResponses, unknown, ThrowOnError>({
@@ -599,7 +615,7 @@ export const getNamespace = <ThrowOnError extends boolean = true>(options: Optio
                 type: 'apiKey'
             }
         ],
-        url: '/namespaces/{namespaceIdOrKey}',
+        url: '/namespaces/{key}',
         ...options
     });
 };
@@ -616,28 +632,12 @@ export const updateNamespace = <ThrowOnError extends boolean = true>(options: Op
                 type: 'apiKey'
             }
         ],
-        url: '/namespaces/{namespaceIdOrKey}',
+        url: '/namespaces/{key}',
         ...options,
         headers: {
             'Content-Type': 'application/json',
             ...options.headers
         }
-    });
-};
-
-/**
- * Delete namespace
- */
-export const deleteNamespace = <ThrowOnError extends boolean = true>(options: Options<DeleteNamespaceData, ThrowOnError>) => {
-    return (options.client ?? client).delete<DeleteNamespaceResponses, unknown, ThrowOnError>({
-        security: [
-            {
-                name: 'x-api-key',
-                type: 'apiKey'
-            }
-        ],
-        url: '/namespaces/{namespaceId}',
-        ...options
     });
 };
 

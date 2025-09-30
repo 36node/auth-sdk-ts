@@ -3439,52 +3439,13 @@ export type CountNamespacesResponses = {
 
 export type CountNamespacesResponse = CountNamespacesResponses[keyof CountNamespacesResponses];
 
-export type GetNamespaceData = {
-    body?: never;
-    path: {
-        /**
-         * Namespace id or key, if key should encodeURIComponent
-         */
-        namespaceIdOrKey: string;
-    };
-    query?: never;
-    url: '/namespaces/{namespaceIdOrKey}';
-};
-
-export type GetNamespaceResponses = {
-    /**
-     * The namespace with expected id or key.
-     */
-    200: Namespace;
-};
-
-export type GetNamespaceResponse = GetNamespaceResponses[keyof GetNamespaceResponses];
-
-export type UpdateNamespaceData = {
-    body: UpdateNamespaceDto;
-    path: {
-        namespaceIdOrKey: string;
-    };
-    query?: never;
-    url: '/namespaces/{namespaceIdOrKey}';
-};
-
-export type UpdateNamespaceResponses = {
-    /**
-     * The namespace updated.
-     */
-    200: Namespace;
-};
-
-export type UpdateNamespaceResponse = UpdateNamespaceResponses[keyof UpdateNamespaceResponses];
-
 export type DeleteNamespaceData = {
     body?: never;
     path: {
-        namespaceId: string;
+        key: string;
     };
     query?: never;
-    url: '/namespaces/{namespaceId}';
+    url: '/namespaces/{key}';
 };
 
 export type DeleteNamespaceResponses = {
@@ -3495,6 +3456,45 @@ export type DeleteNamespaceResponses = {
 };
 
 export type DeleteNamespaceResponse = DeleteNamespaceResponses[keyof DeleteNamespaceResponses];
+
+export type GetNamespaceData = {
+    body?: never;
+    path: {
+        /**
+         * Namespace key, key should encodeURIComponent
+         */
+        key: string;
+    };
+    query?: never;
+    url: '/namespaces/{key}';
+};
+
+export type GetNamespaceResponses = {
+    /**
+     * The namespace with expected key.
+     */
+    200: Namespace;
+};
+
+export type GetNamespaceResponse = GetNamespaceResponses[keyof GetNamespaceResponses];
+
+export type UpdateNamespaceData = {
+    body: UpdateNamespaceDto;
+    path: {
+        key: string;
+    };
+    query?: never;
+    url: '/namespaces/{key}';
+};
+
+export type UpdateNamespaceResponses = {
+    /**
+     * The namespace updated.
+     */
+    200: Namespace;
+};
+
+export type UpdateNamespaceResponse = UpdateNamespaceResponses[keyof UpdateNamespaceResponses];
 
 export type ListSessionsData = {
     body?: never;
