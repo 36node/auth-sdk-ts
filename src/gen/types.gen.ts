@@ -260,7 +260,7 @@ export type User = {
     /**
      * 手机号
      */
-    phone?: string;
+    phone?: string | null;
     /**
      * 注册 IP
      */
@@ -1394,7 +1394,7 @@ export type CreateUserDto = {
     /**
      * 手机号
      */
-    phone?: string;
+    phone?: string | null;
     /**
      * 注册 IP
      */
@@ -1502,7 +1502,7 @@ export type UpdateUserDto = {
     /**
      * 手机号
      */
-    phone?: string;
+    phone?: string | null;
     /**
      * 注册 IP
      */
@@ -1767,7 +1767,7 @@ export type ListUsersQuery = {
     /**
      * 手机号
      */
-    phone?: string;
+    phone?: string | null;
     /**
      * 注册地区，存地区编号
      */
@@ -2198,7 +2198,7 @@ export type UserWritable = {
     /**
      * 手机号
      */
-    phone?: string;
+    phone?: string | null;
     /**
      * 注册 IP
      */
@@ -2346,7 +2346,7 @@ export type CreateUserDtoWritable = {
     /**
      * 手机号
      */
-    phone?: string;
+    phone?: string | null;
     /**
      * 注册 IP
      */
@@ -2450,7 +2450,7 @@ export type UpdateUserDtoWritable = {
     /**
      * 手机号
      */
-    phone?: string;
+    phone?: string | null;
     /**
      * 注册 IP
      */
@@ -4233,7 +4233,7 @@ export type ListUsersData = {
         /**
          * 手机号
          */
-        phone?: string;
+        phone?: string | null;
         /**
          * 注册地区，存地区编号
          */
@@ -4362,7 +4362,7 @@ export type CountUsersData = {
         /**
          * 手机号
          */
-        phone?: string;
+        phone?: string | null;
         /**
          * 注册地区，存地区编号
          */
@@ -4650,7 +4650,7 @@ export type AggregateUsersData = {
         /**
          * 手机号
          */
-        phone?: string;
+        phone?: string | null;
         /**
          * 注册地区，存地区编号
          */
