@@ -207,7 +207,7 @@ export type User = {
     /**
      * 邮箱
      */
-    email?: string;
+    email?: string | null;
     /**
      * 姓名
      */
@@ -280,7 +280,7 @@ export type User = {
     /**
      * 员工编号
      */
-    employeeId?: string;
+    employeeId?: string | null;
     /**
      * 权限
      */
@@ -1353,7 +1353,7 @@ export type CreateUserDto = {
     /**
      * 邮箱
      */
-    email?: string;
+    email?: string | null;
     /**
      * 姓名
      */
@@ -1410,7 +1410,7 @@ export type CreateUserDto = {
     /**
      * 员工编号
      */
-    employeeId?: string;
+    employeeId?: string | null;
     /**
      * 是否启用
      */
@@ -1449,7 +1449,7 @@ export type UpdateUserDto = {
     /**
      * 邮箱
      */
-    email?: string;
+    email?: string | null;
     /**
      * 姓名
      */
@@ -1522,7 +1522,7 @@ export type UpdateUserDto = {
     /**
      * 员工编号
      */
-    employeeId?: string;
+    employeeId?: string | null;
     /**
      * 权限
      */
@@ -1747,7 +1747,7 @@ export type ListUsersQuery = {
     /**
      * 邮箱
      */
-    email?: string;
+    email?: string | null;
     /**
      * 团队
      */
@@ -2145,7 +2145,7 @@ export type UserWritable = {
     /**
      * 邮箱
      */
-    email?: string;
+    email?: string | null;
     /**
      * 姓名
      */
@@ -2218,7 +2218,7 @@ export type UserWritable = {
     /**
      * 员工编号
      */
-    employeeId?: string;
+    employeeId?: string | null;
     /**
      * 权限
      */
@@ -2305,7 +2305,7 @@ export type CreateUserDtoWritable = {
     /**
      * 邮箱
      */
-    email?: string;
+    email?: string | null;
     /**
      * 姓名
      */
@@ -2362,7 +2362,7 @@ export type CreateUserDtoWritable = {
     /**
      * 员工编号
      */
-    employeeId?: string;
+    employeeId?: string | null;
     /**
      * 是否启用
      */
@@ -2397,7 +2397,7 @@ export type UpdateUserDtoWritable = {
     /**
      * 邮箱
      */
-    email?: string;
+    email?: string | null;
     /**
      * 姓名
      */
@@ -2470,7 +2470,7 @@ export type UpdateUserDtoWritable = {
     /**
      * 员工编号
      */
-    employeeId?: string;
+    employeeId?: string | null;
     /**
      * 权限
      */
@@ -4213,7 +4213,7 @@ export type ListUsersData = {
         /**
          * 邮箱
          */
-        email?: string;
+        email?: string | null;
         /**
          * 团队
          */
@@ -4342,7 +4342,7 @@ export type CountUsersData = {
         /**
          * 邮箱
          */
-        email?: string;
+        email?: string | null;
         /**
          * 团队
          */
@@ -4630,7 +4630,7 @@ export type AggregateUsersData = {
         /**
          * 邮箱
          */
-        email?: string;
+        email?: string | null;
         /**
          * 团队
          */
