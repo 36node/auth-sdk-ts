@@ -66,6 +66,10 @@ export type SessionWithToken = {
      */
     oneTimeUse?: boolean;
     /**
+     * 备注
+     */
+    remark?: string;
+    /**
      * Entity id
      */
     id: string;
@@ -953,6 +957,10 @@ export type CreateSessionDto = {
      * 一次性的，禁止轮换
      */
     oneTimeUse?: boolean;
+    /**
+     * 备注
+     */
+    remark?: string;
 };
 
 export type Session = {
@@ -997,6 +1005,10 @@ export type Session = {
      * 一次性的，禁止轮换
      */
     oneTimeUse?: boolean;
+    /**
+     * 备注
+     */
+    remark?: string;
     /**
      * Entity id
      */
@@ -1056,6 +1068,10 @@ export type UpdateSessionDto = {
      * 一次性的，禁止轮换
      */
     oneTimeUse?: boolean;
+    /**
+     * 备注
+     */
+    remark?: string;
 };
 
 export type SendSmsDto = {
@@ -2025,6 +2041,10 @@ export type ListSessionsQuery = {
      * 一次性的，禁止轮换
      */
     oneTimeUse?: boolean;
+    /**
+     * 备注
+     */
+    remark?: string;
     /**
      * 分页大小
      */
@@ -3541,6 +3561,10 @@ export type ListSessionsData = {
          */
         oneTimeUse?: boolean;
         /**
+         * 备注
+         */
+        remark?: string;
+        /**
          * 分页大小
          */
         _limit?: number;
@@ -3621,6 +3645,10 @@ export type CountSessionsData = {
          * 一次性的，禁止轮换
          */
         oneTimeUse?: boolean;
+        /**
+         * 备注
+         */
+        remark?: string;
         /**
          * 分页大小
          */
