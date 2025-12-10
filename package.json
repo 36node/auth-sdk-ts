@@ -5,6 +5,9 @@
   "source": "src/index.ts",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "url": "https://github.com/36node/auth-sdk-ts"
+  },
   "files": [
     "dist"
   ],
