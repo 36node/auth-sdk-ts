@@ -1757,6 +1757,14 @@ export type ListUsersQuery = {
      */
     expireAt_lte?: Date;
     /**
+     * 创建时间大于该时间
+     */
+    createdAt_gte?: Date;
+    /**
+     * 创建时间小于该时间
+     */
+    createdAt_lte?: Date;
+    /**
      * 是否启用
      */
     active?: boolean;
@@ -4235,6 +4243,14 @@ export type ListUsersData = {
          */
         expireAt_lte?: Date;
         /**
+         * 创建时间大于该时间
+         */
+        createdAt_gte?: Date;
+        /**
+         * 创建时间小于该时间
+         */
+        createdAt_lte?: Date;
+        /**
          * 是否启用
          */
         active?: boolean;
@@ -4363,6 +4379,14 @@ export type CountUsersData = {
          * 过期时间小于该时间
          */
         expireAt_lte?: Date;
+        /**
+         * 创建时间大于该时间
+         */
+        createdAt_gte?: Date;
+        /**
+         * 创建时间小于该时间
+         */
+        createdAt_lte?: Date;
         /**
          * 是否启用
          */
@@ -4651,6 +4675,14 @@ export type AggregateUsersData = {
          * 过期时间小于该时间
          */
         expireAt_lte?: Date;
+        /**
+         * 创建时间大于该时间
+         */
+        createdAt_gte?: Date;
+        /**
+         * 创建时间小于该时间
+         */
+        createdAt_lte?: Date;
         /**
          * 是否启用
          */
