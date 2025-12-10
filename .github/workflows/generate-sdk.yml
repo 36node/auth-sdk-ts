@@ -22,7 +22,11 @@ on:
         description: 'pull request html url'
         required: false
 
-permissions: write-all
+permissions:
+  id-token: write  # Required for OIDC
+  contents: write
+  packages: write
+  pull-requests: write
 
 env:
   PACAKAGE: '@36node/auth-sdk'
