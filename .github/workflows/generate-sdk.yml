@@ -72,15 +72,11 @@ jobs:
           git diff --quiet || HAS_CHANGES=1
           if [ "$HAS_CHANGES" == "1" ]; then
             git commit -a -m "chore: release ${{ github.event.inputs.version }} sdk"
+            npm publish
+            npm version ${{ github.event.inputs.version }}
           else
             echo "No changes detected, skipping commit."
           fi
-          npm version ${{ github.event.inputs.version }}
-
-      - name: publish
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
 
       - name: Push changes
         if: ${{ !github.event.inputs.prNumber }}
