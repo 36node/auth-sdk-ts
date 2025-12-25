@@ -818,6 +818,10 @@ export type CreateNamespaceDto = {
      * 是否可导出
      */
     exportable?: boolean;
+    /**
+     * 排序
+     */
+    seq?: number;
 };
 
 export type Namespace = {
@@ -863,6 +867,10 @@ export type Namespace = {
      * 是否可导出
      */
     exportable?: boolean;
+    /**
+     * 排序
+     */
+    seq?: number;
     /**
      * Entity id
      */
@@ -918,6 +926,10 @@ export type UpdateNamespaceDto = {
      * 是否可导出
      */
     exportable?: boolean;
+    /**
+     * 排序
+     */
+    seq?: number;
 };
 
 export type CreateSessionDto = {
@@ -1850,7 +1862,7 @@ export type ListNamespacesQuery = {
     /**
      * 排序参数
      */
-    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name';
+    _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name' | 'seq' | '-seq';
     /**
      * 名称 模糊查询
      */
@@ -3359,7 +3371,7 @@ export type ListNamespacesData = {
         /**
          * 排序参数
          */
-        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name';
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name' | 'seq' | '-seq';
         /**
          * 名称 模糊查询
          */
@@ -3436,7 +3448,7 @@ export type CountNamespacesData = {
         /**
          * 排序参数
          */
-        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name';
+        _sort?: 'createdAt' | '-createdAt' | 'updatedAt' | '-updatedAt' | 'key' | '-key' | 'name' | '-name' | 'seq' | '-seq';
         /**
          * 名称 模糊查询
          */
