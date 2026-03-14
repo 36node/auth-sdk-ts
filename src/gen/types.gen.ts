@@ -132,6 +132,34 @@ export type LoginByEmailDto = {
      * 验证码 code
      */
     code: string;
+    /**
+     * 不存在用户时是否自动注册
+     */
+    autoRegister?: boolean;
+    /**
+     * 命名空间
+     */
+    ns?: string;
+    /**
+     * 邀请人
+     */
+    inviter?: string;
+    /**
+     * 标签
+     */
+    labels?: Array<string>;
+    /**
+     * 注册 IP
+     */
+    registerIp?: string;
+    /**
+     * 注册地区，存地区编号
+     */
+    registerRegion?: string;
+    /**
+     * 类型, 登录端
+     */
+    type?: string;
 };
 
 export type LoginByPhoneDto = {
@@ -147,6 +175,34 @@ export type LoginByPhoneDto = {
      * 验证码 code
      */
     code: string;
+    /**
+     * 不存在用户时是否自动注册
+     */
+    autoRegister?: boolean;
+    /**
+     * 命名空间
+     */
+    ns?: string;
+    /**
+     * 邀请人
+     */
+    inviter?: string;
+    /**
+     * 标签
+     */
+    labels?: Array<string>;
+    /**
+     * 注册 IP
+     */
+    registerIp?: string;
+    /**
+     * 注册地区，存地区编号
+     */
+    registerRegion?: string;
+    /**
+     * 类型, 登录端
+     */
+    type?: string;
 };
 
 export type LogoutDto = {
