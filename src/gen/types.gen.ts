@@ -1407,6 +1407,10 @@ export type CreateUserDto = {
      */
     readonly hasPassword?: boolean;
     /**
+     * 显式指定用户 id，用于导入场景
+     */
+    id?: string;
+    /**
      * 团队
      */
     groups?: Array<string>;
@@ -2370,6 +2374,10 @@ export type CreateUserDtoWritable = {
      * 密码
      */
     password?: string;
+    /**
+     * 显式指定用户 id，用于导入场景
+     */
+    id?: string;
     /**
      * 团队
      */
@@ -4602,6 +4610,27 @@ export type UpsertUserByEmployeeIdResponses = {
 };
 
 export type UpsertUserByEmployeeIdResponse = UpsertUserByEmployeeIdResponses[keyof UpsertUserByEmployeeIdResponses];
+
+export type UpsertUserByIdData = {
+    body: CreateUserDtoWritable;
+    path: {
+        userId: string;
+    };
+    query?: never;
+    url: '/users/{userId}/@upsertUserById';
+};
+
+export type UpsertUserByIdResponses = {
+    /**
+     * The user upserted.
+     */
+    200: User;
+    201: {
+        [key: string]: unknown;
+    };
+};
+
+export type UpsertUserByIdResponse = UpsertUserByIdResponses[keyof UpsertUserByIdResponses];
 
 export type UpsertUserByUsernameData = {
     body: CreateUserDtoWritable;
