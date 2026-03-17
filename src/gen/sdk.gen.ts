@@ -1059,7 +1059,7 @@ export const updateUser = <ThrowOnError extends boolean = true>(options: Options
  */
 export const upsertUserByEmployeeId = <ThrowOnError extends boolean = true>(options: Options<UpsertUserByEmployeeIdData, ThrowOnError>) => {
     return (options.client ?? client).post<UpsertUserByEmployeeIdResponses, unknown, ThrowOnError>({
-        url: '/users/{employeeId}/@upsertUserByEmployeeId',
+        url: '/users/@upsertUserByEmployeeId',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1073,7 +1073,7 @@ export const upsertUserByEmployeeId = <ThrowOnError extends boolean = true>(opti
  */
 export const upsertUserById = <ThrowOnError extends boolean = true>(options: Options<UpsertUserByIdData, ThrowOnError>) => {
     return (options.client ?? client).post<UpsertUserByIdResponses, unknown, ThrowOnError>({
-        url: '/users/{userId}/@upsertUserById',
+        url: '/users/@upsertUserById',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1087,7 +1087,7 @@ export const upsertUserById = <ThrowOnError extends boolean = true>(options: Opt
  */
 export const upsertUserByUsername = <ThrowOnError extends boolean = true>(options: Options<UpsertUserByUsernameData, ThrowOnError>) => {
     return (options.client ?? client).post<UpsertUserByUsernameResponses, unknown, ThrowOnError>({
-        url: '/users/{username}/@upsertUserByUsername',
+        url: '/users/@upsertUserByUsername',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1101,7 +1101,7 @@ export const upsertUserByUsername = <ThrowOnError extends boolean = true>(option
  */
 export const upsertUserByEmail = <ThrowOnError extends boolean = true>(options: Options<UpsertUserByEmailData, ThrowOnError>) => {
     return (options.client ?? client).post<UpsertUserByEmailResponses, unknown, ThrowOnError>({
-        url: '/users/{email}/@upsertUserByEmail',
+        url: '/users/@upsertUserByEmail',
         ...options,
         headers: {
             'Content-Type': 'application/json',
@@ -1115,7 +1115,7 @@ export const upsertUserByEmail = <ThrowOnError extends boolean = true>(options: 
  */
 export const upsertUserByPhone = <ThrowOnError extends boolean = true>(options: Options<UpsertUserByPhoneData, ThrowOnError>) => {
     return (options.client ?? client).post<UpsertUserByPhoneResponses, unknown, ThrowOnError>({
-        url: '/users/{phone}/@upsertUserByPhone',
+        url: '/users/@upsertUserByPhone',
         ...options,
         headers: {
             'Content-Type': 'application/json',

@@ -4592,11 +4592,9 @@ export type UpdateUserResponse = UpdateUserResponses[keyof UpdateUserResponses];
 
 export type UpsertUserByEmployeeIdData = {
     body: CreateUserDtoWritable;
-    path: {
-        employeeId: string;
-    };
+    path?: never;
     query?: never;
-    url: '/users/{employeeId}/@upsertUserByEmployeeId';
+    url: '/users/@upsertUserByEmployeeId';
 };
 
 export type UpsertUserByEmployeeIdResponses = {
@@ -4613,11 +4611,9 @@ export type UpsertUserByEmployeeIdResponse = UpsertUserByEmployeeIdResponses[key
 
 export type UpsertUserByIdData = {
     body: CreateUserDtoWritable;
-    path: {
-        userId: string;
-    };
+    path?: never;
     query?: never;
-    url: '/users/{userId}/@upsertUserById';
+    url: '/users/@upsertUserById';
 };
 
 export type UpsertUserByIdResponses = {
@@ -4634,11 +4630,9 @@ export type UpsertUserByIdResponse = UpsertUserByIdResponses[keyof UpsertUserByI
 
 export type UpsertUserByUsernameData = {
     body: CreateUserDtoWritable;
-    path: {
-        username: string;
-    };
+    path?: never;
     query?: never;
-    url: '/users/{username}/@upsertUserByUsername';
+    url: '/users/@upsertUserByUsername';
 };
 
 export type UpsertUserByUsernameResponses = {
@@ -4655,11 +4649,9 @@ export type UpsertUserByUsernameResponse = UpsertUserByUsernameResponses[keyof U
 
 export type UpsertUserByEmailData = {
     body: CreateUserDtoWritable;
-    path: {
-        email: string;
-    };
+    path?: never;
     query?: never;
-    url: '/users/{email}/@upsertUserByEmail';
+    url: '/users/@upsertUserByEmail';
 };
 
 export type UpsertUserByEmailResponses = {
@@ -4676,11 +4668,9 @@ export type UpsertUserByEmailResponse = UpsertUserByEmailResponses[keyof UpsertU
 
 export type UpsertUserByPhoneData = {
     body: CreateUserDtoWritable;
-    path: {
-        phone: string;
-    };
+    path?: never;
     query?: never;
-    url: '/users/{phone}/@upsertUserByPhone';
+    url: '/users/@upsertUserByPhone';
 };
 
 export type UpsertUserByPhoneResponses = {
