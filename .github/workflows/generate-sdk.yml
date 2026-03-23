@@ -78,7 +78,11 @@ jobs:
           if [ "$HAS_CHANGES" == "1" ]; then
             git commit -a -m "chore: release ${{ github.event.inputs.version }} sdk"
             npm version ${{ github.event.inputs.version }}
-            npm publish
+            if [ -n "${{ github.event.inputs.prNumber }}" ]; then
+              npm publish --tag pr
+            else
+              npm publish
+            fi
           else
             echo "No changes detected, skipping commit."
           fi
