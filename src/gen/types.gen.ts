@@ -646,6 +646,7 @@ export type SendEmailDto = {
     to: string;
     subject: string;
     content: string;
+    useHtml?: boolean;
 };
 
 /**
@@ -989,6 +990,7 @@ export type UpdateNamespaceDto = {
 };
 
 export type CreateSessionDto = {
+    key?: string;
     /**
      * 会话过期时间
      */
@@ -1140,6 +1142,7 @@ export type UpdateSessionDto = {
      * 备注
      */
     remark?: string;
+    key?: string;
 };
 
 export type SendSmsDto = {
@@ -2125,6 +2128,7 @@ export type ListSessionsQuery = {
      * 备注
      */
     remark?: string;
+    key?: string;
     /**
      * 分页大小
      */
@@ -3648,6 +3652,7 @@ export type ListSessionsData = {
          * 备注
          */
         remark?: string;
+        key?: string;
         /**
          * 分页大小
          */
@@ -3733,6 +3738,7 @@ export type CountSessionsData = {
          * 备注
          */
         remark?: string;
+        key?: string;
         /**
          * 分页大小
          */

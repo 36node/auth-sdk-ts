@@ -326,7 +326,7 @@ export const verifyCaptcha = <ThrowOnError extends boolean = true>(options: Opti
 };
 
 /**
- * Send plain text email
+ * Send email
  */
 export const sendEmail = <ThrowOnError extends boolean = true>(options: Options<SendEmailData, ThrowOnError>) => {
     return (options.client ?? client).post<SendEmailResponses, unknown, ThrowOnError>({
