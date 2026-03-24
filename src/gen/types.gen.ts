@@ -1358,6 +1358,10 @@ export type ThirdParty = {
     updatedBy?: string;
 };
 
+export type _Object = {
+    [key: string]: unknown;
+};
+
 export type UpdateThirdPartyDto = {
     /**
      * 第三方登录来源
@@ -2184,13 +2188,15 @@ export type ListSmsRecordsQuery = {
 
 export type ListThirdPartyQuery = {
     /**
+     * 按 tid 筛选，支持多个值
+     */
+    tid?: {
+        [key: string]: unknown;
+    };
+    /**
      * 第三方登录来源
      */
     source?: string;
-    /**
-     * 第三方登录的用户唯一标识
-     */
-    tid?: string;
     /**
      * 第三方登录 accessToken
      */
@@ -2371,6 +2377,10 @@ export type UserWritable = {
      * Entity updated by who
      */
     updatedBy?: string;
+};
+
+export type ObjectWritable = {
+    [key: string]: unknown;
 };
 
 export type CreateUserDtoWritable = {
@@ -4042,13 +4052,13 @@ export type ListThirdPartyData = {
     path?: never;
     query?: {
         /**
+         * 按 tid 筛选，支持多个值
+         */
+        tid?: ObjectWritable;
+        /**
          * 第三方登录来源
          */
         source?: string;
-        /**
-         * 第三方登录的用户唯一标识
-         */
-        tid?: string;
         /**
          * 第三方登录 accessToken
          */
@@ -4122,13 +4132,13 @@ export type CountThirdPartyData = {
     path?: never;
     query?: {
         /**
+         * 按 tid 筛选，支持多个值
+         */
+        tid?: ObjectWritable;
+        /**
          * 第三方登录来源
          */
         source?: string;
-        /**
-         * 第三方登录的用户唯一标识
-         */
-        tid?: string;
         /**
          * 第三方登录 accessToken
          */
