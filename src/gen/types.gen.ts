@@ -62,9 +62,9 @@ export type SessionWithToken = {
      */
     type?: string;
     /**
-     * 一次性的，禁止轮换
+     * 禁止轮换
      */
-    oneTimeUse?: boolean;
+    noRotate?: boolean;
     /**
      * 备注
      */
@@ -1024,9 +1024,9 @@ export type CreateSessionDto = {
      */
     type?: string;
     /**
-     * 一次性的，禁止轮换
+     * 禁止轮换
      */
-    oneTimeUse?: boolean;
+    noRotate?: boolean;
     /**
      * 备注
      */
@@ -1072,9 +1072,9 @@ export type Session = {
      */
     type?: string;
     /**
-     * 一次性的，禁止轮换
+     * 禁止轮换
      */
-    oneTimeUse?: boolean;
+    noRotate?: boolean;
     /**
      * 备注
      */
@@ -1135,9 +1135,9 @@ export type UpdateSessionDto = {
      */
     type?: string;
     /**
-     * 一次性的，禁止轮换
+     * 禁止轮换
      */
-    oneTimeUse?: boolean;
+    noRotate?: boolean;
     /**
      * 备注
      */
@@ -2121,9 +2121,9 @@ export type ListSessionsQuery = {
      */
     type?: string;
     /**
-     * 一次性的，禁止轮换
+     * 禁止轮换
      */
-    oneTimeUse?: boolean;
+    noRotate?: boolean;
     /**
      * 备注
      */
@@ -3645,9 +3645,9 @@ export type ListSessionsData = {
          */
         type?: string;
         /**
-         * 一次性的，禁止轮换
+         * 禁止轮换
          */
-        oneTimeUse?: boolean;
+        noRotate?: boolean;
         /**
          * 备注
          */
@@ -3731,9 +3731,9 @@ export type CountSessionsData = {
          */
         type?: string;
         /**
-         * 一次性的，禁止轮换
+         * 禁止轮换
          */
-        oneTimeUse?: boolean;
+        noRotate?: boolean;
         /**
          * 备注
          */
