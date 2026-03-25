@@ -4188,6 +4188,27 @@ export type CountThirdPartyResponses = {
 
 export type CountThirdPartyResponse = CountThirdPartyResponses[keyof CountThirdPartyResponses];
 
+export type DeleteThirdPartyData = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: never;
+    url: '/third-parties/{id}';
+};
+
+export type DeleteThirdPartyResponses = {
+    200: {
+        [key: string]: unknown;
+    };
+    /**
+     * The third party has been successfully deleted.
+     */
+    201: ThirdParty;
+};
+
+export type DeleteThirdPartyResponse = DeleteThirdPartyResponses[keyof DeleteThirdPartyResponses];
+
 export type GetThirdPartyData = {
     body?: never;
     path: {
