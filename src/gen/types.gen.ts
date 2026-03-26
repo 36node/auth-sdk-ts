@@ -205,6 +205,41 @@ export type LoginByPhoneDto = {
     type?: string;
 };
 
+export type LoginByPhoneQuickAuthDto = {
+    /**
+     * 快速认证令牌
+     */
+    token: string;
+    /**
+     * 不存在用户时是否自动注册
+     */
+    autoRegister?: boolean;
+    /**
+     * 命名空间
+     */
+    ns?: string;
+    /**
+     * 邀请人
+     */
+    inviter?: string;
+    /**
+     * 标签
+     */
+    labels?: Array<string>;
+    /**
+     * 注册 IP
+     */
+    registerIp?: string;
+    /**
+     * 注册地区，存地区编号
+     */
+    registerRegion?: string;
+    /**
+     * 类型, 登录端
+     */
+    type?: string;
+};
+
 export type LogoutDto = {
     /**
      * session id
@@ -2748,6 +2783,22 @@ export type LoginByPhoneResponses = {
 };
 
 export type LoginByPhoneResponse = LoginByPhoneResponses[keyof LoginByPhoneResponses];
+
+export type LoginByPhoneQuickAuthData = {
+    body: LoginByPhoneQuickAuthDto;
+    path?: never;
+    query?: never;
+    url: '/auth/@loginByPhoneQuickAuth';
+};
+
+export type LoginByPhoneQuickAuthResponses = {
+    /**
+     * The session with token has been successfully created.
+     */
+    200: SessionWithToken;
+};
+
+export type LoginByPhoneQuickAuthResponse = LoginByPhoneQuickAuthResponses[keyof LoginByPhoneQuickAuthResponses];
 
 export type LogoutData = {
     body: LogoutDto;
