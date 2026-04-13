@@ -290,6 +290,10 @@ export type RegisterDto = {
 
 export type User = {
     /**
+     * 上次修改密码时间（与密码哈希一并维护，用于口令轮换等策略）
+     */
+    passwordChangedAt?: Date;
+    /**
      * 是否有密码
      */
     readonly hasPassword?: boolean;
@@ -1469,6 +1473,10 @@ export type BindThirdPartyDto = {
 
 export type CreateUserDto = {
     /**
+     * 上次修改密码时间（与密码哈希一并维护，用于口令轮换等策略）
+     */
+    passwordChangedAt?: Date;
+    /**
      * 是否有密码
      */
     readonly hasPassword?: boolean;
@@ -1584,6 +1592,10 @@ export type CreateUserDto = {
 };
 
 export type UpdateUserDto = {
+    /**
+     * 上次修改密码时间（与密码哈希一并维护，用于口令轮换等策略）
+     */
+    passwordChangedAt?: Date;
     /**
      * 是否有密码
      */
@@ -2304,6 +2316,10 @@ export type UserWritable = {
      */
     password?: string;
     /**
+     * 上次修改密码时间（与密码哈希一并维护，用于口令轮换等策略）
+     */
+    passwordChangedAt?: Date;
+    /**
      * 头像
      */
     avatar?: string;
@@ -2452,6 +2468,10 @@ export type CreateUserDtoWritable = {
      */
     password?: string;
     /**
+     * 上次修改密码时间（与密码哈希一并维护，用于口令轮换等策略）
+     */
+    passwordChangedAt?: Date;
+    /**
      * 显式指定用户 id，用于导入场景
      */
     id?: string;
@@ -2563,6 +2583,10 @@ export type CreateUserDtoWritable = {
 };
 
 export type UpdateUserDtoWritable = {
+    /**
+     * 上次修改密码时间（与密码哈希一并维护，用于口令轮换等策略）
+     */
+    passwordChangedAt?: Date;
     /**
      * 头像
      */

@@ -50,6 +50,9 @@ export const registerResponseTransformer = async (data: any): Promise<RegisterRe
 };
 
 const userSchemaResponseTransformer = (data: any) => {
+    if (data.passwordChangedAt) {
+        data.passwordChangedAt = new Date(data.passwordChangedAt);
+    }
     if (data.birthday) {
         data.birthday = new Date(data.birthday);
     }
