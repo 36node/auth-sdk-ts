@@ -42,6 +42,12 @@ export type SessionWithToken = {
      */
     source?: string;
     /**
+     * 访问控制列表
+     */
+    acl?: {
+        [key: string]: unknown;
+    };
+    /**
      * 角色之外的权限
      */
     permissions?: Array<string>;
@@ -1039,6 +1045,12 @@ export type CreateSessionDto = {
      */
     source?: string;
     /**
+     * 访问控制列表
+     */
+    acl?: {
+        [key: string]: unknown;
+    };
+    /**
      * 角色之外的权限
      */
     permissions?: Array<string>;
@@ -1086,6 +1098,12 @@ export type Session = {
      * 如果来自第三方，则会加上 source
      */
     source?: string;
+    /**
+     * 访问控制列表
+     */
+    acl?: {
+        [key: string]: unknown;
+    };
     /**
      * 角色之外的权限
      */
@@ -1136,6 +1154,10 @@ export type Session = {
     updatedBy?: string;
 };
 
+export type _Object = {
+    [key: string]: unknown;
+};
+
 export type UpdateSessionDto = {
     /**
      * 会话过期时间
@@ -1149,6 +1171,12 @@ export type UpdateSessionDto = {
      * 如果来自第三方，则会加上 source
      */
     source?: string;
+    /**
+     * 访问控制列表
+     */
+    acl?: {
+        [key: string]: unknown;
+    };
     /**
      * 角色之外的权限
      */
@@ -2136,6 +2164,12 @@ export type ListSessionsQuery = {
      */
     source?: string;
     /**
+     * 访问控制列表
+     */
+    acl?: {
+        [key: string]: unknown;
+    };
+    /**
      * 角色之外的权限
      */
     permissions?: Array<string>;
@@ -2406,6 +2440,10 @@ export type UserWritable = {
      * Entity updated by who
      */
     updatedBy?: string;
+};
+
+export type ObjectWritable = {
+    [key: string]: unknown;
 };
 
 export type CreateUserDtoWritable = {
@@ -3676,6 +3714,10 @@ export type ListSessionsData = {
          */
         source?: string;
         /**
+         * 访问控制列表
+         */
+        acl?: ObjectWritable;
+        /**
          * 角色之外的权限
          */
         permissions?: Array<string>;
@@ -3761,6 +3803,10 @@ export type CountSessionsData = {
          * 如果来自第三方，则会加上 source
          */
         source?: string;
+        /**
+         * 访问控制列表
+         */
+        acl?: ObjectWritable;
         /**
          * 角色之外的权限
          */
