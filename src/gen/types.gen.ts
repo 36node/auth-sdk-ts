@@ -143,6 +143,14 @@ export type LoginByEmailDto = {
      */
     autoRegister?: boolean;
     /**
+     * 自动注册时是否启用（不传则使用服务端默认）
+     */
+    active?: boolean;
+    /**
+     * 自动注册时的角色（不传则使用服务端默认）
+     */
+    roles?: Array<string>;
+    /**
      * 命名空间
      */
     ns?: string;
@@ -186,6 +194,14 @@ export type LoginByPhoneDto = {
      */
     autoRegister?: boolean;
     /**
+     * 自动注册时是否启用（不传则使用服务端默认）
+     */
+    active?: boolean;
+    /**
+     * 自动注册时的角色（不传则使用服务端默认）
+     */
+    roles?: Array<string>;
+    /**
      * 命名空间
      */
     ns?: string;
@@ -220,6 +236,14 @@ export type LoginByPhoneQuickAuthDto = {
      * 不存在用户时是否自动注册
      */
     autoRegister?: boolean;
+    /**
+     * 自动注册时是否启用（不传则使用服务端默认）
+     */
+    active?: boolean;
+    /**
+     * 自动注册时的角色（不传则使用服务端默认）
+     */
+    roles?: Array<string>;
     /**
      * 命名空间
      */
@@ -541,6 +565,12 @@ export type SignTokenDto = {
      * 受限权限
      */
     permissions?: Array<string>;
+    /**
+     * 访问控制列表
+     */
+    acl?: {
+        [key: string]: unknown;
+    };
 };
 
 export type Token = {
@@ -1593,14 +1623,6 @@ export type CreateUserDto = {
 
 export type UpdateUserDto = {
     /**
-     * 上次修改密码时间（与密码哈希一并维护，用于口令轮换等策略）
-     */
-    passwordChangedAt?: Date;
-    /**
-     * 是否有密码
-     */
-    readonly hasPassword?: boolean;
-    /**
      * 头像
      */
     avatar?: string;
@@ -2564,130 +2586,6 @@ export type CreateUserDtoWritable = {
      * 员工编号
      */
     employeeId?: string | null;
-    /**
-     * 是否启用
-     */
-    active?: boolean;
-    /**
-     * 状态
-     */
-    status?: string;
-    /**
-     * 过期时间
-     */
-    expireAt?: Date;
-    /**
-     * 类型, 登录端
-     */
-    type?: string;
-};
-
-export type UpdateUserDtoWritable = {
-    /**
-     * 上次修改密码时间（与密码哈希一并维护，用于口令轮换等策略）
-     */
-    passwordChangedAt?: Date;
-    /**
-     * 头像
-     */
-    avatar?: string;
-    /**
-     * 生日
-     */
-    birthday?: Date;
-    /**
-     * 额外数据
-     */
-    data?: string;
-    /**
-     * 邮箱
-     */
-    email?: string | null;
-    /**
-     * 姓名
-     */
-    name?: string;
-    identity?: string;
-    /**
-     * 实名认证时间
-     */
-    identityVerifiedAt?: Date;
-    /**
-     * 实名认证是否通过
-     */
-    identityVerified?: boolean;
-    /**
-     * 简介
-     */
-    intro?: string;
-    /**
-     * 邀请人
-     */
-    inviter?: string;
-    /**
-     * 标签
-     */
-    labels?: Array<string>;
-    /**
-     * 使用语言
-     */
-    language?: string;
-    /**
-     * 最后登录 IP
-     */
-    lastLoginIp?: string;
-    /**
-     * 最后活跃时间
-     */
-    lastSeenAt?: Date;
-    /**
-     * 等级
-     */
-    level?: number;
-    /**
-     * 昵称
-     */
-    nickname?: string;
-    /**
-     * 所属命名空间
-     */
-    ns?: string;
-    /**
-     * 手机号
-     */
-    phone?: string | null;
-    /**
-     * 注册 IP
-     */
-    registerIp?: string;
-    /**
-     * 注册地区，存地区编号
-     */
-    registerRegion?: string;
-    /**
-     * 角色
-     */
-    roles?: Array<string>;
-    /**
-     * 用户名
-     */
-    username?: string;
-    /**
-     * 员工编号
-     */
-    employeeId?: string | null;
-    /**
-     * 权限
-     */
-    permissions?: Array<string>;
-    /**
-     * 团队
-     */
-    groups?: Array<string>;
-    /**
-     * 最后登录时间
-     */
-    lastLoginAt?: Date;
     /**
      * 是否启用
      */
@@ -4721,7 +4619,7 @@ export type GetUserResponses = {
 export type GetUserResponse = GetUserResponses[keyof GetUserResponses];
 
 export type UpdateUserData = {
-    body: UpdateUserDtoWritable;
+    body: UpdateUserDto;
     path: {
         userId: string;
     };
