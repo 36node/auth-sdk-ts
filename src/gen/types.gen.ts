@@ -8,6 +8,47 @@ export type HealthCheckResult = {
     message: string;
 };
 
+export type HealthIndicator = {
+    /**
+     * Whether the dependency is reachable.
+     */
+    ok: boolean;
+    /**
+     * Failure reason (present only when ok=false).
+     */
+    error?: string;
+};
+
+export type HealthChecks = {
+    /**
+     * Redis connectivity
+     */
+    redis: HealthIndicator;
+    /**
+     * MongoDB connectivity
+     */
+    mongo: HealthIndicator;
+};
+
+export type HealthResult = {
+    /**
+     * Overall status. `ok` when every dependency is reachable, `degraded` otherwise.
+     */
+    status: 'ok' | 'degraded';
+    /**
+     * Service name
+     */
+    service: string;
+    /**
+     * ISO8601 timestamp of the check
+     */
+    timestamp: string;
+    /**
+     * Per-dependency check results
+     */
+    checks: HealthChecks;
+};
+
 export type AppResult = {
     message: string;
 };
@@ -2613,12 +2654,37 @@ export type HelloData = {
 
 export type HelloResponses = {
     /**
-     * Hello!
+     * Process is responsive.
      */
-    200: AppResult;
+    200: HealthCheckResult;
 };
 
 export type HelloResponse = HelloResponses[keyof HelloResponses];
+
+export type HealthData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/health';
+};
+
+export type HealthErrors = {
+    /**
+     * At least one dependency is unreachable.
+     */
+    503: HealthResult;
+};
+
+export type HealthError = HealthErrors[keyof HealthErrors];
+
+export type HealthResponses = {
+    /**
+     * Service and every dependency are reachable.
+     */
+    200: HealthResult;
+};
+
+export type HealthResponse = HealthResponses[keyof HealthResponses];
 
 export type CleanupData = {
     body?: never;
