@@ -758,6 +758,9 @@ export type VerifyCaptchaResultDto = {
 };
 
 export type SendEmailDto = {
+    /**
+     * 发件人地址，支持纯邮箱或带显示名格式，例如 `robot@mail.36node.com` 或 `"robot" <robot@mail.36node.com>`
+     */
     from: string;
     to: string;
     subject: string;
@@ -776,7 +779,7 @@ export type CreateEmailRecordDto = {
      */
     status: EmailStatus;
     /**
-     * 发件者
+     * 发件者，支持纯邮箱或带显示名格式，例如 `robot@mail.36node.com` 或 `"robot" <robot@mail.36node.com>`
      */
     from: string;
     /**
@@ -803,7 +806,7 @@ export type EmailRecord = {
      */
     status: EmailStatus;
     /**
-     * 发件者
+     * 发件者，支持纯邮箱或带显示名格式，例如 `robot@mail.36node.com` 或 `"robot" <robot@mail.36node.com>`
      */
     from: string;
     /**
@@ -850,7 +853,7 @@ export type UpdateEmailRecordDto = {
      */
     status?: EmailStatus;
     /**
-     * 发件者
+     * 发件者，支持纯邮箱或带显示名格式，例如 `robot@mail.36node.com` 或 `"robot" <robot@mail.36node.com>`
      */
     from?: string;
     /**
@@ -2138,7 +2141,7 @@ export type ListEmailRecordsQuery = {
      */
     sentAt_lt?: Date;
     /**
-     * 发件者
+     * 发件者，支持纯邮箱或带显示名格式，例如 `robot@mail.36node.com` 或 `"robot" <robot@mail.36node.com>`
      */
     from?: string;
     /**
@@ -3141,7 +3144,7 @@ export type ListEmailRecordsData = {
          */
         sentAt_lt?: Date;
         /**
-         * 发件者
+         * 发件者，支持纯邮箱或带显示名格式，例如 `robot@mail.36node.com` 或 `"robot" <robot@mail.36node.com>`
          */
         from?: string;
         /**
@@ -3214,7 +3217,7 @@ export type CountEmailRecordsData = {
          */
         sentAt_lt?: Date;
         /**
-         * 发件者
+         * 发件者，支持纯邮箱或带显示名格式，例如 `robot@mail.36node.com` 或 `"robot" <robot@mail.36node.com>`
          */
         from?: string;
         /**
