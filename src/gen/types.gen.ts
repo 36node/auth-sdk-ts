@@ -1293,6 +1293,10 @@ export type SendSmsDto = {
     params?: {
         [key: string]: unknown;
     };
+    /**
+     * 火山引擎消息组 ID；未传时使用 VOLCENGINE_SMS_ACCOUNT
+     */
+    account?: string;
 };
 
 /**
@@ -1322,6 +1326,10 @@ export type CreateSmsRecordDto = {
      */
     params?: string;
     /**
+     * 火山引擎消息组 ID
+     */
+    account?: string;
+    /**
      * 发送时间
      */
     sentAt?: Date;
@@ -1348,6 +1356,10 @@ export type SmsRecord = {
      * 参数
      */
     params?: string;
+    /**
+     * 火山引擎消息组 ID
+     */
+    account?: string;
     /**
      * 发送时间
      */
@@ -1395,6 +1407,10 @@ export type UpdateSmsRecordDto = {
      * 参数
      */
     params?: string;
+    /**
+     * 火山引擎消息组 ID
+     */
+    account?: string;
     /**
      * 发送时间
      */
