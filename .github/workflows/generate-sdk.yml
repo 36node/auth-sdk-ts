@@ -70,7 +70,6 @@ jobs:
 
       - name: build
         run: |
-          npm install -g npm@latest
           npm run build
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
